@@ -1,0 +1,26 @@
+idea:
+  title: Different Kinds of Drama
+  domain: artificial_intelligence
+  hypothesis: "Large language models must represent what different people find dramatic,\
+    \ and the distinction between what one person finds dramatic and another finds\
+    \ melodramatic is likely not well modeled as thresholds on a single axis. The\
+    \ research question is: How do models represent this\u2014via a low-dimensional\
+    \ space of drama-features, or a low-dimensional space of reader features that\
+    \ contain drama subspaces?\n"
+  background:
+    description: 'LLMs must represent what different people find dramatic. What one
+      person X finds dramatic and another person Y finds melodramatic are probably
+      related, but they are probably not modeled well as thresholds on a single axis.
+      How do models represent this? A low-dimensional space of drama-features? A low-dimensional
+      space of reader features that contain drama subspaces?
+
+      '
+  metadata:
+    author: Ari Holtzman
+    source: IdeaHub
+    source_url: https://hypogenic.ai/ideahub/idea/QHGT7WVSB43EGwceotfR
+    idea_id: different_kinds_of_drama_20260621_212218_edf1f149
+    created_at: '2026-06-21T21:22:18.459875'
+    status: submitted
+    github_repo_name: drama-types-ai-e4ac-claude
+    github_repo_url: https://github.com/Hypogenic-AI/drama-types-ai-e4ac-claude
