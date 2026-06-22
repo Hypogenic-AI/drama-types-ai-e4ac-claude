@@ -1,0 +1,384 @@
+{
+  "success": true,
+  "total": 42,
+  "papers": [
+    {
+      "title": "Tears or Cheers? Benchmarking LLMs via Culturally Elicited Distinct Affective Responses",
+      "year": 2026,
+      "authors": "Chongyuan Dai, Yaling Shen, Jinpeng Hu, Zihan Gao, Jia Li, Yishun Jiang, Yaxiong Wang, Liu Liu, Zongyuan Ge",
+      "url": "https://api.semanticscholar.org/CorpusId:284910606",
+      "relevance": 1,
+      "abstract": "Culture serves as a fundamental determinant of human affective processing and profoundly shapes how individuals perceive and interpret emotional stimuli. Despite this intrinsic link extant evaluations regarding cultural alignment within Large Language Models primarily prioritize declarative knowledge such as geographical facts or established societal customs. These benchmarks remain insufficient to capture the subjective interpretative variance inherent to diverse sociocultural lenses. To address this limitation, we introduce CEDAR, a multimodal benchmark constructed entirely from scenarios capturing Culturally \\underline{\\textsc{E}}licited \\underline{\\textsc{D}}istinct \\underline{\\textsc{A}}ffective \\underline{\\textsc{R}}esponses. To construct CEDAR, we implement a novel pipeline that leverages LLM-generated provisional labels to isolate instances yielding cross-cultural emotional distinctions, and subsequently derives reliable ground-truth annotations through rigorous human evaluation. The resulting benchmark comprises 10,962 instances across seven languages and 14 fine-grained emotion categories, with each language including 400 multimodal and 1,166 text-only samples. Comprehensive evaluations of 17 representative multilingual models reveal a dissociation between language consistency and cultural alignment, demonstrating that culturally grounded affective understanding remains a significant challenge for current models.",
+      "citations": 4
+    },
+    {
+      "title": "Large Language Models for Subjective Language Understanding: A Survey",
+      "year": 2025,
+      "authors": "Changhao Song, Yazhou Zhang, Hui Gao, Ben Yao, Peng Zhang",
+      "url": "https://api.semanticscholar.org/CorpusId:280566427",
+      "relevance": 1,
+      "abstract": "Subjective language understanding refers to a broad set of natural language processing tasks where the goal is to interpret or generate content that conveys personal feelings, opinions, or figurative meanings rather than objective facts. With the advent of large language models (LLMs) such as ChatGPT, LLaMA, and others, there has been a paradigm shift in how we approach these inherently nuanced tasks. In this survey, we provide a comprehensive review of recent advances in applying LLMs to subjective language tasks, including sentiment analysis, emotion recognition, sarcasm detection, humor understanding, stance detection, metaphor interpretation, intent detection, and aesthetics assessment. We begin by clarifying the definition of subjective language from linguistic and cognitive perspectives, and we outline the unique challenges posed by subjective language (e.g. ambiguity, figurativeness, context dependence). We then survey the evolution of LLM architectures and techniques that particularly benefit subjectivity tasks, highlighting why LLMs are well-suited to model subtle human-like judgments. For each of the eight tasks, we summarize task definitions, key datasets, state-of-the-art LLM-based methods, and remaining challenges. We provide comparative insights, discussing commonalities and differences among tasks and how multi-task LLM approaches might yield unified models of subjectivity. Finally, we identify open issues such as data limitations, model bias, and ethical considerations, and suggest future research directions. We hope this survey will serve as a valuable resource for researchers and practitioners interested in the intersection of affective computing, figurative language processing, and large-scale language models.",
+      "citations": 11
+    },
+    {
+      "title": "Are Large Language Models Capable of Generating Human-Level Narratives?",
+      "year": 2024,
+      "authors": "Yufei Tian, Tenghao Huang, Miri Liu, Derek Jiang, Alexander Spangher, Muhao Chen, Jonathan May, Nanyun Peng",
+      "url": "https://api.semanticscholar.org/CorpusId:271270813",
+      "relevance": 1,
+      "abstract": "As daily reliance on large language models (LLMs) grows, assessing their generation quality is crucial to understanding how they might impact on our communications. This paper investigates the capability of LLMs in storytelling, focusing on narrative development and plot progression. We introduce a novel computational framework to analyze narratives through three discourse-level aspects: i) story arcs, ii) turning points, and iii) affective dimensions, including arousal and valence. By leveraging expert and automatic annotations, we uncover significant discrepancies between the LLM- and human- written stories. While human-written stories are suspenseful, arousing, and diverse in narrative structures, LLM stories are homogeneously positive and lack tension. Next, we measure narrative reasoning skills as a precursor to generative capacities, concluding that most LLMs fall short of human abilities in discourse understanding. Finally, we show that explicit integration of aforementioned discourse features can enhance storytelling, as is demonstrated by over 40% improvement in neural storytelling in terms of diversity, suspense, and arousal. Such advances promise to facilitate greater and more natural roles LLMs in human communication.",
+      "citations": 107
+    },
+    {
+      "title": "LLM-based Affective Text Generation Quality Based on Different Quantization Values",
+      "year": 2025,
+      "authors": "Yarik Menchaca Resendiz, Roman Klinger",
+      "url": "https://api.semanticscholar.org/CorpusId:276079757",
+      "relevance": 1,
+      "abstract": "Large language models exhibit a remarkable capacity in language generation and comprehension. These advances enable AI systems to produce more human-like and emotionally engaging text. However, these models rely on a large number of parameters, requiring significant computational resources for training and inference. In some scenarios, accessing these resources can be challenging (e.g., budget or hardware limitations). Techniques like reducing precision bits can make models more memory-efficient, reducing the computational resources needed, at the cost of reduced accuracy. This paper addresses the trade-off between different quantization values, GPU RAM utilization, and text quality in affective text generation (e.g.,\"I really enjoy running in the snow-covered forest\"). To evaluate, we use an emotion classifier and ten seed prompts to generate affective text. We test three setups of precision bits (8, 16, and 32) across five open-weight language models from two different families. Our findings demonstrate that bit reductions lead to memory savings, achieving a reduction of 76%. However, this optimization comes with a trade-off, leading to a decrease of up to 10 pp in F1 score for larger models and an increase of 10 pp for smaller models, along with roughly double the inference time. In terms of text quality, larger models at lower quantization levels generally outperform smaller, higher-precision models -- while requiring similar memory.",
+      "citations": 3
+    },
+    {
+      "title": "Computational emotion classification for genre corpora of German tragedies and comedies from 17th to early 19th century",
+      "year": 2023,
+      "authors": "Katrin Dennerlein, Thomas Schmidt, Christian Wolff",
+      "url": "https://api.semanticscholar.org/CorpusId:265430070",
+      "relevance": 1,
+      "abstract": "This article presents a method of emotion analysis for German drama from the 17th to the 19th century that signi\ufb01cantly goes beyond previous research approaches in computational literary studies. It is based on annotations of 17 dramatic texts resulting in 11,939 annotations which were used as training material to \ufb01ne-tune a German language BERT model that achieves an average accuracy of 73% for the single-label emotion classi\ufb01cation of fourteen emotion types in cross-validation. We apply the emotion classi\ufb01cation on a corpus of 141 comedies and 92 tragedies to compare these genres. For tragedies, the mean proportion percentages of \u2018suf-fering\u2019 and \u2018abhorrence\u2019 are higher than for comedies. Inversely, mean percentages of \u2018anger\u2019 and \u2018joy\u2019 are higher for comedies than for tragedies. A new \ufb01nding is the surprisingly high proportion of \u2018anger\u2019 in comedies. Emotion distribution of the last scenes in dramatic texts also proves the quality of the classi\ufb01ed data in terms of literary studies. In addition, the emotion distribution for several subgenres of comedy is investigated including non-canonical works of wide circulation which reached the recipients directly through the depicted emotions in the Kasperl Plays. Comedies from 1740 to 1770 are characterized by a pairing of higher amounts of \u2018friend-ship\u2019 and \u2018love\u2019. Satirical comedies from the same period stand out due to high rates of \u2018anger\u2019 as well as \u2018suffering\u2019. The very successful Kasperl plays turn out to be characterized by a comparatively large percentage of \u2018schadenfreude\u2019 and \u2018joy\u2019.",
+      "citations": 4
+    },
+    {
+      "title": "Story2MIDI: Emotionally Aligned Music Generation from Text",
+      "year": 2025,
+      "authors": "M. Shokri, Alexandra C. Salem, Gabriel Levine, Johanna Devaney, Sarah Ita Levitan",
+      "url": "https://api.semanticscholar.org/CorpusId:283457829",
+      "relevance": 1,
+      "abstract": "In this paper, we introduce Story2MIDI, a sequence-to-sequence Transformer-based model for generating emotionaligned music from a given piece of text. To develop this model, we construct the Story2MIDI dataset by merging existing datasets for sentiment analysis from text and emotion classification in music. The resulting dataset contains pairs of text blurbs and music pieces that evoke the same emotions in the reader or listener. Despite the small scale of our dataset and limited computational resources, our results indicate that our model effectively learns emotion-relevant features in music and incorporates them into its generation process, producing samples with diverse emotional responses. We evaluate the generated outputs using objective musical metrics and a human listening study, confirming the model's ability to capture intended emotional cues.",
+      "citations": 0
+    },
+    {
+      "title": "Adapting a Language Model for Controlled Affective Text Generation",
+      "year": 2020,
+      "authors": "Ishika Singh, Ahsan Barkati, Tushar Goswamy, Ashutosh Modi",
+      "url": "https://api.semanticscholar.org/CorpusId:226281504",
+      "relevance": 1,
+      "abstract": "Human use language not just to convey information but also to express their inner feelings and mental states. In this work, we adapt the state-of-the-art language generation models to generate affective (emotional) text. We posit a model capable of generating affect-driven and topic focused sentences without losing grammatical correctness as the affect intensity increases. We propose to incorporate emotion as prior for the probabilistic state-of-the-art text generation model such as GPT-2. The model gives a user the flexibility to control the category and intensity of emotion as well as the topic of the generated text. Previous attempts at modelling fine-grained emotions fall out on grammatical correctness at extreme intensities, but our model is resilient to this and delivers robust results at all intensities. We conduct automated evaluations and human studies to test the performance of our model, and provide a detailed comparison of the results with other models. In all evaluations, our model outperforms existing affective text generation models.",
+      "citations": 40
+    },
+    {
+      "title": "Modeling Emotional Trajectories in Written Stories Utilizing Transformers and Weakly-Supervised Learning",
+      "year": 2024,
+      "authors": "Lukas Christ, Shahin Amiriparian, M. Milling, Ilhan Aslan, Bj\u00f6rn W. Schuller",
+      "url": "https://api.semanticscholar.org/CorpusId:270226780",
+      "relevance": 1,
+      "abstract": "Telling stories is an integral part of human communication which can evoke emotions and influence the affective states of the audience. Automatically modeling emotional trajectories in stories has thus attracted considerable scholarly interest. However, as most existing works have been limited to unsupervised dictionary-based approaches, there is no benchmark for this task. We address this gap by introducing continuous valence and arousal labels for an existing dataset of children's stories originally annotated with discrete emotion categories. We collect additional annotations for this data and map the categorical labels to the continuous valence and arousal space. For predicting the thus obtained emotionality signals, we fine-tune a DeBERTa model and improve upon this baseline via a weakly supervised learning approach. The best configuration achieves a Concordance Correlation Coefficient (CCC) of $.8221$ for valence and $.7125$ for arousal on the test set, demonstrating the efficacy of our proposed approach. A detailed analysis shows the extent to which the results vary depending on factors such as the author, the individual story, or the section within the story. In addition, we uncover the weaknesses of our approach by investigating examples that prove to be difficult to predict.",
+      "citations": 3
+    },
+    {
+      "title": "Affective Prompt-Tuning-Based Language Model for Semantic-Based Emotional Text Generation",
+      "year": 2024,
+      "authors": "Zhaodong Gu, Kejing He",
+      "url": "https://api.semanticscholar.org/CorpusId:268345145",
+      "relevance": 1,
+      "abstract": "The large language models based on transformers have shown strong text generation ability. However, due to the need for significant computing resources, little work has been done to generate emotional text using language models such as GPT-2. To address this issue, the authors proposed an affective prompt-tuning-based language model (APT-LM) equipped with an affective decoding (AD) method, aiming to enhance emotional text generation with limited computing resources. In detail, the proposed model incorporates the emotional attributes into the soft prompt by using the NRC emotion intensity lexicon and updates the additional parameters while freezing the language model. Then, it steers the generation toward a given emotion by calculating the cosine distance between the affective soft prompt and the candidate tokens generated by the language model. Experimental results show that the proposed APT-LM model significantly improves emotional text generation and achieves competitive performance on sentence fluency compared to baseline models across automatic evaluation and human evaluation.",
+      "citations": 12
+    },
+    {
+      "title": "Affect-LM: A Neural Language Model for Customizable Affective Text Generation",
+      "year": 2017,
+      "authors": "Sayan Ghosh, Mathieu Chollet, Eugene Laksana, Louis-philippe Morency, Stefan Scherer",
+      "url": "https://api.semanticscholar.org/CorpusId:18999401",
+      "relevance": 1,
+      "abstract": "Human verbal communication includes affective messages which are conveyed through use of emotionally colored words. There has been a lot of research effort in this direction but the problem of integrating state-of-the-art neural language models with affective information remains an area ripe for exploration. In this paper, we propose an extension to an LSTM (Long Short-Term Memory) language model for generation of conversational text, conditioned on affect categories. Our proposed model, Affect-LM enables us to customize the degree of emotional content in generated sentences through an additional design parameter. Perception studies conducted using Amazon Mechanical Turk show that Affect-LM can generate naturally looking emotional sentences without sacrificing grammatical correctness. Affect-LM also learns affect-discriminative word representations, and perplexity experiments show that additional affective information in conversational text can improve language model prediction.",
+      "citations": 197
+    },
+    {
+      "title": "AI with Emotions: Exploring Emotional Expressions in Large Language Models",
+      "year": 2025,
+      "authors": "S. Ishikawa, Atsushi Yoshino",
+      "url": "https://api.semanticscholar.org/CorpusId:277955991",
+      "relevance": 1,
+      "abstract": "The human-level performance of Large Language Models (LLMs) across various tasks has raised expectations for the potential of Artificial Intelligence (AI) to possess emotions someday. To explore the capability of current LLMs to express emotions in their outputs, we conducted an experiment using several LLMs (OpenAI GPT, Google Gemini, Meta Llama3, and Cohere Command R+) to role-play as agents answering questions with specified emotional states. We defined the emotional states using Russell's Circumplex model, a well-established framework that characterizes emotions along the sleepy-activated (arousal) and pleasure-displeasure (valence) axes. We chose this model for its simplicity, utilizing two continuous parameters, which allows for better controllability in applications involving continuous changes in emotional states. The responses generated were evaluated using a sentiment analysis model, independent of the LLMs, trained on the GoEmotions dataset. The evaluation showed that the emotional states of the generated answers were consistent with the specifications, demonstrating the LLMs' capability for emotional expression. This indicates the potential for LLM-based AI agents to simulate emotions, opening up a wide range of applications for emotion-based interactions, such as advisors or consultants who can provide advice or opinions with a personal touch.",
+      "citations": 15
+    },
+    {
+      "title": "Emergence of Hierarchical Emotion Organization in Large Language Models",
+      "year": 2025,
+      "authors": "Bo Zhao, Maya Okawa, Eric J. Bigelow, Rose Yu, Tomer D. Ullman, E. Lubana, Hidenori Tanaka",
+      "url": "https://api.semanticscholar.org/CorpusId:280253780",
+      "relevance": 1,
+      "abstract": "As large language models (LLMs) increasingly power conversational agents, understanding how they model users'emotional states is critical for ethical deployment. Inspired by emotion wheels, i.e., a psychological framework that argues emotions organize hierarchically, we analyze probabilistic dependencies between emotional states in model outputs. We find that LLMs naturally form hierarchical emotion trees that align with human psychological models, and larger models develop more complex hierarchies. We also uncover systematic biases in emotion recognition across socioeconomic personas, with compounding misclassifications for intersectional, underrepresented groups. Human studies reveal striking parallels, suggesting that LLMs internalize aspects of social perception. Beyond highlighting emergent emotional reasoning in LLMs, our results hint at the potential of using cognitively-grounded theories for developing better model evaluations.",
+      "citations": 3
+    },
+    {
+      "title": "Do LLMs \"Feel\"? Emotion Circuits Discovery and Control",
+      "year": 2025,
+      "authors": "Chenxi Wang, Yixuan Zhang, Rui Yu, Yufei Zheng, Lang Gao, Zirui Song, Zixiang Xu, Gus G. Xia, Huishuai Zhang, Dongyan Zhao, Xiuying Chen",
+      "url": "https://api.semanticscholar.org/CorpusId:282058519",
+      "relevance": 1,
+      "abstract": "As the demand for emotional intelligence in large language models (LLMs) grows, a key challenge lies in understanding the internal mechanisms that give rise to emotional expression and in controlling emotions in generated text. This study addresses three core questions: (1) Do LLMs contain context-agnostic mechanisms shaping emotional expression? (2) What form do these mechanisms take? (3) Can they be harnessed for universal emotion control? We first construct a controlled dataset, SEV (Scenario-Event with Valence), to elicit comparable internal states across emotions. Subsequently, we extract context-agnostic emotion directions that reveal consistent, cross-context encoding of emotion (Q1). We identify neurons and attention heads that locally implement emotional computation through analytical decomposition and causal analysis, and validate their causal roles via ablation and enhancement interventions. Next, we quantify each sublayer's causal influence on the model's final emotion representation and integrate the identified local components into coherent global emotion circuits that drive emotional expression (Q2). Directly modulating these circuits achieves 99.65% emotion-expression accuracy on the test set, surpassing prompting- and steering-based methods (Q3). To our knowledge, this is the first systematic study to uncover and validate emotion circuits in LLMs, offering new insights into interpretability and controllable emotional intelligence.",
+      "citations": 9
+    },
+    {
+      "title": "Multimodal Large Language Models for End-to-End Affective Computing: Benchmarking and Boosting with Generative Knowledge Prompting",
+      "year": 2025,
+      "authors": "Miaosen Luo, Jiesen Long, Zequn Li, Yunyi Yang, Yuncheng Jiang, Sijie Mai",
+      "url": "https://api.semanticscholar.org/CorpusId:280421604",
+      "relevance": 1,
+      "abstract": "Multimodal Affective Computing (MAC) aims to recognize and interpret human emotions by integrating information from diverse modalities such as text, video, and audio. Recent advancements in Multimodal Large Language Models (MLLMs) have significantly reshaped the landscape of MAC by offering a unified framework for processing and aligning cross-modal information. However, practical challenges remain, including performance variability across complex MAC tasks and insufficient understanding of how architectural designs and data characteristics impact affective analysis. To address these gaps, we conduct a systematic benchmark evaluation of state-of-the-art open-source MLLMs capable of concurrently processing audio, visual, and textual modalities across multiple established MAC datasets. Our evaluation not only compares the performance of these MLLMs but also provides actionable insights into model optimization by analyzing the influence of model architectures and dataset properties. Furthermore, we propose a novel hybrid strategy that combines generative knowledge prompting with supervised fine-tuning to enhance MLLMs'affective computing capabilities. Experimental results demonstrate that this integrated approach significantly improves performance across various MAC tasks, offering a promising avenue for future research and development in this field. Our code is released on https://github.com/LuoMSen/MLLM-MAC.",
+      "citations": 3
+    },
+    {
+      "title": "Integrating Emotional and Linguistic Models for Ethical Compliance in Large Language Models",
+      "year": 2024,
+      "authors": "Edward Y. Chang",
+      "url": "https://api.semanticscholar.org/CorpusId:269757482",
+      "relevance": 1,
+      "abstract": "This research develops advanced methodologies for Large Language Models (LLMs) to better manage linguistic behaviors related to emotions and ethics. We introduce DIKE, an adversarial framework that enhances the LLMs' ability to internalize and reflect global human values, adapting to varied cultural contexts to promote transparency and trust among users. The methodology involves detailed modeling of emotions, classification of linguistic behaviors, and implementation of ethical guardrails. Our innovative approaches include mapping emotions and behaviors using self-supervised learning techniques, refining these guardrails through adversarial reviews, and systematically adjusting outputs to ensure ethical alignment. This framework establishes a robust foundation for AI systems to operate with ethical integrity and cultural sensitivity, paving the way for more responsible and context-aware AI interactions.",
+      "citations": 3
+    },
+    {
+      "title": "Decoding the Flow: CauseMotion for Emotional Causality Analysis in Long-form Conversations",
+      "year": 2025,
+      "authors": "Yuxuan Zhang, Yulong Li, Zichen Yu, Feilong Tang, Zhixiang Lu, Chong Li, K. Dang, Jionglong Su",
+      "url": "https://api.semanticscholar.org/CorpusId:275212196",
+      "relevance": 1,
+      "abstract": "Long-sequence causal reasoning seeks to uncover causal relationships within extended time series data but is hindered by complex dependencies and the challenges of validating causal links. To address the limitations of large-scale language models (e.g., GPT-4) in capturing intricate emotional causality within extended dialogues, we propose CauseMotion, an innovative framework combining emotional causal dynamic mapping with multimodal feature fusion. CauseMotion implements dynamic mapping through a sliding window mechanism and fusion strategies, while integrating audio features\u2014vocal emotion, intensity, and speech rate\u2014to enrich semantic representations. This design enables efficient retrieval of contextually relevant information and precise inference of emotional causal chains spanning multiple conversational turns. We constructed the first benchmark dataset for long-sequence emotional causal reasoning, featuring dialogues with over 70 turns. Experimental results show that CauseMotion significantly enhances emotional understanding and causal inference capabilities in large language models. A GLM-4 integrated with CauseMotion achieves an 8.7% improvement in causal accuracy over the original model and surpasses GPT-4o by 1.2%. On the DiaASQ dataset, CauseMotion-GLM-4 achieves state-of-the-art results in accuracy, F1 score, and causal reasoning accuracy.",
+      "citations": 8
+    },
+    {
+      "title": "Large language models show fragile cognitive reasoning about human emotions",
+      "year": 2025,
+      "authors": "Sree Bhattacharyya, Evgenii Kuriabov, Lucas Craig, Tharun Dilliraj, Reginald B. Adams, Jr., Jia Li, James Z. Wang",
+      "url": "https://api.semanticscholar.org/CorpusId:280561403",
+      "relevance": 1,
+      "abstract": "Affective computing seeks to support the holistic development of artificial intelligence by enabling machines to engage with human emotion. Recent foundation models, particularly large language models (LLMs), have been trained and evaluated on emotion-related tasks, typically using supervised learning with discrete emotion labels. Such evaluations largely focus on surface phenomena, such as recognizing expressed or evoked emotions, leaving open whether these systems reason about emotion in cognitively meaningful ways. Here we ask whether LLMs can reason about emotions through underlying cognitive dimensions rather than labels alone. Drawing on cognitive appraisal theory, we introduce CoRE, a large-scale benchmark designed to probe the implicit cognitive structures LLMs use when interpreting emotionally charged situations. We assess alignment with human appraisal patterns, internal consistency, cross-model generalization, and robustness to contextual variation. We find that LLMs capture systematic relations between cognitive appraisals and emotions but show misalignment with human judgments and instability across contexts.",
+      "citations": 1
+    },
+    {
+      "title": "AI Application Gives Users Real-Time Feedback on the Level of Peace in the Social Media Videos They Watch",
+      "year": 2026,
+      "authors": "P. Gilda, P. Dungarwal, A. Thongkham, E. Ajayi, S. Choudhary, T. M. Terol, C. Lam, J. P. Araujo, M. McFadyen-Mungalln, L. Liebovitch, P. T. Coleman, H. West, K. Sieck, S. University, St. John\u2019s University, Toyota Research Institute",
+      "url": "https://api.semanticscholar.org/CorpusId:284544403",
+      "relevance": 1,
+      "abstract": "Most people now get their news from videos on social media, such as YouTube and Facebook, rather than through curated journalism.\"We become what we behold.\"The content and tone of language plays an essential role in starting or ending conflicts.\"Hate Speech\"can enhance conflict,\"Peace Speech\"can enhance peace. We developed an application that measures, in real time, these aspects of speech from YouTube videos, which can give users helpful feedback on their own media diet. We used two approaches: 1) supervised machine learning. Language in the text of online news media text was tagged by surveys that measure the level of peace in those countries. One fully connected feedforward and 2 convolutional neural networks trained on that data were $\\sim 97\\%$ accurate in predicting levels of peace in the test set and $\\sim 70\\%$ accurate in another distinct news text data set, but did not generalize to YouTube videos, suggesting that written text is different than transcribed spoken language. 2) social science dimensions. There is no similar external data to tag the text in the YouTube video transcripts. We therefore used 2 word-level sentiment analysis (SA) and 6 context-level large language models (LLMs) to measure 5 social dimensions in peace identified by 59 social science studies: compassion-contempt, news-opinion, promotion-prevention, creativity-order, nuance-simplification. LLMs more closely matched the values by 3 human coders on 52 videos, $r^2\\sim0.60$ than SA, at $r^2\\sim0.03$. Results: LLMs successfully measured social dimensions important in peace in YouTube videos, compared to human coders. These results serve as the basis of an analysis engine that can give users and content creators feedback on their own media diet and creations.",
+      "citations": 0
+    },
+    {
+      "title": "InfoAffect: Affective Annotations of Infographics in Information Spread",
+      "year": 2025,
+      "authors": "Zihang Fu, Yunchao Wang, Chenyu Huang, Guodao Sun, Ronghua Liang",
+      "url": "https://api.semanticscholar.org/CorpusId:284860797",
+      "relevance": 1,
+      "abstract": "Infographics are widely used in social media to convey complex information, yet how they influence users'affects remains underexplored due to the scarcity of relevant datasets. To address this gap, we introduce a 3.5k-sample affect-annotated InfoAffect dataset, which combines textual content with real-world infographics. We first collected the raw data from six fields and aligned it via preprocessing, the accompanied-text-priority method, and three strategies to guarantee quality and compliance. After that, we constructed an Affect Table to constrain annotation. We used five state-of-the-art multimodal large language models (MLLMs) to analyze both modalities, and their outputs were fused with the Reciprocal Rank Fusion (RRF) algorithm to yield robust affects and confidences. We conducted a user study with two experiments to validate usability and assess the InfoAffect dataset using the Composite Affect Consistency Index (CACI), achieving an overall score of 0.608, which indicates high accuracy. The InfoAffect dataset is available in a public repository at https://github.com/bulichuchu/InfoAffect-dataset.",
+      "citations": 1
+    },
+    {
+      "title": "Exploring speech style spaces with language models: Emotional TTS without emotion labels",
+      "year": 2024,
+      "authors": "S. Chandra, Zongyang Du, Berrak Sisman",
+      "url": "https://api.semanticscholar.org/CorpusId:269921953",
+      "relevance": 1,
+      "abstract": "Many frameworks for emotional text-to-speech (E-TTS) rely on human-annotated emotion labels that are often inaccurate and difficult to obtain. Learning emotional prosody implicitly presents a tough challenge due to the subjective nature of emotions. In this study, we propose a novel approach that leverages text awareness to acquire emotional styles without the need for explicit emotion labels or text prompts. We present TEMOTTS, a two-stage framework for E-TTS that is trained without emotion labels and is capable of inference without auxiliary inputs. Our proposed method performs knowledge transfer between the linguistic space learned by BERT and the emotional style space constructed by global style tokens. Our experimental results demonstrate the effectiveness of our proposed framework, showcasing improvements in emotional accuracy and naturalness. This is one of the first studies to leverage the emotional correlation between spoken content and expressive delivery for emotional TTS.",
+      "citations": 6
+    },
+    {
+      "title": "Language Models (Mostly) Do Not Consider Emotion Triggers When Predicting Emotion",
+      "year": 2023,
+      "authors": "Smriti Singh, Cornelia Caragea, Junyi Jessy Li",
+      "url": "https://api.semanticscholar.org/CorpusId:265221101",
+      "relevance": 1,
+      "abstract": "Situations and events evoke emotions in humans, but to what extent do they inform the prediction of emotion detection models? This work investigates how well human-annotated emotion triggers correlate with features that models deemed salient in their prediction of emotions. First, we introduce a novel dataset EmoTrigger, consisting of 900 social media posts sourced from three different datasets; these were annotated by experts for emotion triggers with high agreement. Using EmoTrigger, we evaluate the ability of large language models (LLMs) to identify emotion triggers, and conduct a comparative analysis of the features considered important for these tasks between LLMs and fine-tuned models. Our analysis reveals that emotion triggers are largely not considered salient features for emotion prediction models, instead there is intricate interplay between various features and the task of emotion detection.",
+      "citations": 7
+    },
+    {
+      "title": "Towards Emotion-Based Synthetic Consciousness: Using LLMs to Estimate Emotion Probability Vectors",
+      "year": 2023,
+      "authors": "David Sinclair, Willem. T. Pye",
+      "url": "https://api.semanticscholar.org/CorpusId:264172743",
+      "relevance": 1,
+      "abstract": "This paper shows how LLMs (Large Language Models) may be used to estimate a summary of the emotional state associated with piece of text. The summary of emotional state is a dictionary of words used to describe emotion together with the probability of the word appearing after a prompt comprising the original text and an emotion eliciting tail. Through emotion analysis of Amazon product reviews we demonstrate emotion descriptors can be mapped into a PCA type space. It was hoped that text descriptions of actions to improve a current text described state could also be elicited through a tail prompt. Experiment seemed to indicate that this is not straightforward to make work. This failure put our hoped for selection of action via choosing the best predict ed outcome via comparing emotional responses out of reach for the moment.",
+      "citations": 1
+    },
+    {
+      "title": "Heroes, Villains, and Victims, and GPT-3: Automated Extraction of Character Roles Without Training Data",
+      "year": 2022,
+      "authors": "Dominik Stammbach, Maria Antoniak, Elliott Ash",
+      "url": "https://api.semanticscholar.org/CorpusId:248811371",
+      "relevance": 1,
+      "abstract": "This paper shows how to use large-scale pretrained language models to extract character roles from narrative texts without domain-specific training data. Queried with a zero-shot question-answering prompt, GPT-3 can identify the hero, villain, and victim in diverse domains: newspaper articles, movie plot summaries, and political speeches.",
+      "citations": 56
+    },
+    {
+      "title": "The Paradox of Robustness: Decoupling Rule-Based Logic from Affective Noise in High-Stakes Decision-Making",
+      "year": 2026,
+      "authors": "Jon Chun, Katherine Elkins",
+      "url": "https://api.semanticscholar.org/CorpusId:285140342",
+      "relevance": 1,
+      "abstract": "While Large Language Models (LLMs) are widely documented to be sensitive to minor prompt perturbations and prone to sycophantic alignment, their robustness in consequential, rule-bound decision-making remains under-explored. We uncover a striking\"Paradox of Robustness\": despite their known lexical brittleness, aligned LLMs exhibit strong robustness to emotional framing effects in rule-bound institutional decision-making. Using a controlled perturbation framework across three high-stakes domains (healthcare, finance, and education), we find a negligible effect size (Cohen's h = 0.003) compared to the substantial biases observed in analogous human contexts (h in [0.3, 0.8]), approximately two orders of magnitude smaller. This invariance persists across eight models with diverse training paradigms, suggesting the mechanisms driving sycophancy and prompt sensitivity do not translate to failures in logical constraint satisfaction. While LLMs may be\"brittle\"to how a query is formatted, they appear considerably more stable against affective attempts to bias rule-bound decisions. To probe the boundary of this finding, we add two reviewer-driven side studies. A five-scenario immigration extension yields a small but statistically detectable +0.8 percentage point shift that remains within a pre-specified +/-3 percentage point Region of Practical Equivalence (ROPE), while a screening-level adversarial narrative pilot finds no meaningful decision shift under stronger LLM-generated prompts. We release a core benchmark (9 base scenarios x 18 condition variants = 162 unique prompts), code, and data to facilitate replicable evaluation.",
+      "citations": 1
+    },
+    {
+      "title": "Tableaux and Melodramatic Realism",
+      "year": 2020,
+      "authors": "Carolyn Williams",
+      "url": "https://api.semanticscholar.org/CorpusId:212731703",
+      "relevance": 1,
+      "abstract": "If in many ways its aims are comparable to those of novelistic realism (a focus on ordinary characters and contemporary social issues), melodrama exhibits a form of realism all its own. This essay focuses on several elements of that form, especially on the workings of the tableau. At the moment of tableau, acting bodies suddenly freeze to make a silent and still stage picture whose significance can be interpreted. Though the critical history of the tableau is tightly related to genre painting, its formal operations within melodrama are more complex than the aim to offer verisimilitude in the depiction of ordinary life. Tableaux establish the melodramatic narrative form characterised by intermittent pictorialization. They interrupt the dramatic action, summing up the plot so far and adumbrating action to come; they form \u2018points\u2019 on which the suspense of dramatic unfolding might hang; and these sudden moments of silence and stasis carry affective and intellectual points as well. Using exemplary readings of melodramas across the English 19th century, this essay demonstrates the formal potentialities of the tableau, including the metatheatrical self-consciousness of its role in constructing melodramatic realism.",
+      "citations": 1
+    },
+    {
+      "title": "Activist Media and Biopolitics : Critical Media Interventions in the Age of Biopower",
+      "year": 2012,
+      "authors": "W. Suetzl, T. Hug",
+      "url": "https://api.semanticscholar.org/CorpusId:142141461",
+      "relevance": 1,
+      "abstract": "Following the decline of tactical media as a guiding concept in media of resistance, many of the key concerns articulated in tactical media seem to have migrated to the intersection of informatics and the life sciences. Paralleling a shift of interest from hard/software to \u201cwetware\u201d in information technology, and from territorial to biopolitical regimes, activists, artists and scientists began developing networks of collaboration across disciplines, institutional settings, and economic frameworks, questioning the workings of biopower by introducing discontinuities in a new hegemony of knowledge. Interventions have targeted biopolitical areas such as precarious labor, technologies of security, asylum policies, health care reforms, body politics, gendering, racial profiling, genetic engineering, cellular research, nutrition, biopharmaceuticals, and many others. Carrying forward the interventionist practices of tactical media, biopolitical activists have surprised the mainstream by engaging in dissident practices at the very core of scientific knowledge formation and the related constructions of political/social realities. Outside the laboratories, they have challenged established categories about food, plants and animals through direct actions. This conference brings together theoreticians, practitioners and activists whose work focuses on challenges to the hegemonic biopolitical discourse, and on developing tools for a critical understanding of biopower.",
+      "citations": 12
+    },
+    {
+      "title": "It is Okay to Not Be Okay: Overcoming Emotional Bias in Affective Image Captioning by Contrastive Data Collection",
+      "year": 2022,
+      "authors": "Youssef Mohamed, F. Khan, Kilichbek Haydarov, Mohamed Elhoseiny",
+      "url": "https://api.semanticscholar.org/CorpusId:248227685",
+      "relevance": 1,
+      "abstract": "Datasets that capture the connection between vision, language, and affection are limited, causing a lack of understanding of the emotional aspect of human intelligence. As a step in this direction, the ArtEmis dataset was recently introduced as a large-scale dataset of emotional reactions to images along with language explanations of these chosen emotions. We observed a significant emotional bias towards instance-rich emotions, making trained neural speakers less accurate in describing under-represented emotions. We show that collecting new data, in the same way, is not effective in mitigating this emotional bias. To remedy this problem, we propose a contrastive data collection approach to balance ArtEmis with a new complementary dataset such that a pair of similar images have contrasting emotions (one positive and one negative). We collected 260,533 instances using the proposed method, we combine them with ArtEmis, creating a second iteration of the dataset. The new combined dataset, dubbed ArtEmis v2.0, has a balanced distribution of emotions with explanations revealing more fine details in the associated painting. Our experiments show that neural speakers trained on the new dataset improve CIDEr and METEOR evaluation metrics by 20% and 7%, respectively, compared to the biased dataset. Finally, we also show that the performance per emotion of neural speakers is improved across all the emotion categories, significantly on under-represented emotions. The collected dataset and code are available at https://artemisdataset-v2.org.",
+      "citations": 53
+    },
+    {
+      "title": "Predicting subjective ratings of affect and comprehensibility with text features: a reader response study of narrative poetry",
+      "year": 2024,
+      "authors": "Mesian Tilmatine, J. L\u00fcdtke, Arthur M. Jacobs",
+      "url": "https://api.semanticscholar.org/CorpusId:273224897",
+      "relevance": 1,
+      "abstract": "Literary reading is an interactive process between a reader and a text that depends on a balance between cognitive effort and emotional rewards. By studying both the crucial features of the text and of the subjective reader reception, a better understanding of this interactive process can be reached. In the present study, subjects (N=31) read and rated a work of narrative fiction that was written in a poetic style, thereby offering the readers two pathways to cognitive rewards: Aesthetic appreciation and narrative immersion. Using purely text-based quantitative descriptors, we were able to independently and accurately predict the subjective ratings in the dimensions comprehensibility, valence, arousal, and liking across roughly 140 pages of naturalistic text. The specific text features that were most important in predicting each rating dimension are discussed in detail. In addition, the implications of the findings are discussed more generally in the context of existing models of literary processing and future research avenues for empirical literary studies.",
+      "citations": 7
+    },
+    {
+      "title": "Combining Qualitative and Computational Approaches for Literary Analysis of Finnish Novels",
+      "year": 2024,
+      "authors": "Emily \u00d6hman, Riikka Rossi",
+      "url": "https://api.semanticscholar.org/CorpusId:270220853",
+      "relevance": 1,
+      "abstract": "ABSTRACT:What can we learn from the classics of Finnish literature by using computational emotion analysis? This article addresses this question by examining how computational methods of sentiment analysis can be used for studying literary works in conjunction with a qualitative or more \"traditional\" approach to literature and affect. We present and develop a computational approach of affect analysis that uses a carefully curated emotion lexicon adapted to Finnish turn-of-the-century literary texts combined with word embeddings to map the semantic emotional spaces of seminal works of Finnish literature. We focus the qualitative analysis on case studies: four works by Juhani Aho, Minna Canth, Maria Jotuni and F. E. Sillanp\u00e4\u00e4; we provide emotion arcs for a total of 975 Finnish novels. We argue that a computational analysis of a text's lexicon can be valuable in evaluating the large distribution of the emotional valence in a text and provide guidelines to help other researchers replicate our findings. We show that computational approaches have a place in traditional studies on affect in literature as a support tool for close reading\u2013based analyses, but also allow for large-scale comparison between genres or national canons.",
+      "citations": 2
+    },
+    {
+      "title": "Visual and Affective Multimodal Models of Word Meaning in Language and Mind",
+      "year": 2021,
+      "authors": "S. Deyne, D. Navarro, Guillem Collell, Andrew Perfors",
+      "url": "https://api.semanticscholar.org/CorpusId:231584485",
+      "relevance": 1,
+      "abstract": "Abstract One of the main limitations of natural language\u2010based approaches to meaning is that they do not incorporate multimodal representations the way humans do. In this study, we evaluate how well different kinds of models account for people's representations of both concrete and abstract concepts. The models we compare include unimodal distributional linguistic models as well as multimodal models which combine linguistic with perceptual or affective information. There are two types of linguistic models: those based on text corpora and those derived from word association data. We present two new studies and a reanalysis of a series of previous studies. The studies demonstrate that both visual and affective multimodal models better capture behavior that reflects human representations than unimodal linguistic models. The size of the multimodal advantage depends on the nature of semantic representations involved, and it is especially pronounced for basic\u2010level concepts that belong to the same superordinate category. Additional visual and affective features improve the accuracy of linguistic models based on text corpora more than those based on word associations; this suggests systematic qualitative differences between what information is encoded in natural language versus what information is reflected in word associations. Altogether, our work presents new evidence that multimodal information is important for capturing both abstract and concrete words and that fully representing word meaning requires more than purely linguistic information. Implications for both embodied and distributional views of semantic representation are discussed.",
+      "citations": 51
+    },
+    {
+      "title": "Where are We in Event-centric Emotion Analysis? Bridging Emotion Role Labeling and Appraisal-based Approaches",
+      "year": 2023,
+      "authors": "Roman Klinger",
+      "url": "https://api.semanticscholar.org/CorpusId:261556899",
+      "relevance": 1,
+      "abstract": "The term emotion analysis in text subsumes various natural language processing tasks which have in common the goal to enable computers to understand emotions. Most popular is emotion classification in which one or multiple emotions are assigned to a predefined textual unit. While such setting is appropriate for identifying the reader\u2019s or author\u2019s emotion, emotion role labeling adds the perspective of mentioned entities and extracts text spans that correspond to the emotion cause. The underlying emotion theories agree on one important point; that an emotion is caused by some internal or external event and comprises several subcomponents, including the subjective feeling and a cognitive evaluation. We therefore argue that emotions and events are related in two ways. (1) Emotions are events; and this perspective is the fundament in natural language processing for emotion role labeling. (2) Emotions are caused by events; a perspective that is made explicit with research how to incorporate psychological appraisal theories in NLP models to interpret events. These two research directions, role labeling and (event-focused) emotion classification, have by and large been tackled separately. In this paper, we contextualize both perspectives and discuss open research questions.",
+      "citations": 7
+    },
+    {
+      "title": "No Culture Left Behind: ArtELingo-28, a Benchmark of WikiArt with Captions in 28 Languages",
+      "year": 2024,
+      "authors": "Youssef Mohamed, Runjia Li, I. S. Ahmad, Kilichbek Haydarov, Philip H. S. Torr, K. Church, Mohamed Elhoseiny",
+      "url": "https://api.semanticscholar.org/CorpusId:273850461",
+      "relevance": 1,
+      "abstract": "Research in vision and language has made considerable progress thanks to benchmarks such as COCO. COCO captions focused on unambiguous facts in English; ArtEmis introduced subjective emotions and ArtELingo introduced some multilinguality (Chinese and Arabic). However we believe there should be more multilinguality. Hence, we present ArtELingo-28, a vision-language benchmark that spans 28 languages and encompasses approximately 200,000 annotations (140 annotations per image). Traditionally, vision research focused on unambiguous class labels, whereas ArtELingo-28 emphasizes diversity of opinions over languages and cultures. The challenge is to build machine learning systems that assign emotional captions to images. Baseline results will be presented for three novel conditions: Zero-Shot, Few-Shot and One-vs-All Zero-Shot. We find that cross-lingual transfer is more successful for culturally-related languages. Data and code will be made publicly available.",
+      "citations": 21
+    },
+    {
+      "title": "Computing the Affective-Aesthetic Potential of Literary Texts",
+      "year": 2019,
+      "authors": "A. Jacobs, A. Kinder",
+      "url": "https://api.semanticscholar.org/CorpusId:210869490",
+      "relevance": 1,
+      "abstract": "In this paper, we compute the affective-aesthetic potential (AAP) of literary texts by using a simple sentiment analysis tool called SentiArt. In contrast to other established tools, SentiArt is based on publicly available vector space models (VSMs) and requires no emotional dictionary, thus making it applicable in any language for which VSMs have been made available (>150 so far) and avoiding issues of low coverage. In a first study, the AAP values of all words of a widely used lexical databank for German were computed and the VSM\u2019s ability in representing concrete and more abstract semantic concepts was demonstrated. In a second study, SentiArt was used to predict ~2800 human word valence ratings and shown to have a high predictive accuracy (R2 > 0.5, p < 0.0001). A third study tested the validity of SentiArt in predicting emotional states over (narrative) time using human liking ratings from reading a story. Again, the predictive accuracy was highly significant: R2adj = 0.46, p < 0.0001, establishing the SentiArt tool as a promising candidate for lexical sentiment analyses at both the micro- and macrolevels, i.e., short and long literary materials. Possibilities and limitations of lexical VSM-based sentiment analyses of diverse complex literary texts are discussed in the light of these results.",
+      "citations": 24
+    },
+    {
+      "title": "PO-EMO: Conceptualization, Annotation, and Modeling of Aesthetic Emotions in German and English Poetry",
+      "year": 2020,
+      "authors": "T. Haider, Steffen Eger, Evgeny Kim, Roman Klinger, Winfried Menninghaus",
+      "url": "https://api.semanticscholar.org/CorpusId:212734256",
+      "relevance": 1,
+      "abstract": "Most approaches to emotion analysis of social media, literature, news, and other domains focus exclusively on basic emotion categories as defined by Ekman or Plutchik. However, art (such as literature) enables engagement in a broader range of more complex and subtle emotions. These have been shown to also include mixed emotional responses. We consider emotions in poetry as they are elicited in the reader, rather than what is expressed in the text or intended by the author. Thus, we conceptualize a set of aesthetic emotions that are predictive of aesthetic appreciation in the reader, and allow the annotation of multiple labels per line to capture mixed emotions within their context. We evaluate this novel setting in an annotation experiment both with carefully trained experts and via crowdsourcing. Our annotation with experts leads to an acceptable agreement of k = .70, resulting in a consistent dataset for future large scale analysis. Finally, we conduct first emotion classification experiments based on BERT, showing that identifying aesthetic emotions is challenging in our data, with up to .52 F1-micro on the German subset. Data and resources are available at https://github.com/tnhaider/poetry-emotion.",
+      "citations": 38
+    },
+    {
+      "title": "Training A Small Emotional Vision Language Model for Visual Art Comprehension",
+      "year": 2024,
+      "authors": "Jing Zhang, Liang Zheng, Dan Guo, Meng Wang",
+      "url": "https://api.semanticscholar.org/CorpusId:268512737",
+      "relevance": 1,
+      "abstract": "This paper develops small vision language models to understand visual art, which, given an art work, aims to identify its emotion category and explain this prediction with natural language. While small models are computationally efficient, their capacity is much limited compared with large models. To break this trade-off, this paper builds a small emotional vision language model (SEVLM) by emotion modeling and input-output feature alignment. On the one hand, based on valence-arousal-dominance (VAD) knowledge annotated by psychology experts, we introduce and fuse emotional features derived through VAD dictionary and a VAD head to align VAD vectors of predicted emotion explanation and the ground truth. This allows the vision language model to better understand and generate emotional texts, compared with using traditional text embeddings alone. On the other hand, we design a contrastive head to pull close embeddings of the image, its emotion class, and explanation, which aligns model outputs and inputs. On two public affective explanation datasets, we show that the proposed techniques consistently improve the visual art understanding performance of baseline SEVLMs. Importantly, the proposed model can be trained and evaluated on a single RTX 2080 Ti while exhibiting very strong performance: it not only outperforms the state-of-the-art small models but is also competitive compared with LLaVA 7B after fine-tuning and GPT4(V). The code is available at https://github.com/BetterZH/SEVLM-code.",
+      "citations": 11
+    },
+    {
+      "title": "Towards a new Benchmark for Emotion Detection in NLP: A Unifying Framework of Recent Corpora",
+      "year": 2024,
+      "authors": "Anna Koufakou, Elijah Nieves, J. Peller",
+      "url": "https://api.semanticscholar.org/CorpusId:273901373",
+      "relevance": 1,
+      "abstract": "Emotion recognition in text is a complex and evolving field that has garnered considerable interest. This paper addresses the pressing need to explore and experiment with new corpora annotated with emotions. We identified several corpora presented since 2018. We restricted this study to English single-labeled data. Nevertheless, the datasets vary in source, domain, topic, emotion types, and distributions. As a basis for benchmarking, we conducted emotion detection experiments by fine-tuning a pretrained model and compared our outcomes with results from the original publications. More importantly, in our efforts to combine existing resources, we created a unified corpus from these diverse datasets and evaluated the impact of training on that corpus versus on the training set for each corpus. Our approach aims to streamline research by offering a unified platform for emotion detection to aid comparisons and benchmarking, addressing a significant gap in the current landscape. Additionally, we present a discussion of related practices and challenges. Our code and dataset information are available at https://github.com/a-koufakou/EmoDetect-Unify. We hope this will enable the NLP community to leverage this unified framework towards a new benchmark in emotion detection.",
+      "citations": 6
+    },
+    {
+      "title": "Affect, Body, Cognition, Demographics, and Emotion: The ABCDE of Text Features for Computational Affective Science",
+      "year": 2025,
+      "authors": "Jan Philip Wahle, Krishnapriya Vishnubhotla, Bela Gipp, Saif Mohammad",
+      "url": "https://api.semanticscholar.org/CorpusId:284057593",
+      "relevance": 1,
+      "abstract": "Work in Computational Affective Science and Computational Social Science explores a wide variety of research questions about people, emotions, behavior, and health. Such work often relies on language data that is first labeled with relevant information, such as the use of emotion words or the age of the speaker. Although many resources and algorithms exist to enable this type of labeling, discovering, accessing, and using them remains a substantial impediment, particularly for practitioners outside of computer science. Here, we present the ABCDE dataset (Affect, Body, Cognition, Demographics, and Emotion), a large-scale collection of over 400 million text utterances drawn from social media, blogs, books, and AI-generated sources. The dataset is annotated with a wide range of features relevant to computational affective and social science. ABCDE facilitates interdisciplinary research across numerous fields, including affective science, cognitive science, the digital humanities, sociology, political science, and computational linguistics.",
+      "citations": 2
+    },
+    {
+      "title": "MixedEmotions: An Open-Source Toolbox for Multimodal Emotion Analysis",
+      "year": 2018,
+      "authors": "P. Buitelaar, Ian D. Wood, S. Negi, Mihael Arcan, John P. McCrae, Andrejs Abele, C\u00e9cile Robin, Vladimir Andryushechkin, Housam Ziad, Hesam Sagha, Maximilian Schmitt, Bj\u00f6rn Schuller, J. F. S\u00e1nchez-Rada, C. Iglesias, Carlos Navarro, A. Giefer, Nicolaus Heise, Vincenzo Masucci, F. A. Danza, Ciro Caterino, P. Smrz, Michal Hradi\u0161, Filip Povoln\u00fd, Marek Klime\u0161, P. Matejka, Giovanni Tummarello",
+      "url": "https://api.semanticscholar.org/CorpusId:52014416",
+      "relevance": 1,
+      "abstract": "Recently, there is an increasing tendency to embed functionalities for recognizing emotions from user-generated media content in automated systems such as call-centre operations, recommendations, and assistive technologies, providing richer and more informative user and content profiles. However, to date, adding these functionalities was a tedious, costly, and time-consuming effort, requiring identification and integration of diverse tools with diverse interfaces as required by the use case at hand. The MixedEmotions Toolbox leverages the need for such functionalities by providing tools for text, audio, video, and linked data processing within an easily integrable plug-and-play platform. These functionalities include: 1) for text processing: emotion and sentiment recognition; 2) for audio processing: emotion, age, and gender recognition; 3) for video processing: face detection and tracking, emotion recognition, facial landmark localization, head pose estimation, face alignment, and body pose estimation; and 4) for linked data: knowledge graph integration. Moreover, the MixedEmotions Toolbox is open-source and free. In this paper, we present this toolbox in the context of the existing landscape, and provide a range of detailed benchmarks on standard test-beds showing its state-of-the-art performance. Furthermore, three real-world use cases show its effectiveness, namely, emotion-driven smart TV, call center monitoring, and brand reputation analysis.",
+      "citations": 34
+    },
+    {
+      "title": "Independency of Coding for Affective Similarities and for Word Co-occurrences in Temporal Perisylvian Neocortex",
+      "year": 2022,
+      "authors": "A. G. Liuzzi, Karen Meersmans, G. Storms, Simon De Deyne, P. Dupont, R. Vandenberghe",
+      "url": "https://api.semanticscholar.org/CorpusId:254905236",
+      "relevance": 1,
+      "abstract": "Abstract Word valence is one of the principal dimensions in the organization of word meaning. Co-occurrence-based similarities calculated by predictive natural language processing models are relatively poor at representing affective content, but very powerful in their own way. Here, we determined how these two canonical but distinct ways of representing word meaning relate to each other in the human brain both functionally and neuroanatomically. We re-analysed an fMRI study of word valence. A co-occurrence-based model was used and the correlation with the similarity of brain activity patterns was compared to that of affective similarities. The correlation between affective and co-occurrence-based similarities was low (r = 0.065), confirming that affect was captured poorly by co-occurrence modelling. In a whole-brain representational similarity analysis, word embedding similarities correlated significantly with the similarity between activity patterns in a region confined to the superior temporal sulcus to the left, and to a lesser degree to the right. Affective word similarities correlated with the similarity in activity patterns in this same region, confirming previous findings. The affective similarity effect extended more widely beyond the superior temporal cortex than the effect of co-occurrence-based similarities did. The effect of co-occurrence-based similarities remained unaltered after partialling out the effect of affective similarities (and vice versa). To conclude, different aspects of word meaning, derived from affective judgements or from word co-occurrences, are represented in superior temporal language cortex in a neuroanatomically overlapping but functionally independent manner.",
+      "citations": 3
+    },
+    {
+      "title": "PlusEmo2Vec at SemEval-2018 Task 1: Exploiting emotion knowledge from emoji and #hashtags",
+      "year": 2018,
+      "authors": "Ji Ho Park, Peng Xu, Pascale Fung",
+      "url": "https://api.semanticscholar.org/CorpusId:5050182",
+      "relevance": 1,
+      "abstract": "This paper describes our system that has been submitted to SemEval-2018 Task 1: Affect in Tweets (AIT) to solve five subtasks. We focus on modeling both sentence and word level representations of emotion inside texts through large distantly labeled corpora with emojis and hashtags. We transfer the emotional knowledge by exploiting neural network models as feature extractors and use these representations for traditional machine learning models such as support vector regression (SVR) and logistic regression to solve the competition tasks. Our system is placed among the Top3 for all subtasks we participated.",
+      "citations": 57
+    },
+    {
+      "title": "AffectON: Incorporating Affect Into Dialog Generation",
+      "year": 2020,
+      "authors": "Zana Bu\u00e7inca, Y. Yemez, E. Erzin, T. M. Sezgin",
+      "url": "https://api.semanticscholar.org/CorpusId:229153380",
+      "relevance": 1,
+      "abstract": "Due to its expressivity, natural language is paramount for explicit and implicit affective state communication among humans. The same linguistic inquiry (e.g., How are you?) might induce responses with different affects depending on the affective state of the conversational partner(s) and the context of the conversation. Yet, most dialog systems do not consider affect as constitutive aspect of response generation. In this article, we introduce AffectON, an approach for generating affective responses during inference. For generating language in a targeted affect, our approach leverages a probabilistic language model and an affective space. AffectON is language model agnostic, since it can work with probabilities generated by any language model (e.g., sequence-to-sequence models, neural language models, n-grams). Hence, it can be employed for both affective dialog and affective language generation. We experimented with affective dialog generation and evaluated the generated text objectively and subjectively. For the subjective part of the evaluation, we designed a custom user interface for rating and provided recommendations for the design of such interfaces. The results, both subjective and objective demonstrate that our approach is successful in pulling the generated language toward the targeted affect, with little sacrifice in syntactic coherence.",
+      "citations": 4
+    },
+    {
+      "title": "Melodrama eg\u00edpcio: uma tecnologia do sujeito moderno?",
+      "year": 2003,
+      "authors": "Lila Abu-Lughod",
+      "url": "https://api.semanticscholar.org/CorpusId:144095289",
+      "relevance": 1,
+      "abstract": "I think it is abundantly clear thar melodramatic texts can work on viewers in multiple ways. One cannot simply analyze the overt messages of plot and character, just as one should not limit oneself to the study of reception. What I want explore in this essay, however, is how the representation of characters' emotions in Egyptian melodrama might provide a model for a new kind of individuated subject. The analyses is based on the objectives of TV series writers and producers, and on a domestic servant lived experience interacting with such content.",
+      "citations": 40
+    }
+  ]
+}

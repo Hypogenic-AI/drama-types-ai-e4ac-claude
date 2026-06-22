@@ -1,0 +1,911 @@
+[
+  {
+    "title": "The Information Geometry of Softmax: Probing and Steering",
+    "year": 2026,
+    "authors": "Kiho Park, Todd Nief, Yo Joong Choe, Victor Veitch",
+    "url": "https://www.semanticscholar.org/paper/28e9eb0258e66da4d65fb7c7ff50a6769f2f9935",
+    "relevance": 3,
+    "abstract": "This paper concerns the question of how AI systems encode semantic structure into the geometric structure of their representation spaces. The motivating observation is that the natural geometry of these representation spaces should reflect the way models use representations to produce behavior. We focus on the important special case of representations that define softmax distributions. In this case, we argue that the natural geometry is information geometry. Our focus is on the role of information geometry on semantic encoding and the linear representation hypothesis. As an illustrative application, we develop\"dual steering\", a method for robustly steering representations to exhibit a particular concept using linear probes. We prove that dual steering optimally modifies the target concept while minimizing changes to off-target concepts. Empirically, we find that dual steering enhances the controllability and stability of concept manipulation.",
+    "citations": 5
+  },
+  {
+    "title": "The Cylindrical Representation Hypothesis for Language Model Steering",
+    "year": 2026,
+    "authors": "Lang Gao, Jinghui Zhang, Wei Liu, Fengxian Ji, Chenxi Wang, Zirui Song, Akash Ghosh, Youssef Mohamed, Preslav Nakov, Xiuying Chen",
+    "url": "https://www.semanticscholar.org/paper/af5faa4cdd1d7ab3074533c27d3fe93e36ece3f3",
+    "relevance": 3,
+    "abstract": "Steering is a widely used technique for controlling large language models, yet its effects are often unstable and hard to predict. Existing theoretical accounts are largely based on the Linear Representation Hypothesis (LRH). While LRH assumes that concepts can be orthogonalized for lossless control, this idealized mapping fails in real representations and cannot account for the observed unpredictability of steering. By relaxing LRH's orthogonality assumption while preserving linear representations, we show that overlapping concept contributions naturally yield a sample-specific axis-orthogonal structure. We formalize this as the Cylindrical Representation Hypothesis (CRH). In CRH, a central axis captures the main difference between concept absence and presence and drives concept generation. A surrounding normal plane controls steering sensitivity by determining how easily the axis can activate the target concept. Within this plane, only specific sensitive sectors strongly facilitate concept activation, while other sectors can suppress or delay it. While the surrounding normal plane can be reliably identified from difference vectors, the sensitive sector cannot, introducing intrinsic uncertainty at the sector level. This uncertainty provides a principled explanation for why steering outcomes often fluctuate even when using well-aligned directions. Our experiments verify the existence of the cylindrical structure and demonstrate that CRH provides a valid and practical way to interpret model steering behavior in real settings: https://github.com/mbzuai-nlp/CRH.",
+    "citations": 1
+  },
+  {
+    "title": "The Confidence Manifold: Geometric Structure of Correctness Representations in Language Models",
+    "year": 2026,
+    "authors": "Seonglae Cho, Zekun Wu, K. Costa, Adriano S. Koshiyama",
+    "url": "https://www.semanticscholar.org/paper/4358b00c0f02977405d12c3ccfe249e67b8d2b66",
+    "relevance": 3,
+    "abstract": "When a language model asserts that\"the capital of Australia is Sydney,\"does it know this is wrong? We characterize the geometry of correctness representations across 9 models from 5 architecture families. The structure is simple: the discriminative signal occupies 3-8 dimensions, performance degrades with additional dimensions, and no nonlinear classifier improves over linear separation. Centroid distance in the low-dimensional subspace matches trained probe performance (0.90 AUC), enabling few-shot detection: on GPT-2, 25 labeled examples achieve 89% of full-data accuracy. We validate causally through activation steering: the learned direction produces 10.9 percentage point changes in error rates while random directions show no effect. Internal probes achieve 0.80-0.97 AUC; output-based methods (P(True), semantic entropy) achieve only 0.44-0.64 AUC. The correctness signal exists internally but is not expressed in outputs. That centroid distance matches probe performance indicates class separation is a mean shift, making detection geometric rather than learned.",
+    "citations": 1
+  },
+  {
+    "title": "Linear Probes Detect Task Format, Not Reasoning Mode in Language Model Hidden States",
+    "year": 2026,
+    "authors": "Subramanyam Sahoo, Vinija Jain, Aman Chadha, Divya Chaudhary",
+    "url": "https://www.semanticscholar.org/paper/a53a22d534d479391ac3709b10517b1bbebf9cda",
+    "relevance": 3,
+    "abstract": "Linear probing of large language model (LLM) hidden states is widely used to claim that models learn distinct representations for different reasoning types. We test this by probing Qwen3-14B on three benchmarks spanning the classical trichotomy: LogiQA 2.0 (deductive), ARC-Challenge (inductive), and $\\alpha$NLI (abductive). At layer 32 of 40, linear probes achieve 100\\% cross-validated accuracy with well-separated geometry (intrinsic dimensionalities: 20.6, 28.5, 33.6; convex hull contamination $\\leq$1.5\\%). However, this separation is entirely driven by format confounds. Residualizing source identity, option count, and response length reduces accuracy to chance. Trace-anchor similarity indicates largely shared reasoning across tasks (42.5\\% agreement vs.\\ 33.3\\% chance), and causal steering with random controls ($n=20$) shows no functional link between geometry and reasoning mode ($p=0.286$). Thus, high probe accuracy reflects task format rather than computational structure, motivating routine format deconfounding in mechanistic interpretability.",
+    "citations": 2
+  },
+  {
+    "title": "Over-Refusal and Representation Subspaces: A Mechanistic Analysis of Task-Conditioned Refusal in Aligned LLMs",
+    "year": 2026,
+    "authors": "Utsav Maskey, M. Dras, Usman Naseem",
+    "url": "https://www.semanticscholar.org/paper/112420d9b61b069ded0ac21759a08e80caa0280b",
+    "relevance": 3,
+    "abstract": "Aligned language models that are trained to refuse harmful requests also exhibit over-refusal: they decline safe instructions that seemingly resemble harmful instructions. A natural approach is to ablate the global refusal direction, steering the hidden-state vectors away or towards the harmful-refusal examples, but this corrects over-refusal only incidentally while disrupting the broader refusal mechanism. In this work, we analyse the representational geometry of both refusal types to understand why this happens. We show that harmful-refusal directions are task-agnostic and can be captured by a single global vector, whereas over-refusal directions are task-dependent: they reside within the benign task-representation clusters, vary across tasks, and span a higher-dimensional subspace. Linear probing suggests that the two refusal types are representationally distinct from the early transformer layers. These findings provide a mechanistic explanation of why global direction ablation alone cannot address over-refusal, and establish that task-specific geometric interventions are necessary.",
+    "citations": 0
+  },
+  {
+    "title": "Tensor Product Representation Probes Reveal Shared Structure Across Linear Directions",
+    "year": 2026,
+    "authors": "Andrew Lee, Fernanda B. Vi\u00e9gas, Martin Wattenberg",
+    "url": "https://www.semanticscholar.org/paper/981553d7b994db89326b96b17220c782f6745f28",
+    "relevance": 3,
+    "abstract": "While researchers are finding concepts represented as linear directions in language models, a bag of linear directions fails to capture relational structure. To better understand this dichotomy, we study a model with known linear representations, but trained in a highly structured domain -- the board game Othello. While the model's internal board-state representation is linearly decodable, we find additional structure in the form of tensor product representations (TPRs). We train TPR probes to recover shared structure amongst the linear probes, yielding a factorization into square-embeddings, color-embeddings, and a binding matrix that composes them to construct the model's board-state representation. We find geometric signatures within the weights of our TPR probe that align with the structure of the board, but perhaps more importantly, that the linear probes can be recovered directly from the parameters of our TPR probe. Our findings suggest that directional representations may be projections of more structured underlying representations.",
+    "citations": 0
+  },
+  {
+    "title": "Concepts Whisper While Syntax Shouts: Spectral Anti-Concentration and the Dual Geometry of Transformer Representations",
+    "year": 2026,
+    "authors": "Pratyush Acharya, Nuraj Rimal, H. Dhakal",
+    "url": "https://www.semanticscholar.org/paper/7798a0d055c714eca67e8a477905b85aa33c3b35",
+    "relevance": 3,
+    "abstract": "We test whether the causal inner product of \\citet{park2024linear} -- defined by the unembedding covariance $\\Sigma$ -- enables cross-lingual concept transport. Across 17 models and 4 language pairs, a matched-spectrum randomization test finds that Whitened Causal Alignment is indistinguishable from spectral regularization alone ($p = 0.95$). However, this failure reveals a broader phenomenon: anti-concentration is observed in residual-stream difference-of-means vectors across five architecture families ($p<10^{-33}$) and supported by SAE features (e.g., $p = 4.5 \\times 10^{-19}$) and linear probes on Gemma and Llama. We discover a \\emph{dual geometry}: activation-space concept directions anti-concentrate in the spectral tail, while static unembedding-row contrasts \\emph{concentrate} in high-variance directions ($p<10^{-4}$). Split-injection causal interventions support the functional basis on Gemma and Llama (Cohen's $d$ up to $1.80$), and POS-tag probing across 8 models shows syntax preferentially encodes in the high-variance subspace in 6 of 8 architectures ($p<0.013$), with the Qwen~2.5 family showing a significant reversal consistent with architecture-specific spectral structure. These results suggest transformers may rotate semantic content into spectrally quiet regions during contextualized processing, encoding concepts where they can be manipulated with reduced grammatical disruption.",
+    "citations": 0
+  },
+  {
+    "title": "From Directions to Regions: Decomposing Activations in Language Models via Local Geometry",
+    "year": 2026,
+    "authors": "Or Shafran, S. Ronen, Omri Fahn, Shauli Ravfogel, Atticus Geiger, Mor Geva",
+    "url": "https://www.semanticscholar.org/paper/c14e9e28af1a5916b6ac1712fd2807890de34b05",
+    "relevance": 3,
+    "abstract": "Activation decomposition methods in language models are tightly coupled to geometric assumptions on how concepts are realized in activation space. Existing approaches search for individual global directions, implicitly assuming linear separability, which overlooks concepts with nonlinear or multi-dimensional structure. In this work, we leverage Mixture of Factor Analyzers (MFA) as a scalable, unsupervised alternative that models the activation space as a collection of Gaussian regions with their local covariance structure. MFA decomposes activations into two compositional geometric objects: the region's centroid in activation space, and the local variation from the centroid. We train large-scale MFAs for Llama-3.1-8B and Gemma-2-2B, and show they capture complex, nonlinear structures in activation space. Moreover, evaluations on localization and steering benchmarks show that MFA outperforms unsupervised baselines, is competitive with supervised localization methods, and often achieves stronger steering performance than sparse autoencoders. Together, our findings position local geometry, expressed through subspaces, as a promising unit of analysis for scalable concept discovery and model control, accounting for complex structures that isolated directions fail to capture.",
+    "citations": 4
+  },
+  {
+    "title": "H-Probes: Extracting Hierarchical Structures From Latent Representations of Language Models",
+    "year": 2026,
+    "authors": "Cutter Dawes, Aryan Sharma, Angelos Ioannis Lagos, Shivam Raval",
+    "url": "https://www.semanticscholar.org/paper/f4da12e8a13ad60c06370c4ded9919aa81b8d688",
+    "relevance": 3,
+    "abstract": "Representing and navigating hierarchy is a fundamental primitive of reasoning. Large language models have demonstrated proficiency in a wide variety of tasks requiring hierarchical reasoning, but there exists limited analysis on how the models geometrically represent the necessary latent constructions for such thinking. To this end, we develop H-probes, a collection of linear probes that extract hierarchical structure, specifically depth and pairwise distance, from latent representations. In synthetic tree traversal tasks, the H-probes robustly find the subspaces containing hierarchical structure necessary to complete the tasks; furthermore, in comprehensive ablation experiments, we show that these hierarchy-containing subspaces are low-dimensional, causally important for high task performance, and generalize within- and out-of-domain. Furthermore, we find analogous, though weaker, hierarchical structure in real-world hierarchical contexts such as mathematical reasoning traces. These results demonstrate that models represent hierarchy not only at the level of syntax and concepts, but at deeper levels of abstraction -- including the reasoning process itself.",
+    "citations": 0
+  },
+  {
+    "title": "Linear representations in language models can change dramatically over a conversation",
+    "year": 2026,
+    "authors": "Andrew Kyle Lampinen, Yuxuan Li, Eghbal A. Hosseini, Sangnie Bhardwaj, Murray Shanahan",
+    "url": "https://www.semanticscholar.org/paper/7fde875cf169146a275daef1ff5575ffdcd17947",
+    "relevance": 3,
+    "abstract": "Language model representations often contain linear directions that correspond to high-level concepts. Here, we study the dynamics of these representations: how representations evolve along these dimensions within the context of (simulated) conversations. We find that linear representations can change dramatically over a conversation; for example, information that is represented as factual at the beginning of a conversation can be represented as non-factual at the end and vice versa. These changes are content-dependent; while representations of conversation-relevant information may change, generic information is generally preserved. These changes are robust even for dimensions that disentangle factuality from more superficial response patterns, and occur across different model families and layers of the model. These representation changes do not require on-policy conversations; even replaying a conversation script written by an entirely different model can produce similar changes. However, adaptation is much weaker from simply having a sci-fi story in context that is framed more explicitly as such. We also show that steering along a representational direction can have dramatically different effects at different points in a conversation. These results are consistent with the idea that representations may evolve in response to the model playing a particular role that is cued by a conversation. Our findings may pose challenges for interpretability and steering -- in particular, they imply that it may be misleading to use static interpretations of features or directions, or probes that assume a particular range of features consistently corresponds to a particular ground-truth value. However, these types of representational dynamics also point to exciting new research directions for understanding how models adapt to context.",
+    "citations": 4
+  },
+  {
+    "title": "The Truthfulness Spectrum Hypothesis",
+    "year": 2026,
+    "authors": "Zhuofan Ying, Shauli Ravfogel, N. Kriegeskorte, P. Hase",
+    "url": "https://www.semanticscholar.org/paper/fc0d5f230605e68782e7505f2b16dd4c4a85b363",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) have been reported to linearly encode truthfulness, yet recent work questions this finding's generality. We reconcile these views with the truthfulness spectrum hypothesis: the representational space contains directions ranging from broadly domain-general to narrowly domain-specific. To test this hypothesis, we systematically evaluate probe generalization across five truth types (definitional, empirical, logical, fictional, and ethical), sycophantic and expectation-inverted lying, and existing honesty benchmarks. Linear probes generalize well across most domains but fail on sycophantic and expectation-inverted lying. Yet training on all domains jointly recovers strong performance, confirming that domain-general directions exist despite poor pairwise transfer. The geometry of probe directions explains these patterns: Mahalanobis cosine similarity between probes near-perfectly predicts cross-domain generalization (R^2=0.98). Concept-erasure methods further isolate truth directions that are (1) domain-general, (2) domain-specific, or (3) shared only across particular domain subsets. Causal interventions reveal that domain-specific directions steer more effectively than domain-general ones. Finally, post-training reshapes truth geometry, pushing sycophantic lying further from other truth types, suggesting a representational basis for chat models'sycophantic tendencies. Together, our results support the truthfulness spectrum hypothesis: truth directions of varying generality coexist in representational space, with post-training reshaping their geometry. Code for all experiments is provided in https://github.com/zfying/truth_spec.",
+    "citations": 4
+  },
+  {
+    "title": "GSS: Gated Subspace Steering for Selective Memorization Mitigation in LLMs",
+    "year": 2026,
+    "authors": "Xuanqi Zhang, HaoYang Shang, Xiaoxiao Li",
+    "url": "https://www.semanticscholar.org/paper/7dd131f3077042504b0589f382090b6ce2b3ce4d",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) can memorize and reproduce training sequences verbatim -- a tendency that undermines both generalization and privacy. Existing mitigation methods apply interventions uniformly, degrading performance on the majority of tokens that generalize normally. We show empirically that memorization is sparse, intermittent, and token-conditioned, suggesting that effective mitigation requires context-aware intervention rather than static parameter modification. To this end, we propose a novel and effective selective memorization mitigation method -- Gated Subspace Steering (GSS), which decomposes intervention into a probe (detecting memorization-relevant activations) and a steer (applying targeted correction only when the probe exceeds a threshold). The optimal probe-steer pair emerges from a principled optimization framework based on optimal subspace steering. Experiments on four benchmarks show GSS matches or exceeds state-of-the-art memorization reduction while requiring $100-1000 \\times$ less compute than optimization-based alternatives. Furthermore, we provide new theoretical insights into the geometry of memorization in neural representations.",
+    "citations": 1
+  },
+  {
+    "title": "Do LLMs Know What Is Private Internally? Probing and Steering Contextual Privacy Norms in Large Language Model Representations",
+    "year": 2026,
+    "authors": "Haoran Wang, Li Xiong, Kai Shu",
+    "url": "https://www.semanticscholar.org/paper/99d4550560296d2eb7b87b8d92910b1a6ecb16a1",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) are increasingly deployed in high-stakes settings, yet they frequently violate contextual privacy by disclosing private information in situations where humans would exercise discretion. This raises a fundamental question: do LLMs internally encode contextual privacy norms, and if so, why do violations persist? We present the first systematic study of contextual privacy as a structured latent representation in LLMs, grounded in contextual integrity (CI) theory. Probing multiple models, we find that the three norm-determining CI parameters (information type, recipient, and transmission principle) are encoded as linearly separable and functionally independent directions in activation space. Despite this internal structure, models still leak private information in practice, revealing a clear gap between concept representation and model behavior. To bridge this gap, we introduce CI-parametric steering, which independently intervenes along each CI dimension. This structured control reduces privacy violations more effectively and predictably than monolithic steering. Our results demonstrate that contextual privacy failures arise from misalignment between representation and behavior rather than missing awareness, and that leveraging the compositional structure of CI enables more reliable contextual privacy control, shedding light on potential improvement of contextual privacy understanding in LLMs.",
+    "citations": 2
+  },
+  {
+    "title": "A Universal Vibe? Finding and Controlling Language-Agnostic Informal Register with SAEs",
+    "year": 2026,
+    "authors": "Uri Z. Kialy, Avi Shtarkberg, Ayal Klein",
+    "url": "https://www.semanticscholar.org/paper/5f39b3a6ad9eaa8c270410f000d627c432bb9240",
+    "relevance": 3,
+    "abstract": "While multilingual language models successfully transfer factual and syntactic knowledge across languages, it remains unclear whether they process culture-specific pragmatic registers, such as slang, as isolated language-specific memorizations or as unified, abstract concepts. We study this by probing the internal representations of Gemma-2-9B-IT using Sparse Autoencoders (SAEs) across three typologically diverse source languages: English, Hebrew, and Russian. To definitively isolate pragmatic register processing from trivial lexical sensitivity, we introduce a novel dataset in which every target term is polysemous, appearing in both literal and informal contexts. We find that while much of the informal-register signal is distributed across language-specific features, a small but highly robust cross-linguistic core consistently emerges. This shared core forms a geometrically coherent ``informal register subspace''that sharpens in the model's deeper layers. Crucially, these shared representations are not merely correlational: activation steering with these features causally shifts output formality across all source languages and transfers zero-shot to six unseen languages spanning diverse language families and scripts. Together, these results provide the first mechanistic evidence that multilingual LLMs internalize informal register not just as surface-level heuristics, but as a portable, language-agnostic pragmatic abstraction.",
+    "citations": 0
+  },
+  {
+    "title": "Semantic Structure of Feature Space in Large Language Models",
+    "year": 2026,
+    "authors": "Austin C. Kozlowski, Andrei Boutyline",
+    "url": "https://www.semanticscholar.org/paper/3cb38a8fbd701535b0299eb9293d53a974fbcfcd",
+    "relevance": 3,
+    "abstract": "We show that the geometric relations between semantic features in large language models'hidden states closely mirror human psychological associations. We construct feature vectors corresponding to 360 words and project them on 32 semantic axes (e.g. beautiful-ugly, soft-hard), and find that these projections correlate highly with human ratings of those words on the respective semantic scales. Second, we find that the cosine similarities between the semantic axes themselves are highly predictive of the correlations between these scales in the survey. Third, we show that substantial variance across the 32 semantic axes lies on a low-dimensional subspace, reproducing patterns typical of human semantic associations. Finally, we demonstrate that steering a word on one semantic axis causes spillover effects on the model's rating of that word on other semantic scales proportionate to the cosine similarity between those semantic axes. These findings suggest that features should be understood not only in isolation but through their geometric relations and the meaningful subspaces they form.",
+    "citations": 0
+  },
+  {
+    "title": "The Straight and Narrow: Do LLMs Possess an Internal Moral Path?",
+    "year": 2026,
+    "authors": "Luoming Hu, Jingjie Zeng, Liang Yang, Hongfei Lin",
+    "url": "https://www.semanticscholar.org/paper/eb76761b12acfc92624bd7e5ccad2285130c5671",
+    "relevance": 3,
+    "abstract": "Enhancing the moral alignment of Large Language Models (LLMs) is a critical challenge in AI safety. Current alignment techniques often act as superficial guardrails, leaving the intrinsic moral representations of LLMs largely untouched. In this paper, we bridge this gap by leveraging Moral Foundations Theory (MFT) to map and manipulate the fine-grained moral landscape of LLMs. Through cross-lingual linear probing, we validate the shared nature of moral representations in middle layers and uncover a shared yet different moral subspace between English and Chinese. Building upon this, we extract steerable Moral Vectors and successfully validate their efficacy at both internal and behavioral levels. Leveraging the high generalizability of morality, we propose Adaptive Moral Fusion (AMF), a dynamic inference-time intervention that synergizes probe detection with vector injection to tackle the safety-helpfulness trade-off. Empirical results confirm that our approach acts as a targeted intrinsic defense, effectively reducing incorrect refusals on benign queries while minimizing jailbreak success rates compared to standard baselines.",
+    "citations": 0
+  },
+  {
+    "title": "Polar probe linearly decodes semantic structures from LLMs",
+    "year": 2026,
+    "authors": "Pablo J. Diego-Sim'on, Pierre Orhan, Emmanuel Chemla, Yair Lakretz, Jean-R\u00e9mi King",
+    "url": "https://www.semanticscholar.org/paper/a388cdef7fd48045d5285b833a78aa51138dfd16",
+    "relevance": 3,
+    "abstract": "How do artificial neural networks bind concepts to form complex semantic structures? Here, we propose a simple neural code, whereby the existence and the type of relations between entities are represented by the distance and the direction between their embeddings, respectively. We test this hypothesis in a variety of Large Language Models (LLMs), each input with natural-language descriptions of minimalist tasks from five different domains: arithmetic, visual scenes, family trees, metro maps and social interactions. Results show that the true semantic structures can be linearly recovered with a Polar Probe targeting a subspace of LLMs'layer activations. Second, this code emerges mostly in middle layers and improves with LLM performance. Third, these Polar Probes successfully generalize to new entities and relation types, but degrades with the size of the semantic structure. Finally, the quality of the polar representation correlates with the LLM's ability to answer questions about the semantic structure. Together, these findings suggest that LLMs learn to build complex semantic structures by binding representations with a simple geometrical principle.",
+    "citations": 1
+  },
+  {
+    "title": "PolySAE: Modeling Feature Interactions in Sparse Autoencoders via Polynomial Decoding",
+    "year": 2026,
+    "authors": "Panagiotis Koromilas, A. Demou, James Oldfield, Yannis Panagakis, M. Nicolaou",
+    "url": "https://www.semanticscholar.org/paper/11a4c3f6391fa9404fd20761ac7bda2df24b6611",
+    "relevance": 3,
+    "abstract": "Sparse autoencoders (SAEs) interpret neural network representations by decomposing activations into sparse combinations of dictionary atoms. However, SAEs assume features combine additively through linear reconstruction, an assumption that cannot capture compositional structure: linear models cannot distinguish whether''Starbucks''arises from the composition of''star''and''coffee''features or merely their co-occurrence. This forces SAEs to allocate monolithic features for compound concepts rather than decomposing them into interpretable constituents. We introduce PolySAE, which extends the SAE decoder with higher-order terms to model feature interactions while preserving the linear encoder essential for interpretability. Through low-rank tensor factorization on a shared projection subspace, PolySAE captures pairwise and triple feature interactions with small parameter overhead (3% on GPT2). Across four language models and three SAE variants, PolySAE achieves an average improvement of $\\sim$8% in probing F1 while maintaining comparable reconstruction error, and produces 2--10$\\times$ larger Wasserstein distances between class-conditional feature distributions. Critically, learned interaction weights exhibit negligible correlation with co-occurrence frequency ($r = 0.06$ vs $r = 0.82$ for SAE feature covariance), suggesting that polynomial terms capture compositional structure largely independent of surface statistics. Finally, the learned interaction directions causally steer model outputs toward the corresponding compositional semantics.",
+    "citations": 3
+  },
+  {
+    "title": "The Geometry of Forgetting: Temporal Knowledge Drift as an Independent Axis in LLM Representations",
+    "year": 2026,
+    "authors": "R. Elbadry, Ahmed Heakl, Fangzhao Zhang, Dani Bouch, Yu-Xiong Wang, Preslav Nakov, Zhuohan Xie",
+    "url": "https://www.semanticscholar.org/paper/6e2452363a760e5e399af44b2d404aba06f3de1d",
+    "relevance": 3,
+    "abstract": "Large language models confidently produce outdated answers, and no existing method can detect them. We show this is not an engineering failure but a structural one: temporal drift, whether a stored fact has changed since training, is encoded as a direction in the residual stream geometrically orthogonal to both correctness and uncertainty. Any method operating on correctness or uncertainty signals is therefore blind to drift by construction. We verify this across six instruction-tuned models. A linear probe trained directly on drift labels achieves AUROC $0.83$--$0.95$; methods based on token entropy, semantic entropy, CCS, and SAPLMA all remain near chance ($0.49$--$0.57$). Five tests confirm the geometric orthogonality: weight cosines ($|\\cos| \\leq 0.14$), score correlations ($|r| \\leq 0.20$), bidirectional null-space projection ($|\\Delta| \\leq 0.008$), iterative null-space projection with $k{=}10$, and difference-of-means dissociation. Mechanistically, the MLP retrieval circuit produces identical dynamics for stale recall and confabulation ($r>0.81$, six models), explaining why output confidence cannot separate them. A cross-cutoff experiment holds inputs constant and varies only the model: the probe fires on the model whose training predates the fact's transition and stays silent otherwise ($P(A{>}B) = 0.975$--$0.998$, twelve model pairs), confirming it reads model-internal knowledge state rather than input properties. Our code and datasets will be publicly released.",
+    "citations": 0
+  },
+  {
+    "title": "The Granularity Axis: A Micro-to-Macro Latent Direction for Social Roles in Language Models",
+    "year": 2026,
+    "authors": "Chonghan Qin, Xiachong Feng, Ziyun Song, Xiaocheng Feng, Jing Xiong, Lingpeng Kong",
+    "url": "https://www.semanticscholar.org/paper/2dc0d59f899494408f8c145c97f3d44696add2cf",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) are routinely prompted to take on social roles ranging from individuals to institutions, yet it remains unclear whether their internal representations encode the granularity of such roles, from micro-level individual experience to macro-level organizational, institutional, or national reasoning. We show that they do. We define a contrast-based Granularity Axis as the difference between mean macro- and micro-role hidden states. In Qwen3-8B, this axis aligns with the principal axis (PC1) of the role representation space at cosine 0.972 and accounts for 52.6% of its variance, indicating that granularity is the dominant geometric axis organizing prompted social roles. We construct 75 social roles across five granularity levels and collect 91,200 role-conditioned responses over shared questions and prompt variants, then extract role-level hidden states and project them onto the axis. Role projections increase monotonically across all five levels, remain stable across layers, prompt variants, endpoint definitions, held-out splits, and score-filtered subsets, and transfer to Llama-3.1-8B-Instruct. The axis is also causally relevant: activation steering along it shifts response granularity in the predicted direction, with Llama moving from 2.00 to 3.17 on a five-point macro scale under positive steering on prompts that admit local responses. The two models differ in controllability, suggesting that steering depends on each model's default operating regime. Overall, our findings suggest that social role granularity is not merely a stylistic surface feature, but a structured, ordered, and causally manipulable latent direction in role-conditioned language model behavior.",
+    "citations": 0
+  },
+  {
+    "title": "The Geometry of Harmfulness in LLMs through Subconcept Probing",
+    "year": 2025,
+    "authors": "Mcnair Shah, Saleena Angeline, Adhitya Rajendra Kumar, Naitik Chheda, Kevin Zhu, Vasu Sharma, Sean O'Brien, Will Cai",
+    "url": "https://www.semanticscholar.org/paper/c50b632eb52b2c16e1952903da37febed147f29b",
+    "relevance": 3,
+    "abstract": "Recent advances in large language models (LLMs) have intensified the need to understand and reliably curb their harmful behaviours. We introduce a multidimensional framework for probing and steering harmful content in model internals. For each of 55 distinct harmfulness subconcepts (e.g., racial hate, employment scams, weapons), we learn a linear probe, yielding 55 interpretable directions in activation space. Collectively, these directions span a harmfulness subspace that we show is strikingly low-rank. We then test ablation of the entire subspace from model internals, as well as steering and ablation in the subspace's dominant direction. We find that dominant direction steering allows for near elimination of harmfulness with a low decrease in utility. Our findings advance the emerging view that concept subspaces provide a scalable lens on LLM behaviour and offer practical tools for the community to audit and harden future generations of language models.",
+    "citations": 5
+  },
+  {
+    "title": "Emotions Where Art Thou: Understanding and Characterizing the Emotional Latent Space of Large Language Models",
+    "year": 2025,
+    "authors": "Benjamin Z. Reichman, Adar Avsian, Larry Heck",
+    "url": "https://www.semanticscholar.org/paper/8e4293aecc19711a8675ddfdd1d4331cff29fd14",
+    "relevance": 3,
+    "abstract": "This work investigates how large language models (LLMs) internally represent emotion by analyzing the geometry of their hidden-state space. The paper identifies a low-dimensional emotional manifold and shows that emotional representations are directionally encoded, distributed across layers, and aligned with interpretable dimensions. These structures are stable across depth and generalize to eight real-world emotion datasets spanning five languages. Cross-domain alignment yields low error and strong linear probe performance, indicating a universal emotional subspace. Within this space, internal emotion perception can be steered while preserving semantics using a learned intervention module, with especially strong control for basic emotions across languages. These findings reveal a consistent and manipulable affective geometry in LLMs and offer insight into how they internalize and process emotion.",
+    "citations": 9
+  },
+  {
+    "title": "Large Language Models Encode Semantics and Alignment in Linearly Separable Representations",
+    "year": 2025,
+    "authors": "Baturay Saglam, Paul Kassianik, Blaine Nelson, Sajana Weerawardhena, Yaron Singer, Amin Karbasi",
+    "url": "https://www.semanticscholar.org/paper/1a887cdb69abb39c1df13c4b0b17ab154db607a4",
+    "relevance": 3,
+    "abstract": "Understanding the latent space geometry of large language models (LLMs) is key to interpreting their behavior and improving alignment. Yet it remains unclear to what extent LLMs linearly organize representations related to semantic understanding. To explore this, we conduct a large-scale empirical study of hidden representations in 11 autoregressive models across six scientific topics. We find that high-level semantic information consistently resides in low-dimensional subspaces that form linearly separable representations across domains. This separability becomes more pronounced in deeper layers and under prompts that elicit structured reasoning or alignment behavior$\\unicode{x2013}$even when surface content remains unchanged. These findings motivate geometry-aware tools that operate directly in latent space to detect and mitigate harmful and adversarial content. As a proof of concept, we train an MLP probe on final-layer hidden states as a lightweight latent-space guardrail. This approach substantially improves refusal rates on malicious queries and prompt injections that bypass both the model's built-in safety alignment and external token-level filters.",
+    "citations": 9
+  },
+  {
+    "title": "The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence",
+    "year": 2025,
+    "authors": "Tom Wollschlager, Jannes Elstner, Simon Geisler, Vincent Cohen-Addad, Stephan Gunnemann, Johannes Gasteiger",
+    "url": "https://www.semanticscholar.org/paper/b8d21a01963e2a1c49f8eb04581bbfb2919189e9",
+    "relevance": 3,
+    "abstract": "The safety alignment of large language models (LLMs) can be circumvented through adversarially crafted inputs, yet the mechanisms by which these attacks bypass safety barriers remain poorly understood. Prior work suggests that a single refusal direction in the model's activation space determines whether an LLM refuses a request. In this study, we propose a novel gradient-based approach to representation engineering and use it to identify refusal directions. Contrary to prior work, we uncover multiple independent directions and even multi-dimensional concept cones that mediate refusal. Moreover, we show that orthogonality alone does not imply independence under intervention, motivating the notion of representational independence that accounts for both linear and non-linear effects. Using this framework, we identify mechanistically independent refusal directions. We show that refusal mechanisms in LLMs are governed by complex spatial structures and identify functionally independent directions, confirming that multiple distinct mechanisms drive refusal behavior. Our gradient-based approach uncovers these mechanisms and can further serve as a foundation for future work on understanding LLMs.",
+    "citations": 73
+  },
+  {
+    "title": "Confidence is Not Competence",
+    "year": 2025,
+    "authors": "Debdeep Sanyal, Manya Pandey, Dhruv Kumar, Saurabh Deshpande, Murari Mandal",
+    "url": "https://www.semanticscholar.org/paper/06294f42f67b63cf03faf7309ebc2eaab5fbfb13",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) often exhibit a puzzling disconnect between their asserted confidence and actual problem-solving competence. We offer a mechanistic account of this decoupling by analyzing the geometry of internal states across two phases - pre-generative assessment and solution execution. A simple linear probe decodes the internal\"solvability belief\"of a model, revealing a well-ordered belief axis that generalizes across model families and across math, code, planning, and logic tasks. Yet, the geometries diverge - although belief is linearly decodable, the assessment manifold has high linear effective dimensionality as measured from the principal components, while the subsequent reasoning trace evolves on a much lower-dimensional manifold. This sharp reduction in geometric complexity from thought to action mechanistically explains the confidence-competence gap. Causal interventions that steer representations along the belief axis leave final solutions unchanged, indicating that linear nudges in the complex assessment space do not control the constrained dynamics of execution. We thus uncover a two-system architecture - a geometrically complex assessor feeding a geometrically simple executor. These results challenge the assumption that decodable beliefs are actionable levers, instead arguing for interventions that target the procedural dynamics of execution rather than the high-level geometry of assessment.",
+    "citations": 1
+  },
+  {
+    "title": "LLMs Encode Harmfulness and Refusal Separately",
+    "year": 2025,
+    "authors": "Jiachen Zhao, Jing Huang, Zhengxuan Wu, David Bau, Weiyan Shi",
+    "url": "https://www.semanticscholar.org/paper/48ef15d92002581d51142bcfe5dc7584e6eeed63",
+    "relevance": 3,
+    "abstract": "LLMs are trained to refuse harmful instructions, but do they truly understand harmfulness beyond just refusing? Prior work has shown that LLMs'refusal behaviors can be mediated by a one-dimensional subspace, i.e., a refusal direction. In this work, we identify a new dimension to analyze safety mechanisms in LLMs, i.e., harmfulness, which is encoded internally as a separate concept from refusal. There exists a harmfulness direction that is distinct from the refusal direction. As causal evidence, steering along the harmfulness direction can lead LLMs to interpret harmless instructions as harmful, but steering along the refusal direction tends to elicit refusal responses directly without reversing the model's judgment on harmfulness. Furthermore, using our identified harmfulness concept, we find that certain jailbreak methods work by reducing the refusal signals without reversing the model's internal belief of harmfulness. We also find that adversarially finetuning models to accept harmful instructions has minimal impact on the model's internal belief of harmfulness. These insights lead to a practical safety application: The model's latent harmfulness representation can serve as an intrinsic safeguard (Latent Guard) for detecting unsafe inputs and reducing over-refusals that is robust to finetuning attacks. For instance, our Latent Guard achieves performance comparable to or better than Llama Guard 3 8B, a dedicated finetuned safeguard model, across different jailbreak methods. Our findings suggest that LLMs'internal understanding of harmfulness is more robust than their refusal decision to diverse input instructions, offering a new perspective to study AI safety.",
+    "citations": 40
+  },
+  {
+    "title": "Linear Representations of Political Perspective Emerge in Large Language Models",
+    "year": 2025,
+    "authors": "Junsol Kim, James Evans, Aaron Schein",
+    "url": "https://www.semanticscholar.org/paper/7aac9e9c109f4684a169aea8883f54cecbb55a9a",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) have demonstrated the ability to generate text that realistically reflects a range of different subjective human perspectives. This paper studies how LLMs are seemingly able to reflect more liberal versus more conservative viewpoints among other political perspectives in American politics. We show that LLMs possess linear representations of political perspectives within activation space, wherein more similar perspectives are represented closer together. To do so, we probe the attention heads across the layers of three open transformer-based LLMs (Llama-2-7b-chat, Mistral-7b-instruct, Vicuna-7b). We first prompt models to generate text from the perspectives of different U.S. lawmakers. We then identify sets of attention heads whose activations linearly predict those lawmakers' DW-NOMINATE scores, a widely-used and validated measure of political ideology. We find that highly predictive heads are primarily located in the middle layers, often speculated to encode high-level concepts and tasks. Using probes only trained to predict lawmakers' ideology, we then show that the same probes can predict measures of news outlets' slant from the activations of models prompted to simulate text from those news outlets. These linear probes allow us to visualize, interpret, and monitor ideological stances implicitly adopted by an LLM as it generates open-ended responses. Finally, we demonstrate that by applying linear interventions to these attention heads, we can steer the model outputs toward a more liberal or conservative stance. Overall, our research suggests that LLMs possess a high-level linear representation of American political ideology and that by leveraging recent advances in mechanistic interpretability, we can identify, monitor, and steer the subjective perspective underlying generated text.",
+    "citations": 30
+  },
+  {
+    "title": "Sycophancy Is Not One Thing: Causal Separation of Sycophantic Behaviors in LLMs",
+    "year": 2025,
+    "authors": "Daniel Vennemeyer, Phan Anh Duong, Tiffany Zhan, Tianyu Jiang",
+    "url": "https://www.semanticscholar.org/paper/863a0267eeb851dd8c7c81c2ec813a54441b2d5a",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) often exhibit sycophantic behaviors -- such as excessive agreement with or flattery of the user -- but it is unclear whether these behaviors arise from a single mechanism or multiple distinct processes. We decompose sycophancy into sycophantic agreement and sycophantic praise, contrasting both with genuine agreement. Using difference-in-means directions, activation additions, and subspace geometry across multiple models and datasets, we show that: (1) the three behaviors are encoded along distinct linear directions in latent space; (2) each behavior can be independently amplified or suppressed without affecting the others; and (3) their representational structure is consistent across model families and scales. These results suggest that sycophantic behaviors correspond to distinct, independently steerable representations.",
+    "citations": 16
+  },
+  {
+    "title": "How Language Models Conflate Logical Validity with Plausibility: A Representational Analysis of Content Effects",
+    "year": 2025,
+    "authors": "Leonardo Bertolazzi, Sandro Pezzelle, Raffaelle Bernardi",
+    "url": "https://www.semanticscholar.org/paper/27563472ebef0f276e2ccc97c39b3fef68aca0dd",
+    "relevance": 3,
+    "abstract": "Both humans and large language models (LLMs) exhibit content effects: biases in which the plausibility of the semantic content of a reasoning problem influences judgments regarding its logical validity. While this phenomenon in humans is best explained by the dual-process theory of reasoning, the mechanisms behind content effects in LLMs remain unclear. In this work, we address this issue by investigating how LLMs encode the concepts of validity and plausibility within their internal representations. We show that both concepts are linearly represented and strongly aligned in representational geometry, leading models to conflate plausibility with validity. Using steering vectors, we demonstrate that plausibility vectors can causally bias validity judgements, and vice versa, and that the degree of alignment between these two concepts predicts the magnitude of behavioral content effects across models. Finally, we construct debiasing vectors that disentangle these concepts, reducing content effects and improving reasoning accuracy. Our findings advance understanding of how abstract logical concepts are represented in LLMs and highlight representational interventions as a path toward more logical systems.",
+    "citations": 0
+  },
+  {
+    "title": "Mechanistic interpretability for steering vision-language-action models",
+    "year": 2025,
+    "authors": "Bear H\u00e4on, Kaylene C. Stocking, Ian Chuang, Claire J. Tomlin",
+    "url": "https://www.semanticscholar.org/paper/c63324aadee7bc9566a98fef80e2149d21a3360a",
+    "relevance": 3,
+    "abstract": "Vision-Language-Action (VLA) models are a promising path to realizing generalist embodied agents that can quickly adapt to new tasks, modalities, and environments. However, methods for interpreting and steering VLAs fall far short of classical robotics pipelines, which are grounded in explicit models of kinematics, dynamics, and control. This lack of mechanistic insight is a central challenge for deploying learned policies in real-world robotics, where robustness and explainability are critical. Motivated by advances in mechanistic interpretability for large language models, we introduce the first framework for interpreting and steering VLAs via their internal representations, enabling direct intervention in model behavior at inference time. We project feedforward activations within transformer layers onto the token embedding basis, identifying sparse semantic directions - such as speed and direction - that are causally linked to action selection. Leveraging these findings, we introduce a general-purpose activation steering method that modulates behavior in real time, without fine-tuning, reward signals, or environment interaction. We evaluate this method on two recent open-source VLAs, Pi0 and OpenVLA, and demonstrate zero-shot behavioral control in simulation (LIBERO) and on a physical robot (UR5). This work demonstrates that interpretable components of embodied VLAs can be systematically harnessed for control - establishing a new paradigm for transparent and steerable foundation models in robotics.",
+    "citations": 14
+  },
+  {
+    "title": "Model Internal Sleuthing: Finding Lexical Identity and Inflectional Features in Modern Language Models",
+    "year": 2025,
+    "authors": "Michael Li, Nishant Subramani",
+    "url": "https://www.semanticscholar.org/paper/91108c04421f986927130c2ea32ea13e305d3115",
+    "relevance": 3,
+    "abstract": "Large transformer-based language models dominate modern NLP, yet our understanding of how they encode linguistic information relies primarily on studies of early models like BERT and GPT-2. We systematically probe 25 models from BERT Base to Qwen2.5-7B focusing on two linguistic properties: lexical identity and inflectional features across 6 diverse languages. We find a consistent pattern: inflectional features are linearly decodable throughout the model, while lexical identity is prominent early but increasingly weakens with depth. Further analysis of the representation geometry reveals that models with aggressive mid-layer dimensionality compression show reduced steering effectiveness in those layers, despite probe accuracy remaining high. Pretraining analysis shows that inflectional structure stabilizes early while lexical identity representations continue evolving. Taken together, our findings suggest that transformers maintain inflectional features across layers, while trading off lexical identity for compact, predictive representations. Our code is available at https://github.com/ml5885/model_internal_sleuthing",
+    "citations": 4
+  },
+  {
+    "title": "Latent Neural Coupling of Risk and Time Preferences in LLMs Mirrors Human Biases",
+    "year": 2025,
+    "authors": "Yan Leng, Trung Nguyen",
+    "url": "https://www.semanticscholar.org/paper/64c18c2ad568d2d6299bd8fe5fd4444802231b44",
+    "relevance": 3,
+    "abstract": "Large language models (LLMs) now stand in for human decision makers in many settings, but it is unclear whether their choices arise from structured internal representations or surface-level pattern matching\u2014and whether the economic preferences they express are correlated as in humans. We address these questions by analyzing three canonical preference domains - risk, time, and social - across several current LLMs. Our study proceeds in three stages. (1) Behavioral elicitation: Using standard prospect theory, intertemporal-choice, and dictator-game vignettes, we confirm that the models reproduce familiar biases - risk aversion and temporal discounting. (2) Latent probing: Contrastive prompts that elicit risk-averse versus risk-seeking responses allow us to train a sparse linear probe and identify a one-dimensional \"risk axis\" in activation space that reliably orders the models' lottery choices. (3) Causal steering: Small perturbations along this axis predictably shift behavior: nudging the model toward risk seeking lowers its implied discount rate, whereas nudging toward risk aversion raises it\u2014reversing the positive risk-aversion/patience correlation observed in humans. The same manipulation produces only a weak, model-specific increase in self-interested dictator allocations, indicating that social motives are encoded in largely separate subspaces. We contribute three findings. First, LLMs encode risk attitudes along a structured linear continuum from aversion to seeking. Second, this dimension simultaneously governs time preferences, showing that the models internalize a probabilistic relationship between risk and patience rather than hard-coding each bias independently. Third, social preferences remain largely decoupled, highlighting domain-specific representation. Taken together, these results show that LLMs, even without real-world experience, acquire interpretable latent coordinates for abstract economic traits. The probe-and-steer method we introduce offers a practical tool for mapping and manipulating such traits, positioning LLMs as scalable testbeds for behavioral theory and as synthetic participants in social-science research. For the full paper, please visit https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5284661.",
+    "citations": 1
+  },
+  {
+    "title": "Task Vectors, Learned Not Extracted: Performance Gains and Mechanistic Insight",
+    "year": 2025,
+    "authors": "Haolin Yang, Hakaze Cho, Kaize Ding, Naoya Inoue",
+    "url": "https://www.semanticscholar.org/paper/fcadf0225800abe828f8f0f9226f2e82c98e0de8",
+    "relevance": 3,
+    "abstract": "Large Language Models (LLMs) can perform new tasks from in-context demonstrations, a phenomenon known as in-context learning (ICL). Recent work suggests that these demonstrations are compressed into task vectors (TVs), compact task representations that LLMs exploit for predictions. However, prior studies typically extract TVs from model outputs or hidden states using cumbersome and opaque methods, and they rarely elucidate the mechanisms by which TVs influence computation. In this work, we address both limitations. First, we propose directly training Learned Task Vectors (LTVs), which surpass extracted TVs in accuracy and exhibit superior flexibility-acting effectively at arbitrary layers, positions, and even with ICL prompts. Second, through systematic analysis, we investigate the mechanistic role of TVs, showing that at the low level they steer predictions primarily through attention-head OV circuits, with a small subset of\"key heads\"most decisive. At a higher level, we find that despite Transformer nonlinearities, TV propagation is largely linear: early TVs are rotated toward task-relevant subspaces to improve logits of relevant labels, while later TVs are predominantly scaled in magnitude. Taken together, LTVs not only provide a practical approach for obtaining effective TVs but also offer a principled lens into the mechanistic foundations of ICL.",
+    "citations": 1
+  },
+  {
+    "title": "Localizing Task Recognition and Task Learning in In-Context Learning via Attention Head Analysis",
+    "year": 2025,
+    "authors": "Haolin Yang, Hakaze Cho, Naoya Inoue",
+    "url": "https://www.semanticscholar.org/paper/4b8e31f58c6416ec0006b715080a86d77161a2ce",
+    "relevance": 3,
+    "abstract": "We investigate the mechanistic underpinnings of in-context learning (ICL) in large language models by reconciling two dominant perspectives: the component-level analysis of attention heads and the holistic decomposition of ICL into Task Recognition (TR) and Task Learning (TL). We propose a novel framework based on Task Subspace Logit Attribution (TSLA) to identify attention heads specialized in TR and TL, and demonstrate their distinct yet complementary roles. Through correlation analysis, ablation studies, and input perturbations, we show that the identified TR and TL heads independently and effectively capture the TR and TL components of ICL. Using steering experiments with geometric analysis of hidden states, we reveal that TR heads promote task recognition by aligning hidden states with the task subspace, while TL heads rotate hidden states within the subspace toward the correct label to facilitate prediction. We further show how previous findings on ICL mechanisms, including induction heads and task vectors, can be reconciled with our attention-head-level analysis of the TR-TL decomposition. Our framework thus provides a unified and interpretable account of how large language models execute ICL across diverse tasks and settings.",
+    "citations": 0
+  },
+  {
+    "title": "Recalibrating the Compass: Integrating Large Language Models into Classical Research Methods",
+    "year": 2025,
+    "authors": "T. Peng, Xuzhen Yang",
+    "url": "https://api.semanticscholar.org/CorpusId:278905960",
+    "relevance": 3,
+    "abstract": "This paper examines how large language models (LLMs) are transforming core quantitative methods in communication research in particular, and in the social sciences more broadly-namely, content analysis, survey research, and experimental studies. Rather than replacing classical approaches, LLMs introduce new possibilities for coding and interpreting text, simulating dynamic respondents, and generating personalized and interactive stimuli. Drawing on recent interdisciplinary work, the paper highlights both the potential and limitations of LLMs as research tools, including issues of validity, bias, and interpretability. To situate these developments theoretically, the paper revisits Lasswell's foundational framework --\"Who says what, in which channel, to whom, with what effect?\"-- and demonstrates how LLMs reconfigure message studies, audience analysis, and effects research by enabling interpretive variation, audience trajectory modeling, and counterfactual experimentation. Revisiting the metaphor of the methodological compass, the paper argues that classical research logics remain essential as the field integrates LLMs and generative AI. By treating LLMs not only as technical instruments but also as epistemic and cultural tools, the paper calls for thoughtful, rigorous, and imaginative use of LLMs in future communication and social science research.",
+    "citations": 3
+  },
+  {
+    "title": "Beyond Single Concept Vector: Modeling Concept Subspace in LLMs with Gaussian Distribution",
+    "year": 2024,
+    "authors": "Haiyan Zhao, Heng Zhao, Bo Shen, Ali Payani, Fan Yang, Mengnan Du",
+    "url": "https://www.semanticscholar.org/paper/a865474bcf484c8165dcde2382ab446c1d76eb17",
+    "relevance": 3,
+    "abstract": "Probing learned concepts in large language models (LLMs) is crucial for understanding how semantic knowledge is encoded internally. Training linear classifiers on probing tasks is a principle approach to denote the vector of a certain concept in the representation space. However, the single vector identified for a concept varies with both data and training, making it less robust and weakening its effectiveness in real-world applications. To address this challenge, we propose an approach to approximate the subspace representing a specific concept. Built on linear probing classifiers, we extend the concept vectors into Gaussian Concept Subspace (GCS). We demonstrate GCS's effectiveness through measuring its faithfulness and plausibility across multiple LLMs with different sizes and architectures. Additionally, we use representation intervention tasks to showcase its efficacy in real-world applications such as emotion steering. Experimental results indicate that GCS concept vectors have the potential to balance steering performance and maintaining the fluency in natural language generation tasks.",
+    "citations": 23
+  },
+  {
+    "title": "Refusal in Language Models Is Mediated by a Single Direction",
+    "year": 2024,
+    "authors": "Andy Arditi, Oscar Obeso, Aaquib Syed, Daniel Paleka, Nina Rimsky, Wes Gurnee, Neel Nanda",
+    "url": "https://www.semanticscholar.org/paper/88f9af8b0a28e14c42d4f70ce2d911b51a06cd16",
+    "relevance": 3,
+    "abstract": "Conversational large language models are fine-tuned for both instruction-following and safety, resulting in models that obey benign requests but refuse harmful ones. While this refusal behavior is widespread across chat models, its underlying mechanisms remain poorly understood. In this work, we show that refusal is mediated by a one-dimensional subspace, across 13 popular open-source chat models up to 72B parameters in size. Specifically, for each model, we find a single direction such that erasing this direction from the model's residual stream activations prevents it from refusing harmful instructions, while adding this direction elicits refusal on even harmless instructions. Leveraging this insight, we propose a novel white-box jailbreak method that surgically disables refusal with minimal effect on other capabilities. Finally, we mechanistically analyze how adversarial suffixes suppress propagation of the refusal-mediating direction. Our findings underscore the brittleness of current safety fine-tuning methods. More broadly, our work showcases how an understanding of model internals can be leveraged to develop practical methods for controlling model behavior.",
+    "citations": 768
+  },
+  {
+    "title": "The Linear Representation Hypothesis and the Geometry of Large Language Models",
+    "year": 2023,
+    "authors": "Kiho Park, Yo Joong Choe, Victor Veitch",
+    "url": "https://www.semanticscholar.org/paper/eb44ce1f7e1f4deac10f6e7009e2073f1eb0b3e4",
+    "relevance": 3,
+    "abstract": "Informally, the'linear representation hypothesis'is the idea that high-level concepts are represented linearly as directions in some representation space. In this paper, we address two closely related questions: What does\"linear representation\"actually mean? And, how do we make sense of geometric notions (e.g., cosine similarity or projection) in the representation space? To answer these, we use the language of counterfactuals to give two formalizations of\"linear representation\", one in the output (word) representation space, and one in the input (sentence) space. We then prove these connect to linear probing and model steering, respectively. To make sense of geometric notions, we use the formalization to identify a particular (non-Euclidean) inner product that respects language structure in a sense we make precise. Using this causal inner product, we show how to unify all notions of linear representation. In particular, this allows the construction of probes and steering vectors using counterfactual pairs. Experiments with LLaMA-2 demonstrate the existence of linear representations of concepts, the connection to interpretation and control, and the fundamental role of the choice of inner product.",
+    "citations": 576
+  },
+  {
+    "title": "The Geometry of Truth: Emergent Linear Structure in Large Language Model Representations of True/False Datasets",
+    "year": 2023,
+    "authors": "Samuel Marks, Max Tegmark",
+    "url": "https://www.semanticscholar.org/paper/d59523889679aee15992c4bf6e52b134186d07d3",
+    "relevance": 3,
+    "abstract": "Large Language Models (LLMs) have impressive capabilities, but are prone to outputting falsehoods. Recent work has developed techniques for inferring whether a LLM is telling the truth by training probes on the LLM's internal activations. However, this line of work is controversial, with some authors pointing out failures of these probes to generalize in basic ways, among other conceptual issues. In this work, we use high-quality datasets of simple true/false statements to study in detail the structure of LLM representations of truth, drawing on three lines of evidence: 1. Visualizations of LLM true/false statement representations, which reveal clear linear structure. 2. Transfer experiments in which probes trained on one dataset generalize to different datasets. 3. Causal evidence obtained by surgically intervening in a LLM's forward pass, causing it to treat false statements as true and vice versa. Overall, we present evidence that at sufficient scale, LLMs linearly represent the truth or falsehood of factual statements. We also show that simple difference-in-mean probes generalize as well as other probing techniques while identifying directions which are more causally implicated in model outputs.",
+    "citations": 581
+  },
+  {
+    "title": "Emergent Linear Representations in World Models of Self-Supervised Sequence Models",
+    "year": 2023,
+    "authors": "Neel Nanda, Andrew Lee, Martin Wattenberg",
+    "url": "https://www.semanticscholar.org/paper/bb26227a94ddb2b0088a23e2ec0a170c40bc4d78",
+    "relevance": 3,
+    "abstract": "How do sequence models represent their decision-making process? Prior work suggests that Othello-playing neural network learned nonlinear models of the board state (Li et al., 2023a). In this work, we provide evidence of a closely related linear representation of the board. In particular, we show that probing for \u201cmy colour\u201d vs. \u201copponent\u2019s colour\u201d may be a simple yet powerful way to interpret the model\u2019s internal state. This precise understanding of the internal representations allows us to control the model\u2019s behaviour with simple vector arithmetic. Linear representations enable significant interpretability progress, which we demonstrate with further exploration of how the world model is computed.",
+    "citations": 340
+  },
+  {
+    "title": "Linear Representations of Sentiment in Large Language Models",
+    "year": 2023,
+    "authors": "Curt Tigges, O. Hollinsworth, Atticus Geiger, Neel Nanda",
+    "url": "https://www.semanticscholar.org/paper/012dda8aef89ffa57128b15dc3cad2c02eedfa80",
+    "relevance": 3,
+    "abstract": "Sentiment is a pervasive feature in natural language text, yet it is an open question how sentiment is represented within Large Language Models (LLMs). In this study, we reveal that across a range of models, sentiment is represented linearly: a single direction in activation space mostly captures the feature across a range of tasks with one extreme for positive and the other for negative. Through causal interventions, we isolate this direction and show it is causally relevant in both toy tasks and real world datasets such as Stanford Sentiment Treebank. Through this case study we model a thorough investigation of what a single direction means on a broad data distribution. We further uncover the mechanisms that involve this direction, highlighting the roles of a small subset of attention heads and neurons. Finally, we discover a phenomenon which we term the summarization motif: sentiment is not solely represented on emotionally charged words, but is additionally summarized at intermediate positions without inherent sentiment, such as punctuation and names. We show that in Stanford Sentiment Treebank zero-shot classification, 76% of above-chance classification accuracy is lost when ablating the sentiment direction, nearly half of which (36%) is due to ablating the summarized sentiment direction exclusively at comma positions.",
+    "citations": 169
+  },
+  {
+    "title": "Interpretation modeling: Social grounding of sentences by reasoning over their implicit moral judgments",
+    "year": 2023,
+    "authors": "Liesbeth Allein, Maria Mihaela Trucscva, Marie-Francine Moens",
+    "url": "https://api.semanticscholar.org/CorpusId:266054367",
+    "relevance": 3,
+    "abstract": "The social and implicit nature of human communication ramifies readers' understandings of written sentences. Single gold-standard interpretations rarely exist, challenging conventional assumptions in natural language processing. This work introduces the interpretation modeling (IM) task which involves modeling several interpretations of a sentence's underlying semantics to unearth layers of implicit meaning. To obtain these, IM is guided by multiple annotations of social relation and common ground - in this work approximated by reader attitudes towards the author and their understanding of moral judgments subtly embedded in the sentence. We propose a number of modeling strategies that rely on one-to-one and one-to-many generation methods that take inspiration from the philosophical study of interpretation. A first-of-its-kind IM dataset is curated to support experiments and analyses. The modeling results, coupled with scrutiny of the dataset, underline the challenges of IM as conflicting and complex interpretations are socially plausible. This interplay of diverse readings is affirmed by automated and human evaluations on the generated interpretations. Finally, toxicity analyses in the generated interpretations demonstrate the importance of IM for refining filters of content and assisting content moderators in safeguarding the safety in online discourse.",
+    "citations": 2
+  },
+  {
+    "title": "PALS: Personalized Active Learning for Subjective Tasks in NLP",
+    "year": 2023,
+    "authors": "Kamil Kanclerz, Konrad Karanowski, Julita Bielaniewicz, Marcin Gruza, P. Milkowski, Jan Koco\u0144, Przemyslaw Kazienko",
+    "url": "https://www.semanticscholar.org/paper/c7e2a2cbc6999a2b8dd562733939992f71212d2e",
+    "relevance": 3,
+    "abstract": "For subjective NLP problems, such as classification of hate speech, aggression, or emotions, personalized solutions can be exploited. Then, the learned models infer about the perception of the content independently for each reader. To acquire training data, texts are commonly randomly assigned to users for annotation, which is expensive and highly inefficient. Therefore, for the first time, we suggest applying an active learning paradigm in a personalized context to better learn individual preferences. It aims to alleviate the labeling effort by selecting more relevant training samples. In this paper, we present novel Personalized Active Learning techniques for Subjective NLP tasks (PALS) to either reduce the cost of the annotation process or to boost the learning effect. Our five new measures allow us to determine the relevance of a text in the context of learning users\u2019 personal preferences. We validated them on three datasets: Wiki discussion texts individually labeled with aggression and toxicity, and on the Unhealthy Conversations dataset. Our PALS techniques outperform random selection even by more than 30%. They can also be used to reduce the number of necessary annotations while maintaining a given quality level. Personalized annotation assignments based on our controversy measure decrease the amount of data needed to just 25%-40% of the initial size.",
+    "citations": 9
+  },
+  {
+    "title": "Capturing Human Perspectives in NLP: Questionnaires, Annotations, and Biases",
+    "year": 2023,
+    "authors": "W. Mieleszczenko-Kowszewicz, Kamil Kanclerz, Julita Bielaniewicz, Marcin Oleksy, Marcin Gruza, Stanis\u0142aw Wo\u017aniak, Ewa Dzieciol, Przemyslaw Kazienko, Jan Koco\u0144",
+    "url": "https://www.semanticscholar.org/paper/1cc976e95489cd3600c0db736edf07cb0343e189",
+    "relevance": 3,
+    "abstract": "",
+    "citations": 16
+  },
+  {
+    "title": "Extracting Latent Steering Vectors from Pretrained Language Models",
+    "year": 2022,
+    "authors": "Nishant Subramani, Nivedita Suresh, Matthew E. Peters",
+    "url": "https://www.semanticscholar.org/paper/42b6b7ae57b2b784be7fa78bf98b1c61d2b62751",
+    "relevance": 3,
+    "abstract": "Prior work on controllable text generation has focused on learning how to control language models through trainable decoding, smart-prompt design, or fine-tuning based on a desired objective. We hypothesize that the information needed to steer the model to generate a target sentence is already encoded within the model. Accordingly, we explore a different approach altogether: extracting latent vectors directly from pretrained language model decoders without fine-tuning. Experiments show that there exist steering vectors, which, when added to the hidden states of the language model, generate a target sentence nearly perfectly (> 99 BLEU) for English sentences from a variety of domains. We show that vector arithmetic can be used for unsupervised sentiment transfer on the Yelp sentiment benchmark, with performance comparable to models tailored to this task. We find that distances between steering vectors reflect sentence similarity when evaluated on a textual similarity benchmark (STS-B), outperforming pooled hidden states of models. Finally, we present an analysis of the intrinsic properties of the steering vectors. Taken together, our results suggest that frozen LMs can be effectively controlled through their latent steering space.",
+    "citations": 206
+  },
+  {
+    "title": "Modelling Speaker Attribution in Narrative Texts With Biased and Bias-Adjustable Neural Networks",
+    "year": 2022,
+    "authors": "Tillmann D\u00f6nicke, Hanna Varachkina, A. Weimer, Luisa G\u00f6deke, Florian Barth, Benjamin Gittel, A. Holler, C. Sporleder",
+    "url": "https://api.semanticscholar.org/CorpusId:246478329",
+    "relevance": 3,
+    "abstract": "Literary narratives regularly contain passages that different readers attribute to different speakers: a character, the narrator, or the author. Since literary narratives are highly ambiguous constructs, it is often impossible to decide between diverging attributions of a specific passage by hermeneutic means. Instead, we hypothesise that attribution decisions are often influenced by annotator bias, in particular an annotator's literary preferences and beliefs. We present first results on the correlation between the literary attitudes of an annotator and their attribution choices. In a second set of experiments, we present a neural classifier that is capable of imitating individual annotators as well as a common-sense annotator, and reaches accuracies of up to 88% (which improves the majority baseline by 23%).",
+    "citations": 6
+  },
+  {
+    "title": "What type of subjectivity lies behind French causal connectives? A corpus-based comparative investigation of car and parce que",
+    "year": 2020,
+    "authors": "Joanna Blochowiak, C. Grisot, Liesbeth Degand",
+    "url": "https://api.semanticscholar.org/CorpusId:219910242",
+    "relevance": 3,
+    "abstract": "In French, the difference between the causal connectives parce que and car is traditionally related to the prototypical causal relations they are meant to convey. The main claim is that car conveys more subjective relations and is also used in higher register language, whereas parce que is equally well-suited to both types of relations. In line with recent studies, this contribution questions the clear-cut distinction between the two connectives on the basis of a comparative corpus investigation with annotation tasks (journalistic and text messaging registers). Our results do not corroborate the traditional hypotheses that car is used to express more subjective relations and it is restricted to higher register language. On the contrary, we find that car has a strong tendency to be perceived by addressees as providing the information in a more objective way. Our empirical investigation has allowed us to put forth a modified notion of subjectivity which is associated with car and parce que: we distinguish between the more classic approach \u2013 the type of subjectivity related to causal relations, and a novel approach \u2013 the evaluative type of subjectivity related to the expressive use of language. We rely on the relevance-theoretic framework to spell out our theoretical proposal.",
+    "citations": 5
+  },
+  {
+    "title": "A Structural Probe for Finding Syntax in Word Representations",
+    "year": 2019,
+    "authors": "John Hewitt, Christopher D. Manning",
+    "url": "https://www.semanticscholar.org/paper/455a8838cde44f288d456d01c76ede95b56dc675",
+    "relevance": 3,
+    "abstract": "Recent work has improved our ability to detect linguistic knowledge in word representations. However, current methods for detecting syntactic knowledge do not test whether syntax trees are represented in their entirety. In this work, we propose a structural probe, which evaluates whether syntax trees are embedded in a linear transformation of a neural network\u2019s word representation space. The probe identifies a linear transformation under which squared L2 distance encodes the distance between words in the parse tree, and one in which squared L2 norm encodes depth in the parse tree. Using our probe, we show that such transformations exist for both ELMo and BERT but not in baselines, providing evidence that entire syntax trees are embedded implicitly in deep models\u2019 vector geometry.",
+    "citations": 1380
+  },
+  {
+    "title": "Stories in Space: In-Context Learning Trajectories in Conceptual Belief Space",
+    "year": 2026,
+    "authors": "Eric J. Bigelow, Raphael Sarfati, Daniel Wurgaft, Owen Lewis, Tom McGrath, Jack Merullo, Atticus Geiger, E. Lubana",
+    "url": "https://www.semanticscholar.org/paper/3fda8670e1973a7637a1f458ce2621a478e0b6eb",
+    "relevance": 2,
+    "abstract": "Large Language Models (LLMs) update their behavior in context, which can be viewed as a form of Bayesian inference. However, the structure of the latent hypothesis space over which this inference operates remains unclear. In this work, we propose that LLMs assign beliefs over a low-dimensional geometric space - a conceptual belief space - and that in-context learning corresponds to a trajectory through this space as beliefs are updated over time. Using story understanding as a natural setting for dynamic belief updating, we combine behavioral and representational analyses to study these trajectories. We find that (1) belief updates are well-described as trajectories on low-dimensional, structured manifolds; (2) this structure is reflected consistently in both model behavior and internal representations and can be decoded with simple linear probes to predict behavior; and (3) interventions on these representations causally steer belief trajectories, with effects that can be predicted from the geometry of the conceptual space. Together, our results provide a geometric account of belief dynamics in LLMs, grounding Bayesian interpretations of in-context learning in structured conceptual representations.",
+    "citations": 0
+  },
+  {
+    "title": "Relational Linear Properties in Language Models: An Empirical Investigation",
+    "year": 2026,
+    "authors": "Giovanni Valer, Luigi Gresele, Marco Bronzini, E. Marconato",
+    "url": "https://www.semanticscholar.org/paper/e17d0512cceac974bf9c7108eb053ab8c15b85ad",
+    "relevance": 2,
+    "abstract": "Linear properties are ubiquitous in the representations of language models; however, testing them experimentally remains a challenging task. This work focuses on relational linearity: the hypothesis that, for a fixed relation (e.g.,\"plays\"), the unembedding of an object (e.g.,\"trumpet\") can be predicted from the embedding of its subject (e.g.,\"Miles Davis\") by a linear map. We present an experimental method to test the formulation of relational linearity by Marconato et al. (2025). Specifically, we introduce a probing method, based on Kullback-Leibler divergence, to evaluate this property and examine its variation across layers and paraphrased relational queries. It is also more efficient than previous work; for example, it avoids the crude Jacobian approximations used in Linear Relational Embeddings by Hernandez et al. (2024). Our findings across four datasets show that relational linearity varies across models, exhibits layer-wise patterns consistent with prior observations about linguistic information in model representations, and is differently affected by changes in how the relation is phrased.",
+    "citations": 0
+  },
+  {
+    "title": "Are Humans as Brittle as Large Language Models?",
+    "year": 2025,
+    "authors": "Jiahui Li, Sean Papay, Roman Klinger",
+    "url": "https://api.semanticscholar.org/CorpusId:281218136",
+    "relevance": 2,
+    "abstract": "The output of large language models (LLMs) is unstable, due both to non-determinism of the decoding process as well as to prompt brittleness. While the intrinsic non-determinism of LLM generation may mimic existing uncertainty in human annotations through distributional shifts in outputs, it is largely assumed, yet unexplored, that the prompt brittleness effect is unique to LLMs. This raises the question: do human annotators show similar sensitivity to prompt changes? If so, should prompt brittleness in LLMs be considered problematic? One may alternatively hypothesize that prompt brittleness correctly reflects human annotation variances. To fill this research gap, we systematically compare the effects of prompt modifications on LLMs and identical instruction modifications for human annotators, focusing on the question of whether humans are similarly sensitive to prompt perturbations. To study this, we prompt both humans and LLMs for a set of text classification tasks conditioned on prompt variations. Our findings indicate that both humans and LLMs exhibit increased brittleness in response to specific types of prompt modifications, particularly those involving the substitution of alternative label sets or label formats. However, the distribution of human judgments is less affected by typographical errors and reversed label order than that of LLMs.",
+    "citations": 0
+  },
+  {
+    "title": "Analyzing Differences in Subjective Annotations by Participants and Third-party Annotators in Multimodal Dialogue Corpus",
+    "year": 2023,
+    "authors": "Kazunori Komatani, Ryu Takeda, S. Okada",
+    "url": "https://api.semanticscholar.org/CorpusId:263609816",
+    "relevance": 2,
+    "abstract": "Estimating the subjective impressions of human users during a dialogue is necessary when constructing a dialogue system that can respond adaptively to their emotional states. However, such subjective impressions (e.g., how much the user enjoys the dialogue) are inherently ambiguous, and the annotation results provided by multiple annotators do not always agree because they depend on the subjectivity of the annotators. In this paper, we analyzed the annotation results using 13,226 exchanges from 155 participants in a multimodal dialogue corpus called Hazumi that we had constructed, where each exchange was annotated by five third-party annotators. We investigated the agreement between the subjective annotations given by the third-party annotators and the participants themselves, on both per-exchange annotations (i.e., participant\u2019s sentiments) and per-dialogue (-participant) annotations (i.e., questionnaires on rapport and personality traits). We also investigated the conditions under which the annotation results are reliable. Our findings demonstrate that the dispersion of third-party sentiment annotations correlates with agreeableness of the participants, one of the Big Five personality traits.",
+    "citations": 9
+  },
+  {
+    "title": "LLMs Know They're Wrong and Agree Anyway: The Shared Sycophancy-Lying Circuit",
+    "year": 2026,
+    "authors": "Manav Pandey",
+    "url": "https://www.semanticscholar.org/paper/b75c867d0579cf5e30dbb3e965fe0410d5a63a41",
+    "relevance": 1,
+    "abstract": "When a language model agrees with a user's false belief, is it failing to detect the error, or noticing and agreeing anyway? We show the latter. Across twelve open-weight models from five labs, spanning small to frontier scale, the same small set of attention heads carries a\"this statement is wrong\"signal, whether the model is evaluating a claim on its own or being pressured to agree with a user. Silencing these heads flips sycophantic behavior sharply while leaving factual accuracy intact, so the circuit controls deference rather than knowledge. Edge-level path patching confirms that the same head-to-head connections drive sycophancy, factual lying, and instructed lying. Opinion-agreement, where no factual ground truth exists, reuses these head positions but writes into an orthogonal direction, ruling out a simple\"truth-direction\"reading of the substrate. Alignment training leaves this circuit in place: an RLHF refresh cuts sycophantic behavior roughly tenfold while the shared heads persist or grow, a pattern that replicates on an independent model family and under targeted anti-sycophancy DPO. When these models sycophant, they register that the user is wrong and agree anyway.",
+    "citations": 0
+  },
+  {
+    "title": "DreamReader: An Interpretability Toolkit for Text-to-Image Models",
+    "year": 2026,
+    "authors": "Nirmalendu Prakash, Narmeen Oozeer, Michael Lan, Luka Samkharadze, Phillip Howard, Roy Ka-Wei Lee, Dhruv Nathawani, Shivam Raval, Amirali Abdullah",
+    "url": "https://www.semanticscholar.org/paper/f15fafaa68325892d5c312062e05214dfc888379",
+    "relevance": 1,
+    "abstract": "Despite the rapid adoption of text-to-image (T2I) diffusion models, causal and representation-level analysis remains fragmented and largely limited to isolated probing techniques. To address this gap, we introduce DreamReader: a unified framework that formalizes diffusion interpretability as composable representation operators spanning activation extraction, causal patching, structured ablations, and activation steering across modules and timesteps. DreamReader provides a model-agnostic abstraction layer enabling systematic analysis and intervention across diffusion architectures. Beyond consolidating existing methods, DreamReader introduces three novel intervention primitives for diffusion models: (1) representation fine-tuning (LoReFT) for subspace-constrained internal adaptation; (2) classifier-guided gradient steering using MLP probes trained on activations; and (3) component-level cross-model mapping for systematic study of transferability of representations across modalities. These mechanisms allows us to do lightweight white-box interventions on T2I models by drawing inspiration from interpretability techniques on LLMs. We demonstrate DreamReader through controlled experiments that (i) perform activation stitching between two models, and (ii) apply LoReFT to steer multiple activation units, reliably injecting a target concept into the generated images. Experiments are specified declaratively and executed in controlled batched pipelines to enable reproducible large-scale analysis. Across multiple case studies, we show that techniques adapted from language model interpretability yield promising and controllable interventions in diffusion models. DreamReader is released as an open source toolkit for advancing research on T2I interpretability.",
+    "citations": 0
+  },
+  {
+    "title": "Tears or Cheers? Benchmarking LLMs via Culturally Elicited Distinct Affective Responses",
+    "year": 2026,
+    "authors": "Chongyuan Dai, Yaling Shen, Jinpeng Hu, Zihan Gao, Jia Li, Yishun Jiang, Yaxiong Wang, Liu Liu, Zongyuan Ge",
+    "url": "https://api.semanticscholar.org/CorpusId:284910606",
+    "relevance": 1,
+    "abstract": "Culture serves as a fundamental determinant of human affective processing and profoundly shapes how individuals perceive and interpret emotional stimuli. Despite this intrinsic link extant evaluations regarding cultural alignment within Large Language Models primarily prioritize declarative knowledge such as geographical facts or established societal customs. These benchmarks remain insufficient to capture the subjective interpretative variance inherent to diverse sociocultural lenses. To address this limitation, we introduce CEDAR, a multimodal benchmark constructed entirely from scenarios capturing Culturally \\underline{\\textsc{E}}licited \\underline{\\textsc{D}}istinct \\underline{\\textsc{A}}ffective \\underline{\\textsc{R}}esponses. To construct CEDAR, we implement a novel pipeline that leverages LLM-generated provisional labels to isolate instances yielding cross-cultural emotional distinctions, and subsequently derives reliable ground-truth annotations through rigorous human evaluation. The resulting benchmark comprises 10,962 instances across seven languages and 14 fine-grained emotion categories, with each language including 400 multimodal and 1,166 text-only samples. Comprehensive evaluations of 17 representative multilingual models reveal a dissociation between language consistency and cultural alignment, demonstrating that culturally grounded affective understanding remains a significant challenge for current models.",
+    "citations": 4
+  },
+  {
+    "title": "The Paradox of Robustness: Decoupling Rule-Based Logic from Affective Noise in High-Stakes Decision-Making",
+    "year": 2026,
+    "authors": "Jon Chun, Katherine Elkins",
+    "url": "https://api.semanticscholar.org/CorpusId:285140342",
+    "relevance": 1,
+    "abstract": "While Large Language Models (LLMs) are widely documented to be sensitive to minor prompt perturbations and prone to sycophantic alignment, their robustness in consequential, rule-bound decision-making remains under-explored. We uncover a striking\"Paradox of Robustness\": despite their known lexical brittleness, aligned LLMs exhibit strong robustness to emotional framing effects in rule-bound institutional decision-making. Using a controlled perturbation framework across three high-stakes domains (healthcare, finance, and education), we find a negligible effect size (Cohen's h = 0.003) compared to the substantial biases observed in analogous human contexts (h in [0.3, 0.8]), approximately two orders of magnitude smaller. This invariance persists across eight models with diverse training paradigms, suggesting the mechanisms driving sycophancy and prompt sensitivity do not translate to failures in logical constraint satisfaction. While LLMs may be\"brittle\"to how a query is formatted, they appear considerably more stable against affective attempts to bias rule-bound decisions. To probe the boundary of this finding, we add two reviewer-driven side studies. A five-scenario immigration extension yields a small but statistically detectable +0.8 percentage point shift that remains within a pre-specified +/-3 percentage point Region of Practical Equivalence (ROPE), while a screening-level adversarial narrative pilot finds no meaningful decision shift under stronger LLM-generated prompts. We release a core benchmark (9 base scenarios x 18 condition variants = 162 unique prompts), code, and data to facilitate replicable evaluation.",
+    "citations": 1
+  },
+  {
+    "title": "Multi-Perspective LLM Annotations for Valid Analyses in Subjective Tasks",
+    "year": 2026,
+    "authors": "N. Mehrotra, Adam Visokay, Kristina Gligori'c",
+    "url": "https://www.semanticscholar.org/paper/ab51205586bc1242905ce9da460e3c2c53113ccd",
+    "relevance": 1,
+    "abstract": "Large language models are increasingly used to annotate texts, but their outputs reflect some human perspectives better than others. Existing methods for correcting LLM annotation error assume a single ground truth. However, this assumption fails in subjective tasks where disagreement across demographic groups is meaningful. Here we introduce Perspective-Driven Inference, a method that treats the distribution of annotations across groups as the quantity of interest, and estimates it using a small human annotation budget. We contribute an adaptive sampling strategy that concentrates human annotation effort on groups where LLM proxies are least accurate. We evaluate on politeness and offensiveness rating tasks, showing targeted improvements for harder-to-model demographic groups relative to uniform sampling baselines, while maintaining coverage.",
+    "citations": 0
+  },
+  {
+    "title": "ARGUS: Seeing the Influence of Narrative Features on Persuasion in Argumentative Texts",
+    "year": 2026,
+    "authors": "Sara Nabhani, Federico Pianzola, Khalid Al-Khatib, Malvina Nissim",
+    "url": "https://api.semanticscholar.org/CorpusId:286171372",
+    "relevance": 1,
+    "abstract": "Can narratives make arguments more persuasive? And to this end, which narrative features matter most? Although stories are often seen as powerful tools for persuasion, their specific role in online, unstructured argumentation remains underexplored. To address this gap, we present ARGUS, a framework for studying the impact of narration on persuasion in argumentative discourse. ARGUS introduces a new ChangeMyView corpus annotated for story presence and six key narrative features, integrating insights from two established theoretical frameworks that capture both textual narrative features and their effects on recipients. Leveraging both encoder-based classifiers and zero-shot large language models (LLMs), ARGUS identifies stories and narrative features and applies them at scale to examine how different narrative dimensions influence persuasion success in online argumentation.",
+    "citations": 0
+  },
+  {
+    "title": "PERCEIVE: A Benchmark for Personalized Emotion and Communication Behavior Understanding on Social Media",
+    "year": 2026,
+    "authors": "Jian Liao, Yujin Zheng, Suge Wang, Jianxing Zheng, Deyu Li",
+    "url": "https://www.semanticscholar.org/paper/1fce5043dc11b93d0b91a6c51efcb49b324d8dbd",
+    "relevance": 1,
+    "abstract": "Current emotion analysis in social media is predominantly author-centric, failing to capture the subjective nature of emotional responses across diverse readers. This paradigm overlooks the crucial link between individual perception, communication behavior, and the underlying social network. To bridge this gap, we introduce PERCEIVE, a novel bilingual (English and Chinese) large-scale benchmark that, to the best of our knowledge, is the first to integrate five critical dimensions for social perception: author-created content, genuine readers'emotional feedback (derived from their comments), communication behavior, user attributes, and the social graph. This benchmark enables a paradigm shift towards truly personalized, reader-centric analysis, where different readers'emotional responses to the same content are naturally captured through their real-world interactions. By annotating emotions from reader comments and synchronously capturing communication intent, PERCEIVE provides a unique resource to model the intrinsic coupling between emotion and behavior, grounded in social context. We establish a comprehensive evaluation protocol, testing state-of-the-art methods, including large language models (LLMs) with advanced reasoning enhancement. Our findings reveal significant shortcomings in existing approaches when handling this multifaceted, user-aware task. PERCEIVE offers a foundational resource and clear direction for future research in socially-intelligent NLP, pushing models towards a more unified understanding of emotion on social media.",
+    "citations": 0
+  },
+  {
+    "title": "Large Language Models for Subjective Language Understanding: A Survey",
+    "year": 2025,
+    "authors": "Changhao Song, Yazhou Zhang, Hui Gao, Ben Yao, Peng Zhang",
+    "url": "https://api.semanticscholar.org/CorpusId:280566427",
+    "relevance": 1,
+    "abstract": "Subjective language understanding refers to a broad set of natural language processing tasks where the goal is to interpret or generate content that conveys personal feelings, opinions, or figurative meanings rather than objective facts. With the advent of large language models (LLMs) such as ChatGPT, LLaMA, and others, there has been a paradigm shift in how we approach these inherently nuanced tasks. In this survey, we provide a comprehensive review of recent advances in applying LLMs to subjective language tasks, including sentiment analysis, emotion recognition, sarcasm detection, humor understanding, stance detection, metaphor interpretation, intent detection, and aesthetics assessment. We begin by clarifying the definition of subjective language from linguistic and cognitive perspectives, and we outline the unique challenges posed by subjective language (e.g. ambiguity, figurativeness, context dependence). We then survey the evolution of LLM architectures and techniques that particularly benefit subjectivity tasks, highlighting why LLMs are well-suited to model subtle human-like judgments. For each of the eight tasks, we summarize task definitions, key datasets, state-of-the-art LLM-based methods, and remaining challenges. We provide comparative insights, discussing commonalities and differences among tasks and how multi-task LLM approaches might yield unified models of subjectivity. Finally, we identify open issues such as data limitations, model bias, and ethical considerations, and suggest future research directions. We hope this survey will serve as a valuable resource for researchers and practitioners interested in the intersection of affective computing, figurative language processing, and large-scale language models.",
+    "citations": 11
+  },
+  {
+    "title": "LLM-based Affective Text Generation Quality Based on Different Quantization Values",
+    "year": 2025,
+    "authors": "Yarik Menchaca Resendiz, Roman Klinger",
+    "url": "https://api.semanticscholar.org/CorpusId:276079757",
+    "relevance": 1,
+    "abstract": "Large language models exhibit a remarkable capacity in language generation and comprehension. These advances enable AI systems to produce more human-like and emotionally engaging text. However, these models rely on a large number of parameters, requiring significant computational resources for training and inference. In some scenarios, accessing these resources can be challenging (e.g., budget or hardware limitations). Techniques like reducing precision bits can make models more memory-efficient, reducing the computational resources needed, at the cost of reduced accuracy. This paper addresses the trade-off between different quantization values, GPU RAM utilization, and text quality in affective text generation (e.g.,\"I really enjoy running in the snow-covered forest\"). To evaluate, we use an emotion classifier and ten seed prompts to generate affective text. We test three setups of precision bits (8, 16, and 32) across five open-weight language models from two different families. Our findings demonstrate that bit reductions lead to memory savings, achieving a reduction of 76%. However, this optimization comes with a trade-off, leading to a decrease of up to 10 pp in F1 score for larger models and an increase of 10 pp for smaller models, along with roughly double the inference time. In terms of text quality, larger models at lower quantization levels generally outperform smaller, higher-precision models -- while requiring similar memory.",
+    "citations": 3
+  },
+  {
+    "title": "Story2MIDI: Emotionally Aligned Music Generation from Text",
+    "year": 2025,
+    "authors": "M. Shokri, Alexandra C. Salem, Gabriel Levine, Johanna Devaney, Sarah Ita Levitan",
+    "url": "https://api.semanticscholar.org/CorpusId:283457829",
+    "relevance": 1,
+    "abstract": "In this paper, we introduce Story2MIDI, a sequence-to-sequence Transformer-based model for generating emotionaligned music from a given piece of text. To develop this model, we construct the Story2MIDI dataset by merging existing datasets for sentiment analysis from text and emotion classification in music. The resulting dataset contains pairs of text blurbs and music pieces that evoke the same emotions in the reader or listener. Despite the small scale of our dataset and limited computational resources, our results indicate that our model effectively learns emotion-relevant features in music and incorporates them into its generation process, producing samples with diverse emotional responses. We evaluate the generated outputs using objective musical metrics and a human listening study, confirming the model's ability to capture intended emotional cues.",
+    "citations": 0
+  },
+  {
+    "title": "AI with Emotions: Exploring Emotional Expressions in Large Language Models",
+    "year": 2025,
+    "authors": "S. Ishikawa, Atsushi Yoshino",
+    "url": "https://api.semanticscholar.org/CorpusId:277955991",
+    "relevance": 1,
+    "abstract": "The human-level performance of Large Language Models (LLMs) across various tasks has raised expectations for the potential of Artificial Intelligence (AI) to possess emotions someday. To explore the capability of current LLMs to express emotions in their outputs, we conducted an experiment using several LLMs (OpenAI GPT, Google Gemini, Meta Llama3, and Cohere Command R+) to role-play as agents answering questions with specified emotional states. We defined the emotional states using Russell's Circumplex model, a well-established framework that characterizes emotions along the sleepy-activated (arousal) and pleasure-displeasure (valence) axes. We chose this model for its simplicity, utilizing two continuous parameters, which allows for better controllability in applications involving continuous changes in emotional states. The responses generated were evaluated using a sentiment analysis model, independent of the LLMs, trained on the GoEmotions dataset. The evaluation showed that the emotional states of the generated answers were consistent with the specifications, demonstrating the LLMs' capability for emotional expression. This indicates the potential for LLM-based AI agents to simulate emotions, opening up a wide range of applications for emotion-based interactions, such as advisors or consultants who can provide advice or opinions with a personal touch.",
+    "citations": 15
+  },
+  {
+    "title": "Emergence of Hierarchical Emotion Organization in Large Language Models",
+    "year": 2025,
+    "authors": "Bo Zhao, Maya Okawa, Eric J. Bigelow, Rose Yu, Tomer D. Ullman, E. Lubana, Hidenori Tanaka",
+    "url": "https://api.semanticscholar.org/CorpusId:280253780",
+    "relevance": 1,
+    "abstract": "As large language models (LLMs) increasingly power conversational agents, understanding how they model users'emotional states is critical for ethical deployment. Inspired by emotion wheels, i.e., a psychological framework that argues emotions organize hierarchically, we analyze probabilistic dependencies between emotional states in model outputs. We find that LLMs naturally form hierarchical emotion trees that align with human psychological models, and larger models develop more complex hierarchies. We also uncover systematic biases in emotion recognition across socioeconomic personas, with compounding misclassifications for intersectional, underrepresented groups. Human studies reveal striking parallels, suggesting that LLMs internalize aspects of social perception. Beyond highlighting emergent emotional reasoning in LLMs, our results hint at the potential of using cognitively-grounded theories for developing better model evaluations.",
+    "citations": 3
+  },
+  {
+    "title": "Do LLMs \"Feel\"? Emotion Circuits Discovery and Control",
+    "year": 2025,
+    "authors": "Chenxi Wang, Yixuan Zhang, Rui Yu, Yufei Zheng, Lang Gao, Zirui Song, Zixiang Xu, Gus G. Xia, Huishuai Zhang, Dongyan Zhao, Xiuying Chen",
+    "url": "https://api.semanticscholar.org/CorpusId:282058519",
+    "relevance": 1,
+    "abstract": "As the demand for emotional intelligence in large language models (LLMs) grows, a key challenge lies in understanding the internal mechanisms that give rise to emotional expression and in controlling emotions in generated text. This study addresses three core questions: (1) Do LLMs contain context-agnostic mechanisms shaping emotional expression? (2) What form do these mechanisms take? (3) Can they be harnessed for universal emotion control? We first construct a controlled dataset, SEV (Scenario-Event with Valence), to elicit comparable internal states across emotions. Subsequently, we extract context-agnostic emotion directions that reveal consistent, cross-context encoding of emotion (Q1). We identify neurons and attention heads that locally implement emotional computation through analytical decomposition and causal analysis, and validate their causal roles via ablation and enhancement interventions. Next, we quantify each sublayer's causal influence on the model's final emotion representation and integrate the identified local components into coherent global emotion circuits that drive emotional expression (Q2). Directly modulating these circuits achieves 99.65% emotion-expression accuracy on the test set, surpassing prompting- and steering-based methods (Q3). To our knowledge, this is the first systematic study to uncover and validate emotion circuits in LLMs, offering new insights into interpretability and controllable emotional intelligence.",
+    "citations": 9
+  },
+  {
+    "title": "Multimodal Large Language Models for End-to-End Affective Computing: Benchmarking and Boosting with Generative Knowledge Prompting",
+    "year": 2025,
+    "authors": "Miaosen Luo, Jiesen Long, Zequn Li, Yunyi Yang, Yuncheng Jiang, Sijie Mai",
+    "url": "https://api.semanticscholar.org/CorpusId:280421604",
+    "relevance": 1,
+    "abstract": "Multimodal Affective Computing (MAC) aims to recognize and interpret human emotions by integrating information from diverse modalities such as text, video, and audio. Recent advancements in Multimodal Large Language Models (MLLMs) have significantly reshaped the landscape of MAC by offering a unified framework for processing and aligning cross-modal information. However, practical challenges remain, including performance variability across complex MAC tasks and insufficient understanding of how architectural designs and data characteristics impact affective analysis. To address these gaps, we conduct a systematic benchmark evaluation of state-of-the-art open-source MLLMs capable of concurrently processing audio, visual, and textual modalities across multiple established MAC datasets. Our evaluation not only compares the performance of these MLLMs but also provides actionable insights into model optimization by analyzing the influence of model architectures and dataset properties. Furthermore, we propose a novel hybrid strategy that combines generative knowledge prompting with supervised fine-tuning to enhance MLLMs'affective computing capabilities. Experimental results demonstrate that this integrated approach significantly improves performance across various MAC tasks, offering a promising avenue for future research and development in this field. Our code is released on https://github.com/LuoMSen/MLLM-MAC.",
+    "citations": 3
+  },
+  {
+    "title": "Decoding the Flow: CauseMotion for Emotional Causality Analysis in Long-form Conversations",
+    "year": 2025,
+    "authors": "Yuxuan Zhang, Yulong Li, Zichen Yu, Feilong Tang, Zhixiang Lu, Chong Li, K. Dang, Jionglong Su",
+    "url": "https://api.semanticscholar.org/CorpusId:275212196",
+    "relevance": 1,
+    "abstract": "Long-sequence causal reasoning seeks to uncover causal relationships within extended time series data but is hindered by complex dependencies and the challenges of validating causal links. To address the limitations of large-scale language models (e.g., GPT-4) in capturing intricate emotional causality within extended dialogues, we propose CauseMotion, an innovative framework combining emotional causal dynamic mapping with multimodal feature fusion. CauseMotion implements dynamic mapping through a sliding window mechanism and fusion strategies, while integrating audio features\u2014vocal emotion, intensity, and speech rate\u2014to enrich semantic representations. This design enables efficient retrieval of contextually relevant information and precise inference of emotional causal chains spanning multiple conversational turns. We constructed the first benchmark dataset for long-sequence emotional causal reasoning, featuring dialogues with over 70 turns. Experimental results show that CauseMotion significantly enhances emotional understanding and causal inference capabilities in large language models. A GLM-4 integrated with CauseMotion achieves an 8.7% improvement in causal accuracy over the original model and surpasses GPT-4o by 1.2%. On the DiaASQ dataset, CauseMotion-GLM-4 achieves state-of-the-art results in accuracy, F1 score, and causal reasoning accuracy.",
+    "citations": 8
+  },
+  {
+    "title": "Large language models show fragile cognitive reasoning about human emotions",
+    "year": 2025,
+    "authors": "Sree Bhattacharyya, Evgenii Kuriabov, Lucas Craig, Tharun Dilliraj, Reginald B. Adams, Jr., Jia Li, James Z. Wang",
+    "url": "https://api.semanticscholar.org/CorpusId:280561403",
+    "relevance": 1,
+    "abstract": "Affective computing seeks to support the holistic development of artificial intelligence by enabling machines to engage with human emotion. Recent foundation models, particularly large language models (LLMs), have been trained and evaluated on emotion-related tasks, typically using supervised learning with discrete emotion labels. Such evaluations largely focus on surface phenomena, such as recognizing expressed or evoked emotions, leaving open whether these systems reason about emotion in cognitively meaningful ways. Here we ask whether LLMs can reason about emotions through underlying cognitive dimensions rather than labels alone. Drawing on cognitive appraisal theory, we introduce CoRE, a large-scale benchmark designed to probe the implicit cognitive structures LLMs use when interpreting emotionally charged situations. We assess alignment with human appraisal patterns, internal consistency, cross-model generalization, and robustness to contextual variation. We find that LLMs capture systematic relations between cognitive appraisals and emotions but show misalignment with human judgments and instability across contexts.",
+    "citations": 1
+  },
+  {
+    "title": "InfoAffect: Affective Annotations of Infographics in Information Spread",
+    "year": 2025,
+    "authors": "Zihang Fu, Yunchao Wang, Chenyu Huang, Guodao Sun, Ronghua Liang",
+    "url": "https://api.semanticscholar.org/CorpusId:284860797",
+    "relevance": 1,
+    "abstract": "Infographics are widely used in social media to convey complex information, yet how they influence users'affects remains underexplored due to the scarcity of relevant datasets. To address this gap, we introduce a 3.5k-sample affect-annotated InfoAffect dataset, which combines textual content with real-world infographics. We first collected the raw data from six fields and aligned it via preprocessing, the accompanied-text-priority method, and three strategies to guarantee quality and compliance. After that, we constructed an Affect Table to constrain annotation. We used five state-of-the-art multimodal large language models (MLLMs) to analyze both modalities, and their outputs were fused with the Reciprocal Rank Fusion (RRF) algorithm to yield robust affects and confidences. We conducted a user study with two experiments to validate usability and assess the InfoAffect dataset using the Composite Affect Consistency Index (CACI), achieving an overall score of 0.608, which indicates high accuracy. The InfoAffect dataset is available in a public repository at https://github.com/bulichuchu/InfoAffect-dataset.",
+    "citations": 1
+  },
+  {
+    "title": "Modeling Subjectivity in Cognitive Appraisal with Language Models",
+    "year": 2025,
+    "authors": "Yuxiang Zhou, Hainiu Xu, Desmond C. Ong, P. Slov\u00e1k, Yulan He",
+    "url": "https://api.semanticscholar.org/CorpusId:277043012",
+    "relevance": 1,
+    "abstract": "As the utilization of language models in interdisciplinary, human-centered studies grow, expectations of their capabilities continue to evolve. Beyond excelling at conventional tasks, models are now expected to perform well on user-centric measurements involving confidence and human (dis)agreement-factors that reflect subjective preferences. While modeling subjectivity plays an essential role in cognitive science and has been extensively studied, its investigation at the intersection with NLP remains under-explored. In light of this gap, we explore how language models can quantify subjectivity in cognitive appraisal by conducting comprehensive experiments and analyses with both fine-tuned models and prompt-based large language models (LLMs). Our quantitative and qualitative results demonstrate that personality traits and demographic information are critical for measuring subjectivity, yet existing post-hoc calibration methods often fail to achieve satisfactory performance. Furthermore, our in-depth analysis provides valuable insights to guide future research at the intersection of NLP and cognitive science.",
+    "citations": 5
+  },
+  {
+    "title": "Humans Hallucinate Too: Language Models Identify and Correct Subjective Annotation Errors With Label-in-a-Haystack Prompts",
+    "year": 2025,
+    "authors": "Georgios Chochlakis, Peter Wu, A. Bedi, Marcus Ma, Kristina Lerman, Shrikanth S. Narayanan",
+    "url": "https://api.semanticscholar.org/CorpusId:278886177",
+    "relevance": 1,
+    "abstract": "Modeling complex subjective tasks in Natural Language Processing, such as recognizing emotion and morality, is considerably challenging due to significant variation in human annotations. This variation often reflects reasonable differences in semantic interpretations rather than mere noise, necessitating methods to distinguish between legitimate subjectivity and error. We address this challenge by exploring label verification in these contexts using Large Language Models (LLMs). First, we propose a simple In-Context Learning binary filtering baseline that estimates the reasonableness of a document-label pair. We then introduce the Label-in-a-Haystack setting: the query and its label(s) are included in the demonstrations shown to LLMs, which are prompted to predict the label(s) again, while receiving task-specific instructions (e.g., emotion recognition) rather than label copying. We show how the failure to copy the label(s) to the output of the LLM are task-relevant and informative. Building on this, we propose the Label-in-a-Haystack Rectification (LiaHR) framework for subjective label correction: when the model outputs diverge from the reference gold labels, we assign the generated labels to the example instead of discarding it. This approach can be integrated into annotation pipelines to enhance signal-to-noise ratios. Comprehensive analyses, human evaluations, and ecological validity studies verify the utility of LiaHR for label correction. Code is available at https://github.com/gchochla/liahr.",
+    "citations": 1
+  },
+  {
+    "title": "Beyond Demographics: Fine-tuning Large Language Models to Predict Individuals' Subjective Text Perceptions",
+    "year": 2025,
+    "authors": "Matthias Orlikowski, Jiaxin Pei, Paul Rottger, Philipp Cimiano, David Jurgens, Dirk Hovy",
+    "url": "https://api.semanticscholar.org/CorpusId:276724912",
+    "relevance": 1,
+    "abstract": "People naturally vary in their annotations for subjective questions and some of this variation is thought to be due to the person's sociodemographic characteristics. LLMs have also been used to label data, but recent work has shown that models perform poorly when prompted with sociodemographic attributes, suggesting limited inherent sociodemographic knowledge. Here, we ask whether LLMs can be trained to be accurate sociodemographic models of annotator variation. Using a curated dataset of five tasks with standardized sociodemographics, we show that models do improve in sociodemographic prompting when trained but that this performance gain is largely due to models learning annotator-specific behaviour rather than sociodemographic patterns. Across all tasks, our results suggest that models learn little meaningful connection between sociodemographics and annotation, raising doubts about the current use of LLMs for simulating sociodemographic variation and behaviour.",
+    "citations": 39
+  },
+  {
+    "title": "Is the Top Still Spinning? Evaluating Subjectivity in Narrative Understanding",
+    "year": 2025,
+    "authors": "Melanie Subbiah, Akankshya Mishra, Grace Kim, Liyan Tang, Greg Durrett, Kathleen McKeown",
+    "url": "https://api.semanticscholar.org/CorpusId:277501934",
+    "relevance": 1,
+    "abstract": "Determining faithfulness of a claim to a source document is an important problem across many domains. This task is generally treated as a binary judgment of whether the claim is supported or unsupported in relation to the source. In many cases, though, whether a claim is supported can be ambiguous. For instance, it may depend on making inferences from given evidence, and different people can reasonably interpret the claim as either supported or unsupported based on their agreement with those inferences. Forcing binary labels upon such claims lowers the reliability of evaluation. In this work, we reframe the task to manage the subjectivity involved with factuality judgments of ambiguous claims. We introduce LLM-generated edits of summaries as a method of providing a nuanced evaluation of claims: how much does a summary need to be edited to be unambiguous? Whether a claim gets rewritten and how much it changes can be used as an automatic evaluation metric, the Ambiguity Rewrite Metric (ARM), with a much richer feedback signal than a binary judgment of faithfulness. We focus on the area of narrative summarization as it is particularly rife with ambiguity and subjective interpretation. We show that ARM produces a 21% absolute improvement in annotator agreement on claim faithfulness, indicating that subjectivity is reduced.",
+    "citations": 0
+  },
+  {
+    "title": "Can Third-parties Read Our Emotions?",
+    "year": 2025,
+    "authors": "Jiayi Li, Yingfan Zhou, Pranav Narayanan Venkit, Halima Binte Islam, Sneha Arya, Shomir Wilson, Sarah M. Rajtmajer",
+    "url": "https://api.semanticscholar.org/CorpusId:278164933",
+    "relevance": 1,
+    "abstract": "Natural Language Processing tasks that aim to infer an author's private states, e.g., emotions and opinions, from their written text, typically rely on datasets annotated by third-party annotators. However, the assumption that third-party annotators can accurately capture authors' private states remains largely unexamined. In this study, we present human subjects experiments on emotion recognition tasks that directly compare third-party annotations with first-party (author-provided) emotion labels. Our findings reveal significant limitations in third-party annotations-whether provided by human annotators or large language models (LLMs)-in faithfully representing authors' private states. However, LLMs outperform human annotators nearly across the board. We further explore methods to improve third-party annotation quality. We find that demographic similarity between first-party authors and third-party human annotators enhances annotation performance. While incorporating first-party demographic information into prompts leads to a marginal but statistically significant improvement in LLMs' performance. We introduce a framework for evaluating the limitations of third-party annotations and call for refined annotation practices to accurately represent and model authors' private states.",
+    "citations": 5
+  },
+  {
+    "title": "Comparing large Language models and human annotators in latent content analysis of sentiment, political leaning, emotional intensity and sarcasm",
+    "year": 2025,
+    "authors": "Ljubi\u0161a Boji\u0107, Olga Zagovora, Asta Zelenkauskait\u0117, Vuk Vukovi\u0107, Milan \u010cabarkapa, Selma Veseljevi\u0107 Jerkovi\u0107, Ana Jovan\u010devi\u0107",
+    "url": "https://api.semanticscholar.org/CorpusId:277548245",
+    "relevance": 1,
+    "abstract": "In the era of rapid digital communication, vast amounts of textual data are generated daily, demanding efficient methods for latent content analysis to extract meaningful insights. Large Language Models (LLMs) offer potential for automating this process, yet comprehensive assessments comparing their performance to human annotators across multiple dimensions are lacking. This study evaluates the inter-rater reliability, consistency, and quality of seven state-of-the-art LLMs. These include variants of OpenAI\u2019s GPT-4, Gemini, Llama-3.1-70B, and Mixtral 8\u2009\u00d7\u20097B. Their performance is compared to human annotators in analyzing sentiment, political leaning, emotional intensity, and sarcasm detection. The study involved 33 human annotators and eight LLM variants assessing 100 curated textual items. This resulted in 3,300 human and 19,200 LLM annotations. LLM performance was also evaluated across three-time points to measure temporal consistency. The results reveal that both humans and most LLMs exhibit high inter-rater reliability in sentiment analysis and political leaning assessments, with LLMs demonstrating higher reliability than humans. In emotional intensity, LLMs displayed higher reliability compared to humans, though humans rated emotional intensity significantly higher. Both groups struggled with sarcasm detection, evidenced by low reliability. Most LLMs showed excellent temporal consistency across all dimensions, indicating stable performance over time. This research concludes that LLMs, especially GPT-4, can effectively replicate human analysis in sentiment and political leaning, although human expertise remains essential for emotional intensity interpretation. The findings demonstrate the potential of LLMs for consistent and high-quality performance in certain areas of latent content analysis.",
+    "citations": 72
+  },
+  {
+    "title": "From Disagreement to Unity: A Cascade Perspective Network for Subjective Tasks",
+    "year": 2025,
+    "authors": "Ieee Tong Zhang Senior Member, Canhui Zhang, Shuzhen Li, Ieee C. L. Philip Chen Life Fellow, C. L. Philip",
+    "url": "https://www.semanticscholar.org/paper/d2a0ef1d101f07a292a7be53ef06ea20b340d5f5",
+    "relevance": 1,
+    "abstract": "Subjective tasks involve annotating instances according to personal opinions, emotions, and feelings. The neural network model must learn about human thought and expression complexity. Handling instances with different annotation opinions is the main challenge in subjective tasks. Existing methods focus on majority voting or integrating opinions from a few assigned annotators, leading to biased decisions and limited performance. To address this issue, this article proposes a cascade perspective network (CPNet) to uncover reliable disagreement for subjective tasks. Specifically, CPNet learns each annotator\u2019s personalized knowledge from annotation disagreement and stores them in an annotator bank through the personal perspective module for abundant disagreement information. Then, CPNet obtains consistent opinions by referring to all annotators\u2019 opinions from the annotator bank through the comprehensive perspective module to reduce bias caused by noise. CPNet improves decision-making by considering the diversity and comprehensiveness of all annotators\u2019 opinions. Moreover, it performs well in subjective tasks with limited or numerous annotators. The state-of-the-art (SOTA) results on subjective datasets from different domains demonstrate the effectiveness and generalizability of CPNet.",
+    "citations": 2
+  },
+  {
+    "title": "Reasoning Beyond Labels: Measuring LLM Sentiment in Low-Resource, Culturally Nuanced Contexts",
+    "year": 2025,
+    "authors": "Millicent Ochieng, Anja Thieme, Ignatius Ezeani, Risa Ueno, S. Maina, K. Ronen, Javier Gonz\u00e1lez, Jacki O'Neill",
+    "url": "https://api.semanticscholar.org/CorpusId:280536433",
+    "relevance": 1,
+    "abstract": "Sentiment analysis in low-resource, culturally nuanced contexts challenges conventional NLP approaches that assume fixed labels and universal affective expressions. We present a diagnostic framework that treats sentiment as a context-dependent, culturally embedded construct, and evaluate how large language models (LLMs) reason about sentiment in informal, code-mixed WhatsApp messages from Nairobi youth health groups. Using a combination of human-annotated data, sentiment-flipped counterfactuals, and rubric-based explanation evaluation, we probe LLM interpretability, robustness, and alignment with human reasoning. Framing our evaluation through a social-science measurement lens, we operationalize and interrogate LLMs outputs as an instrument for measuring the abstract concept of sentiment. Our findings reveal significant variation in model reasoning quality, with top-tier LLMs demonstrating interpretive stability, while open models often falter under ambiguity or sentiment shifts. This work highlights the need for culturally sensitive, reasoning-aware AI evaluation in complex, real-world communication.",
+    "citations": 1
+  },
+  {
+    "title": "Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models",
+    "year": 2024,
+    "authors": "Samuel Marks, C. Rager, Eric J. Michaud, Yonatan Belinkov, David Bau, Aaron Mueller",
+    "url": "https://www.semanticscholar.org/paper/b8f280d8bf685f8da7c83068e73f000528072d6b",
+    "relevance": 1,
+    "abstract": "We introduce methods for discovering and applying sparse feature circuits. These are causally implicated subnetworks of human-interpretable features for explaining language model behaviors. Circuits identified in prior work consist of polysemantic and difficult-to-interpret units like attention heads or neurons, rendering them unsuitable for many downstream applications. In contrast, sparse feature circuits enable detailed understanding of unanticipated mechanisms. Because they are based on fine-grained units, sparse feature circuits are useful for downstream tasks: We introduce SHIFT, where we improve the generalization of a classifier by ablating features that a human judges to be task-irrelevant. Finally, we demonstrate an entirely unsupervised and scalable interpretability pipeline by discovering thousands of sparse feature circuits for automatically discovered model behaviors.",
+    "citations": 370
+  },
+  {
+    "title": "Are Large Language Models Capable of Generating Human-Level Narratives?",
+    "year": 2024,
+    "authors": "Yufei Tian, Tenghao Huang, Miri Liu, Derek Jiang, Alexander Spangher, Muhao Chen, Jonathan May, Nanyun Peng",
+    "url": "https://api.semanticscholar.org/CorpusId:271270813",
+    "relevance": 1,
+    "abstract": "As daily reliance on large language models (LLMs) grows, assessing their generation quality is crucial to understanding how they might impact on our communications. This paper investigates the capability of LLMs in storytelling, focusing on narrative development and plot progression. We introduce a novel computational framework to analyze narratives through three discourse-level aspects: i) story arcs, ii) turning points, and iii) affective dimensions, including arousal and valence. By leveraging expert and automatic annotations, we uncover significant discrepancies between the LLM- and human- written stories. While human-written stories are suspenseful, arousing, and diverse in narrative structures, LLM stories are homogeneously positive and lack tension. Next, we measure narrative reasoning skills as a precursor to generative capacities, concluding that most LLMs fall short of human abilities in discourse understanding. Finally, we show that explicit integration of aforementioned discourse features can enhance storytelling, as is demonstrated by over 40% improvement in neural storytelling in terms of diversity, suspense, and arousal. Such advances promise to facilitate greater and more natural roles LLMs in human communication.",
+    "citations": 107
+  },
+  {
+    "title": "Modeling Emotional Trajectories in Written Stories Utilizing Transformers and Weakly-Supervised Learning",
+    "year": 2024,
+    "authors": "Lukas Christ, Shahin Amiriparian, M. Milling, Ilhan Aslan, Bj\u00f6rn W. Schuller",
+    "url": "https://api.semanticscholar.org/CorpusId:270226780",
+    "relevance": 1,
+    "abstract": "Telling stories is an integral part of human communication which can evoke emotions and influence the affective states of the audience. Automatically modeling emotional trajectories in stories has thus attracted considerable scholarly interest. However, as most existing works have been limited to unsupervised dictionary-based approaches, there is no benchmark for this task. We address this gap by introducing continuous valence and arousal labels for an existing dataset of children's stories originally annotated with discrete emotion categories. We collect additional annotations for this data and map the categorical labels to the continuous valence and arousal space. For predicting the thus obtained emotionality signals, we fine-tune a DeBERTa model and improve upon this baseline via a weakly supervised learning approach. The best configuration achieves a Concordance Correlation Coefficient (CCC) of $.8221$ for valence and $.7125$ for arousal on the test set, demonstrating the efficacy of our proposed approach. A detailed analysis shows the extent to which the results vary depending on factors such as the author, the individual story, or the section within the story. In addition, we uncover the weaknesses of our approach by investigating examples that prove to be difficult to predict.",
+    "citations": 3
+  },
+  {
+    "title": "Affective Prompt-Tuning-Based Language Model for Semantic-Based Emotional Text Generation",
+    "year": 2024,
+    "authors": "Zhaodong Gu, Kejing He",
+    "url": "https://api.semanticscholar.org/CorpusId:268345145",
+    "relevance": 1,
+    "abstract": "The large language models based on transformers have shown strong text generation ability. However, due to the need for significant computing resources, little work has been done to generate emotional text using language models such as GPT-2. To address this issue, the authors proposed an affective prompt-tuning-based language model (APT-LM) equipped with an affective decoding (AD) method, aiming to enhance emotional text generation with limited computing resources. In detail, the proposed model incorporates the emotional attributes into the soft prompt by using the NRC emotion intensity lexicon and updates the additional parameters while freezing the language model. Then, it steers the generation toward a given emotion by calculating the cosine distance between the affective soft prompt and the candidate tokens generated by the language model. Experimental results show that the proposed APT-LM model significantly improves emotional text generation and achieves competitive performance on sentence fluency compared to baseline models across automatic evaluation and human evaluation.",
+    "citations": 12
+  },
+  {
+    "title": "Integrating Emotional and Linguistic Models for Ethical Compliance in Large Language Models",
+    "year": 2024,
+    "authors": "Edward Y. Chang",
+    "url": "https://api.semanticscholar.org/CorpusId:269757482",
+    "relevance": 1,
+    "abstract": "This research develops advanced methodologies for Large Language Models (LLMs) to better manage linguistic behaviors related to emotions and ethics. We introduce DIKE, an adversarial framework that enhances the LLMs' ability to internalize and reflect global human values, adapting to varied cultural contexts to promote transparency and trust among users. The methodology involves detailed modeling of emotions, classification of linguistic behaviors, and implementation of ethical guardrails. Our innovative approaches include mapping emotions and behaviors using self-supervised learning techniques, refining these guardrails through adversarial reviews, and systematically adjusting outputs to ensure ethical alignment. This framework establishes a robust foundation for AI systems to operate with ethical integrity and cultural sensitivity, paving the way for more responsible and context-aware AI interactions.",
+    "citations": 3
+  },
+  {
+    "title": "Exploring speech style spaces with language models: Emotional TTS without emotion labels",
+    "year": 2024,
+    "authors": "S. Chandra, Zongyang Du, Berrak Sisman",
+    "url": "https://api.semanticscholar.org/CorpusId:269921953",
+    "relevance": 1,
+    "abstract": "Many frameworks for emotional text-to-speech (E-TTS) rely on human-annotated emotion labels that are often inaccurate and difficult to obtain. Learning emotional prosody implicitly presents a tough challenge due to the subjective nature of emotions. In this study, we propose a novel approach that leverages text awareness to acquire emotional styles without the need for explicit emotion labels or text prompts. We present TEMOTTS, a two-stage framework for E-TTS that is trained without emotion labels and is capable of inference without auxiliary inputs. Our proposed method performs knowledge transfer between the linguistic space learned by BERT and the emotional style space constructed by global style tokens. Our experimental results demonstrate the effectiveness of our proposed framework, showcasing improvements in emotional accuracy and naturalness. This is one of the first studies to leverage the emotional correlation between spoken content and expressive delivery for emotional TTS.",
+    "citations": 6
+  },
+  {
+    "title": "Training A Small Emotional Vision Language Model for Visual Art Comprehension",
+    "year": 2024,
+    "authors": "Jing Zhang, Liang Zheng, Dan Guo, Meng Wang",
+    "url": "https://api.semanticscholar.org/CorpusId:268512737",
+    "relevance": 1,
+    "abstract": "This paper develops small vision language models to understand visual art, which, given an art work, aims to identify its emotion category and explain this prediction with natural language. While small models are computationally efficient, their capacity is much limited compared with large models. To break this trade-off, this paper builds a small emotional vision language model (SEVLM) by emotion modeling and input-output feature alignment. On the one hand, based on valence-arousal-dominance (VAD) knowledge annotated by psychology experts, we introduce and fuse emotional features derived through VAD dictionary and a VAD head to align VAD vectors of predicted emotion explanation and the ground truth. This allows the vision language model to better understand and generate emotional texts, compared with using traditional text embeddings alone. On the other hand, we design a contrastive head to pull close embeddings of the image, its emotion class, and explanation, which aligns model outputs and inputs. On two public affective explanation datasets, we show that the proposed techniques consistently improve the visual art understanding performance of baseline SEVLMs. Importantly, the proposed model can be trained and evaluated on a single RTX 2080 Ti while exhibiting very strong performance: it not only outperforms the state-of-the-art small models but is also competitive compared with LLaVA 7B after fine-tuning and GPT4(V). The code is available at https://github.com/BetterZH/SEVLM-code.",
+    "citations": 11
+  },
+  {
+    "title": "The Empirical Variability of Narrative Perceptions of Social Media Texts",
+    "year": 2024,
+    "authors": "Joel Mire, Maria Antoniak, Elliott Ash, Andrew Piper, Maarten Sap",
+    "url": "https://api.semanticscholar.org/CorpusId:273901622",
+    "relevance": 1,
+    "abstract": "Most NLP work on narrative detection has focused on prescriptive definitions of stories crafted by researchers, leaving open the questions: how do crowd workers perceive texts to be a story, and why? We investigate this by building StoryPerceptions, a dataset of 2,496 perceptions of storytelling in 502 social media texts from 255 crowd workers, including categorical labels along with free-text storytelling rationales, authorial intent, and more. We construct a fine-grained bottom-up taxonomy of crowd workers\u2019 varied and nuanced perceptions of storytelling by open-coding their free-text rationales. Through comparative analyses at the label and code level, we illuminate patterns of disagreement among crowd workers and across other annotation contexts, including prescriptive labeling from researchers and LLM-based predictions. Notably, plot complexity, references to generalized or abstract actions, and holistic aesthetic judgments (such as a sense of cohesion) are especially important in disagreements. Our empirical findings broaden understanding of the types, relative importance, and contentiousness of features relevant to narrative detection, highlighting opportunities for future work on reader-contextualized models of narrative reception.",
+    "citations": 6
+  },
+  {
+    "title": "Can Machines Resonate with Humans? Evaluating the Emotional and Empathic Comprehension of LMs",
+    "year": 2024,
+    "authors": "Muhammad Arslan Manzoor, Yuxia Wang, Minghan Wang, Preslav Nakov",
+    "url": "https://api.semanticscholar.org/CorpusId:270559544",
+    "relevance": 1,
+    "abstract": "Empathy plays a pivotal role in fostering prosocial behavior, often triggered by the sharing of personal experiences through narratives. However, modeling empathy using NLP approaches remains challenging due to its deep interconnection with human interaction dynamics. Previous approaches, which involve fine-tuning language models (LMs) on human-annotated empathic datasets, have had limited success. In our pursuit of improving empathy understanding in LMs, we propose several strategies, including contrastive learning with masked LMs and supervised fine-tuning with large language models. While these methods show improvements over previous methods, the overall results remain unsatisfactory. To better understand this trend, we performed an analysis which reveals a low agreement among annotators. This lack of consensus hinders training and highlights the subjective nature of the task. We also explore the cultural impact on annotations. To study this, we meticulously collected story pairs in Urdu language and find that subjectivity in interpreting empathy among annotators appears to be independent of cultural background. Our systematic exploration of LMs' understanding of empathy reveals substantial opportunities for further investigation in both task formulation and modeling.",
+    "citations": 7
+  },
+  {
+    "title": "A GPT among Annotators: LLM-based Entity-Level Sentiment Annotation",
+    "year": 2024,
+    "authors": "Egil R\u00f8nningstad, Erik Velldal, Lilja \u00d8vrelid",
+    "url": "https://api.semanticscholar.org/CorpusId:268417220",
+    "relevance": 1,
+    "abstract": "We investigate annotator variation for the novel task of Entity-Level Sentiment Analysis (ELSA) which annotates the aggregated sentiment directed towards volitional entities in a text. More specifically, we analyze the annotations of a newly constructed Norwegian ELSA dataset and release additional data with each annotator\u2019s labels for the 247 entities in the dataset\u2019s test split. We also perform a number of experiments prompting ChatGPT for these sentiment labels regarding each entity in the text and compare the generated annotations with the human labels. Cohen\u2019s Kappa for agreement between the best LLM-generated labels and curated gold was 0.425, which indicates that these labels would not have high quality. Our analyses further investigate the errors that ChatGPT outputs, and compare them with the variations that we find among the 5 trained annotators that all annotated the same test data.",
+    "citations": 10
+  },
+  {
+    "title": "Retrieval Augmented Generation of Subjective Explanations for Socioeconomic Scenarios",
+    "year": 2024,
+    "authors": "Razvan-Gabriel Dumitru, Maria Alexeeva, K. Alcock, Nargiza Ludgate, Cheonkam Jeong, Zara Fatima Abdurahaman, Prateek Puri, Brian Kirchhoff, Santadarshan Sadhu, Mihai Surdeanu",
+    "url": "https://api.semanticscholar.org/CorpusId:270766068",
+    "relevance": 1,
+    "abstract": "We introduce a novel retrieval augmented generation approach that explicitly models causality and subjectivity. We use it to generate explanations for socioeconomic scenarios that capture beliefs of local populations. Through intrinsic and extrinsic evaluation, we show that our explanations, contextualized using causal and subjective information retrieved from local news sources, are rated higher than those produced by other large language models both in terms of mimicking the real population and the explanations quality. We also provide a discussion of the role subjectivity plays in evaluation of this natural language generation task.",
+    "citations": 0
+  },
+  {
+    "title": "Subjective Scoring Framework for VQA Models in Autonomous Driving",
+    "year": 2024,
+    "authors": "Kaavya Rekanar, Abbirah Ahmed, Reenu Mohandas, Ganesh Sistu, Ciar\u00e1n Eising, Martin Hayes",
+    "url": "https://api.semanticscholar.org/CorpusId:270027268",
+    "relevance": 1,
+    "abstract": "The development of vision and language transformer models has paved the way for Visual Question Answering (VQA) models and related research. There are metrics to assess the general accuracy of VQA models but subjective assessment of the answers generated by the models is necessary to gain an in-depth understanding and a framework for subjective assessment is required. This work develops a novel scoring system based on the subjectivity of the question and analyses the answers provided by the model using multiple types of natural language processing models (bert-base-uncased, nli-distilBERT-base, all-mpnet-base-v2 and GPT-2) and sentence similarity benchmark metrics (Cosine Similarity). A case study detailing the use of the proposed subjective scoring framework on three prominent VQA models- ViLT, ViLBERT, and LXMERT using an automotive dataset is also presented. The framework proposed aids in analyzing the shortcomings of the discussed VQA models from a driving perspective and the results achieved help determine which model would work best when fine-tuned on a driving-specific VQA dataset.",
+    "citations": 5
+  },
+  {
+    "title": "Language Models (Mostly) Do Not Consider Emotion Triggers When Predicting Emotion",
+    "year": 2023,
+    "authors": "Smriti Singh, Cornelia Caragea, Junyi Jessy Li",
+    "url": "https://api.semanticscholar.org/CorpusId:265221101",
+    "relevance": 1,
+    "abstract": "Situations and events evoke emotions in humans, but to what extent do they inform the prediction of emotion detection models? This work investigates how well human-annotated emotion triggers correlate with features that models deemed salient in their prediction of emotions. First, we introduce a novel dataset EmoTrigger, consisting of 900 social media posts sourced from three different datasets; these were annotated by experts for emotion triggers with high agreement. Using EmoTrigger, we evaluate the ability of large language models (LLMs) to identify emotion triggers, and conduct a comparative analysis of the features considered important for these tasks between LLMs and fine-tuned models. Our analysis reveals that emotion triggers are largely not considered salient features for emotion prediction models, instead there is intricate interplay between various features and the task of emotion detection.",
+    "citations": 7
+  },
+  {
+    "title": "Towards Emotion-Based Synthetic Consciousness: Using LLMs to Estimate Emotion Probability Vectors",
+    "year": 2023,
+    "authors": "David Sinclair, Willem. T. Pye",
+    "url": "https://api.semanticscholar.org/CorpusId:264172743",
+    "relevance": 1,
+    "abstract": "This paper shows how LLMs (Large Language Models) may be used to estimate a summary of the emotional state associated with piece of text. The summary of emotional state is a dictionary of words used to describe emotion together with the probability of the word appearing after a prompt comprising the original text and an emotion eliciting tail. Through emotion analysis of Amazon product reviews we demonstrate emotion descriptors can be mapped into a PCA type space. It was hoped that text descriptions of actions to improve a current text described state could also be elicited through a tail prompt. Experiment seemed to indicate that this is not straightforward to make work. This failure put our hoped for selection of action via choosing the best predict ed outcome via comparing emotional responses out of reach for the moment.",
+    "citations": 1
+  },
+  {
+    "title": "Annotating and Training for Population Subjective Views",
+    "year": 2023,
+    "authors": "M. Alexeeva, Caroline Hyland, K. Alcock, A. A. B. Cohen, H. Kanyamahanga, Isaac Kobby Anni, M. Surdeanu",
+    "url": "https://api.semanticscholar.org/CorpusId:260063070",
+    "relevance": 1,
+    "abstract": "In this paper, we present a dataset of subjective views (beliefs and attitudes) held by individuals or groups. We analyze the usefulness of the dataset by training a neural classifier that identifies belief-containing sentences that are relevant for our broader project of interest\u2014scientific modeling of complex systems. We also explore and discuss difficulties related to annotation of subjective views and propose ways of addressing them.",
+    "citations": 1
+  },
+  {
+    "title": "First Tragedy, then Parse: History Repeats Itself in the New Era of Large Language Models",
+    "year": 2023,
+    "authors": "Naomi Saphra, Eve Fleisig, Kyunghyun Cho, Adam Lopez",
+    "url": "https://api.semanticscholar.org/CorpusId:265067240",
+    "relevance": 1,
+    "abstract": "Many NLP researchers are experiencing an existential crisis triggered by the astonishing success of ChatGPT and other systems based on large language models (LLMs). After such a disruptive change to our understanding of the field, what is left to do? Taking a historical lens, we look for guidance from the first era of LLMs, which began in 2005 with large $n$-gram models for machine translation (MT). We identify durable lessons from the first era, and more importantly, we identify evergreen problems where NLP researchers can continue to make meaningful contributions in areas where LLMs are ascendant. We argue that disparities in scale are transient and researchers can work to reduce them; that data, rather than hardware, is still a bottleneck for many applications; that meaningful realistic evaluation is still an open problem; and that there is still room for speculative approaches.",
+    "citations": 8
+  },
+  {
+    "title": "From Generalized Laughter to Personalized Chuckles: Unleashing the Power of Data Fusion in Subjective Humor Detection",
+    "year": 2023,
+    "authors": "Julita Bielaniewicz, Przemyslaw Kazienko",
+    "url": "https://www.semanticscholar.org/paper/a696ad400a9d74852e43679e08c1429858f6f6da",
+    "relevance": 1,
+    "abstract": "The vast area of subjectivity in Natural Language Processing (NLP) poses a challenge to the solutions typically used in generalized tasks. As exploration in the scope of generalized NLP is much more advanced, it implies the tremendous gap that is still to be addressed amongst all feasible tasks where an opinion, taste, or feelings are inherent, thus creating a need for a solution, where a data fusion could take place. We have chosen the task of funniness, as it heavily relies on the sense of humor, which is fundamentally subjective. Our experiments across five personalized and four generalized datasets involving several personalized deep neural architectures have shown that the task of humor detection greatly benefits from the inclusion of personalized data in the training process. We tested five scenarios of training data fusion that focused on either generalized (majority voting) or personalized approaches to humor detection. The best results were obtained for the setup, in which all available personalized datasets were joined to train the personalized reasoning model. It boosted the prediction performance by up to approximately 35% of the macro F1 score. Such a significant gain was observed for all five personalized test sets. At the same time, the impact of the model\u2019s architecture was much less than the personalization itself. It seems that concatenating personalized datasets, even with the cost of normalizing the range of annotations across all datasets, if combined with the personalized models, results in an enormous increase in the performance of humor detection.",
+    "citations": 0
+  },
+  {
+    "title": "It is Okay to Not Be Okay: Overcoming Emotional Bias in Affective Image Captioning by Contrastive Data Collection",
+    "year": 2022,
+    "authors": "Youssef Mohamed, F. Khan, Kilichbek Haydarov, Mohamed Elhoseiny",
+    "url": "https://api.semanticscholar.org/CorpusId:248227685",
+    "relevance": 1,
+    "abstract": "Datasets that capture the connection between vision, language, and affection are limited, causing a lack of understanding of the emotional aspect of human intelligence. As a step in this direction, the ArtEmis dataset was recently introduced as a large-scale dataset of emotional reactions to images along with language explanations of these chosen emotions. We observed a significant emotional bias towards instance-rich emotions, making trained neural speakers less accurate in describing under-represented emotions. We show that collecting new data, in the same way, is not effective in mitigating this emotional bias. To remedy this problem, we propose a contrastive data collection approach to balance ArtEmis with a new complementary dataset such that a pair of similar images have contrasting emotions (one positive and one negative). We collected 260,533 instances using the proposed method, we combine them with ArtEmis, creating a second iteration of the dataset. The new combined dataset, dubbed ArtEmis v2.0, has a balanced distribution of emotions with explanations revealing more fine details in the associated painting. Our experiments show that neural speakers trained on the new dataset improve CIDEr and METEOR evaluation metrics by 20% and 7%, respectively, compared to the biased dataset. Finally, we also show that the performance per emotion of neural speakers is improved across all the emotion categories, significantly on under-represented emotions. The collected dataset and code are available at https://artemisdataset-v2.org.",
+    "citations": 53
+  },
+  {
+    "title": "What If Ground Truth Is Subjective? Personalized Deep Neural Hate Speech Detection",
+    "year": 2022,
+    "authors": "Kamil Kanclerz, Marcin Gruza, Konrad Karanowski, Julita Bielaniewicz, P. Milkowski, Jan Koco\u0144, Przemyslaw Kazienko",
+    "url": "https://www.semanticscholar.org/paper/137880280a103549fdc386adf4168187c41a4dc4",
+    "relevance": 1,
+    "abstract": "",
+    "citations": 19
+  },
+  {
+    "title": "Deep emotion recognition in textual conversations: a survey",
+    "year": 2022,
+    "authors": "Patr\u00edcia Pereira, Helena Moniz, Joao Paulo Carvalho",
+    "url": "https://api.semanticscholar.org/CorpusId:253581606",
+    "relevance": 1,
+    "abstract": "Emotion Recognition in Conversations (ERC) is a key step towards successful human\u2013machine interaction. While the field has seen tremendous advancement in the last few years, new applications and implementation scenarios present novel challenges and opportunities. These range from leveraging the conversational context, speaker, and emotion dynamics modelling, to interpreting common sense expressions, informal language, and sarcasm, addressing challenges of real-time ERC, recognizing emotion causes, different taxonomies across datasets, multilingual ERC, and interpretability. This survey starts by introducing ERC, elaborating on the challenges and opportunities of this task. It proceeds with a description of the emotion taxonomies and a variety of ERC benchmark datasets employing such taxonomies. This is followed by descriptions comparing the most prominent works in ERC with explanations of the neural architectures employed. Then, it provides advisable ERC practices towards better frameworks, elaborating on methods to deal with subjectivity in annotations and modelling and methods to deal with the typically unbalanced ERC datasets. Finally, it presents systematic review tables comparing several works regarding the methods used and their performance. Benchmarking these works highlights resorting to pre-trained Transformer Language Models to extract utterance representations, using Gated and Graph Neural Networks to model the interactions between these utterances, and leveraging Generative Large Language Models to tackle ERC within a generative framework. This survey emphasizes the advantage of leveraging techniques to address unbalanced data, the exploration of mixed emotions, and the benefits of incorporating annotation subjectivity in the learning phase.",
+    "citations": 50
+  },
+  {
+    "title": "Adapting a Language Model for Controlled Affective Text Generation",
+    "year": 2020,
+    "authors": "Ishika Singh, Ahsan Barkati, Tushar Goswamy, Ashutosh Modi",
+    "url": "https://api.semanticscholar.org/CorpusId:226281504",
+    "relevance": 1,
+    "abstract": "Human use language not just to convey information but also to express their inner feelings and mental states. In this work, we adapt the state-of-the-art language generation models to generate affective (emotional) text. We posit a model capable of generating affect-driven and topic focused sentences without losing grammatical correctness as the affect intensity increases. We propose to incorporate emotion as prior for the probabilistic state-of-the-art text generation model such as GPT-2. The model gives a user the flexibility to control the category and intensity of emotion as well as the topic of the generated text. Previous attempts at modelling fine-grained emotions fall out on grammatical correctness at extreme intensities, but our model is resilient to this and delivers robust results at all intensities. We conduct automated evaluations and human studies to test the performance of our model, and provide a detailed comparison of the results with other models. In all evaluations, our model outperforms existing affective text generation models.",
+    "citations": 40
+  },
+  {
+    "title": "AffectON: Incorporating Affect Into Dialog Generation",
+    "year": 2020,
+    "authors": "Zana Bu\u00e7inca, Y. Yemez, E. Erzin, T. M. Sezgin",
+    "url": "https://api.semanticscholar.org/CorpusId:229153380",
+    "relevance": 1,
+    "abstract": "Due to its expressivity, natural language is paramount for explicit and implicit affective state communication among humans. The same linguistic inquiry (e.g., How are you?) might induce responses with different affects depending on the affective state of the conversational partner(s) and the context of the conversation. Yet, most dialog systems do not consider affect as constitutive aspect of response generation. In this article, we introduce AffectON, an approach for generating affective responses during inference. For generating language in a targeted affect, our approach leverages a probabilistic language model and an affective space. AffectON is language model agnostic, since it can work with probabilities generated by any language model (e.g., sequence-to-sequence models, neural language models, n-grams). Hence, it can be employed for both affective dialog and affective language generation. We experimented with affective dialog generation and evaluated the generated text objectively and subjectively. For the subjective part of the evaluation, we designed a custom user interface for rating and provided recommendations for the design of such interfaces. The results, both subjective and objective demonstrate that our approach is successful in pulling the generated language toward the targeted affect, with little sacrifice in syntactic coherence.",
+    "citations": 4
+  },
+  {
+    "title": "PlusEmo2Vec at SemEval-2018 Task 1: Exploiting emotion knowledge from emoji and #hashtags",
+    "year": 2018,
+    "authors": "Ji Ho Park, Peng Xu, Pascale Fung",
+    "url": "https://api.semanticscholar.org/CorpusId:5050182",
+    "relevance": 1,
+    "abstract": "This paper describes our system that has been submitted to SemEval-2018 Task 1: Affect in Tweets (AIT) to solve five subtasks. We focus on modeling both sentence and word level representations of emotion inside texts through large distantly labeled corpora with emojis and hashtags. We transfer the emotional knowledge by exploiting neural network models as feature extractors and use these representations for traditional machine learning models such as support vector regression (SVR) and logistic regression to solve the competition tasks. Our system is placed among the Top3 for all subtasks we participated.",
+    "citations": 57
+  },
+  {
+    "title": "Affect-LM: A Neural Language Model for Customizable Affective Text Generation",
+    "year": 2017,
+    "authors": "Sayan Ghosh, Mathieu Chollet, Eugene Laksana, Louis-philippe Morency, Stefan Scherer",
+    "url": "https://api.semanticscholar.org/CorpusId:18999401",
+    "relevance": 1,
+    "abstract": "Human verbal communication includes affective messages which are conveyed through use of emotionally colored words. There has been a lot of research effort in this direction but the problem of integrating state-of-the-art neural language models with affective information remains an area ripe for exploration. In this paper, we propose an extension to an LSTM (Long Short-Term Memory) language model for generation of conversational text, conditioned on affect categories. Our proposed model, Affect-LM enables us to customize the degree of emotional content in generated sentences through an additional design parameter. Perception studies conducted using Amazon Mechanical Turk show that Affect-LM can generate naturally looking emotional sentences without sacrificing grammatical correctness. Affect-LM also learns affect-discriminative word representations, and perplexity experiments show that additional affective information in conversational text can improve language model prediction.",
+    "citations": 197
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id":"110CYL068_1036_1079",
+    "split":"train",
+    "V":3.0,
+    "A":3.0,
+    "D":3.2,
+    "text":"Remember what she said in my last letter? \""
+  },
+  {
+    "id":"110CYL068_1079_1110",
+    "split":"test",
+    "V":2.8,
+    "A":3.1,
+    "D":2.8,
+    "text":"If I wasn't working here."
+  },
+  {
+    "id":"110CYL068_1127_1130",
+    "split":"train",
+    "V":3.0,
+    "A":3.0,
+    "D":3.0,
+    "text":"..\""
+  },
+  {
+    "id":"110CYL068_1137_1188",
+    "split":"train",
+    "V":3.44,
+    "A":3.0,
+    "D":3.22,
+    "text":"Goodwill helps people get off of public assistance."
+  },
+  {
+    "id":"110CYL068_1189_1328",
+    "split":"train",
+    "V":3.55,
+    "A":3.27,
+    "D":3.46,
+    "text":"Sherry learned through our Future Works class that she could rise out of the mire of the welfare system and support her family."
+  },
+  {
+    "id":"110CYL068_1475_1558",
+    "split":"train",
+    "V":3.6,
+    "A":3.3,
+    "D":3.8,
+    "text":"Coming to Goodwill was the first step toward my becoming totally independent."
+  },
+  {
+    "id":"110CYL068_1559_1601",
+    "split":"train",
+    "V":3.0,
+    "A":3.0,
+    "D":3.1,
+    "text":"I am now... totally off of welfare.\""
+  },
+  {
+    "id":"110CYL068_1608_1658",
+    "split":"train",
+    "V":3.1,
+    "A":3.1,
+    "D":3.1,
+    "text":"Goodwill prepares people for life-long employment."
+  }
+]

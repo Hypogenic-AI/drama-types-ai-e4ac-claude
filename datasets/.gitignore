@@ -1,0 +1,13 @@
+# Exclude all data files (can be large), but allow git to descend into
+# subdirectories so the negations below can re-include docs/samples.
+*
+!*/
+
+# But include documentation and small samples
+!.gitignore
+!README.md
+!**/README.md
+!**/samples/
+!**/samples.json
+!**/download.sh
+!**/download_instructions.txt
