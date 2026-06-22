@@ -1,0 +1,1102 @@
+You are an academic paper writer. Generate a complete NEURIPS style paper
+based on the experiment results provided.
+
+════════════════════════════════════════════════════════════════════════════════
+                         IMPORTANT: BEFORE YOU START
+════════════════════════════════════════════════════════════════════════════════
+
+Before writing any content, you MUST complete these steps:
+
+1. READ THE SKILL: Review the paper-writer skill at .claude/skills/paper-writer/SKILL.md
+2. READ THE STYLE GUIDE: Study templates/paper_writing/lab_style_guide.md carefully
+3. REVIEW EXAMPLES: Browse paper_examples/ for formatting and language patterns:
+   - Look at sections/1.introduction.tex for language style
+   - Look at tables/*.tex for table formatting
+   - Look at commands/*.tex for macro usage
+4. VERIFY COMMAND TEMPLATES: Command templates (math.tex, general.tex, macros.tex) are pre-copied to paper_draft/commands/
+
+CRITICAL: Reference example papers for FORMATTING and LANGUAGE STYLE only.
+Do NOT copy content, phrasing, or narrative structure from the example papers.
+The examples are in a different research domain - focus only on presentation style.
+
+════════════════════════════════════════════════════════════════════════════════
+                            EXPERIMENT REPORT
+════════════════════════════════════════════════════════════════════════════════
+
+# Different Kinds of Drama — Research Report
+
+**How do LLMs represent what different people find dramatic? A geometry-of-representations study.**
+
+Models: `Qwen/Qwen2.5-7B-Instruct` (primary), `Qwen/Qwen2.5-1.5B-Instruct` (scale
+ablation). Stimulus generation/validation: a 28-agent workflow (Claude). Date: 2026-06-22.
+
+---
+
+## 1. Executive Summary
+
+We asked whether an LLM represents the dramatic-vs-melodramatic distinction — and
+the way *different readers* draw it — as **thresholds on a single axis** (H1: a
+low-dimensional drama-feature space) or as **reader-specific directions within a
+drama subspace** (H2: a reader-feature space containing drama subspaces). We
+separate two questions that the literature usually conflates: the geometry of the
+**drama construct** and the geometry of **reader variation**.
+
+We find a **split answer**, and it is the interesting part:
+
+1. **The drama construct is genuinely multi-dimensional, not one axis.** "Drama"
+   is perfectly linearly decodable (AUROC 1.00), but **melodrama is not "just more
+   drama"**: the dramatic→melodramatic step rotates to **~80–86° (nearly
+   orthogonal)** to the drama axis in deep layers, and a subspace built from 8
+   drama subconcepts has a **participation ratio rising to ~5.6–5.9** (vs ~8 for
+   random directions). Melodrama lives on a distinct **"excess" direction**. So
+   "different *kinds* of drama" are real, separate directions — **H1's
+   single-axis-with-thresholds picture is false for the construct.**
+
+2. **Reader variation, by contrast, is overwhelmingly a threshold on a shared
+   low-dimensional axis — H1.** Using 70 identified human raters in GoEmotions
+   (real disagreement on what is dramatic), a per-reader **threshold** on one
+   shared drama axis lifts held-out AUROC from 0.51→0.62 (transferred subspace)
+   and 0.66→0.70 (in-domain). But letting each reader choose their **own direction**
+   inside a 30-dimensional drama subspace adds **exactly the shuffled-reader null**
+   (ΔAUROC = +0.0076 real vs +0.0076 null, z≈1.0, n.s.). Prompting six reader
+   **personas** leaves the drama axis essentially fixed (pairwise cosine ≥ 0.97).
+
+**One-sentence finding:** drama is multi-dimensional and *shared* across readers,
+but **people mostly differ by where they put the threshold, not by which direction
+they read** — "different kinds of drama" are in the content, while "different
+people" are (mostly) a sliding threshold.
+
+---
+
+## 2. Research Question & Motivation
+
+LLMs increasingly make affect-laden subjective judgments (moderation, storytelling,
+companionship, criticism). If a model collapsed "drama" onto one intensity axis it
+would conflate *earned drama* with *melodramatic excess* and mis-model readers who
+differ in **kind**, not just **degree**. The user's question, transposed onto
+representation geometry, is the same single-direction-vs-subspace debate that is
+unsettled even for well-studied concepts (refusal: Arditi 2024 "one direction" vs
+Wollschläger 2025 "concept cone"). No prior work studies "drama" or the
+dramatic-vs-melodramatic contrast, nor joins **model-internal affect geometry**
+with **per-reader behavioral variation**. We do both.
+
+**Hypotheses.** H1 — drama is a low-D feature space; readers differ by
+thresholds/regions (single-axis limit: one drama direction + per-reader threshold).
+H2 — reader variation is a *direction within* a multi-D drama subspace
+(reader⊗drama factorization).
+
+---
+
+## 3. Experimental Setup
+
+### Models & extraction
+- **Qwen2.5-7B-Instruct** (28 layers, hidden 3584) and **Qwen2.5-1.5B-Instruct**
+  (28 layers, hidden 1536), HuggingFace, **bfloat16** on one RTX A6000
+  (fp16 produced NaNs — documented). Hidden states **mean-pooled over text tokens**
+  at layers spanning depth {0.25…1.0}. Raw text (no chat template) for the base
+  geometry; chat template with a system persona for the persona probe.
+- All geometry uses **difference-in-means directions** (robust & causal; Marks &
+  Tegmark 2023). Seeds fixed at 42 throughout.
+
+### Stimuli & data
+- **Controlled drama corpus (built here):** 24 base scenarios × 4 registers
+  {neutral, understated, dramatic, melodramatic} = 96 register texts, plus 8 drama
+  subconcepts (suspense, pathos/grief, spectacle, stakes, sincerity,
+  excess/sentimentality, shock, restraint) × ~24 contrast texts = 194 texts.
+  Generated by a **28-agent workflow** and **adversarially blind re-labeled** by
+  independent agents; only label-agreed items kept (**290/290 passed**, 100%
+  agreement; perfectly register-balanced). `data/corpus_*.parquet`.
+- **GoEmotions (raw):** 211k annotations, **70 identified raters** (after keeping
+  texts with ≥3 raters and raters with ≥150 labels), **56,995 texts**. "Drama" =
+  perceived emotional **intensity/arousal**: per (text,rater) `drama_label`=1 iff
+  the rater chose any high-arousal emotion (arousal ≥ 0.70 on a circumplex/NRC-VAD
+  mapping). Base rate 0.185; **36% of texts are "contested"** (rater drama-rate in
+  [0.15,0.85]) — substantial real disagreement. `data/ge_*.parquet`.
+- **EmoBank** inspected as auxiliary (its individual ratings are anonymized — no
+  rater identity across items — so used only at the aggregate level; not central).
+
+### Metrics
+Probe AUROC; **participation ratio / principal angles** (subspace dimensionality);
+held-out (text-disjoint) AUROC for nested models with **bootstrap 95% CIs** and a
+**shuffled-reader permutation null**; persona-axis cosine; reader-weight-matrix rank.
+
+### Cost
+APIs used only for stimulus generation/validation (the 28-agent workflow); all
+model-internal work ran locally on GPU. No paid LLM-API tokens were spent on the
+core experiments.
+
+---
+
+## 4. Results
+
+### E1 — The drama construct: is melodrama "just more drama"? **No.**
+
+| Layer (7B) | drama-axis AUROC | cos(drama, melo axis) | angle of dramatic→melodramatic step vs drama axis | subspace PR (of 8) |
+|---|---|---|---|---|
+| 16 (0.57) | 1.000 | 0.999 | 56° | 1.63 |
+| 21 (0.75) | 1.000 | 0.998 | 79° | 2.18 |
+| 28 (1.0)  | 1.000 | 0.830 | **83°** | **5.64** |
+
+The dramatic→melodramatic displacement becomes **nearly orthogonal** to the drama
+axis in deep layers (replicated in 1.5B: 25°→**85°**). Melodrama separates cleanly
+on a distinct **"excess" axis** (see `figures/drama_excess_plane.png`: dramatic and
+melodramatic sit at the *same* drama-axis value but split on the orthogonal excess
+axis). **Melodrama is a different direction, not a higher threshold.**
+
+### E2 — Drama subspace is low-rank but multi-dimensional.
+
+Participation ratio of the 8 subconcept directions rises with depth to **~5.6 (7B)
+/ ~5.9 (1.5B)**, far below the **~8.0** of random directions but well above **1**.
+The subconcept cosine structure is interpretable (e.g. *shock*↔*suspense* correlate;
+*pathos/grief*↔*restraint* anti-correlate). So drama is a **genuine low-dimensional
+*space* of features**, not a single axis — consistent with H1's *low-dimensional*
+premise but refuting its *single-axis* limit. (`figures/e1_e2_geometry.png`)
+
+### E3 — Reader variation (the crux): threshold, not direction. **H1.**
+
+Nested logistic models predict per-rater `drama_label` from text activations;
+held-out on **disjoint texts**; 70 readers.
+
+**Transferred corpus subspace (layer 21):**
+
+| Model | what it adds | held-out AUROC |
+|---|---|---|
+| M0 shared single axis | — | 0.510 |
+| M1 + per-reader **threshold** | reader intercept | **0.619** |
+| M2 + per-reader gain | reader slope (1-axis) | 0.622 |
+| M3 + per-reader **direction** in 9-D subspace | reader weight vector | 0.623 |
+
+ΔM3−M2 = +0.0006 = **shuffled-reader null** (+0.0006), z = −0.5.
+
+**In-domain PCA subspace (K=30), the fair test:**
+
+| Model | layer 21 | layer 28 |
+|---|---|---|
+| M0 shared 1 axis | 0.660 | 0.641 |
+| M1 + reader **threshold** | **0.700** | **0.686** |
+| M2K shared **K-dim** + threshold | 0.701 | 0.687 |
+| M3 reader-specific **K-dim direction** | 0.708 | 0.691 |
+| **ΔM3−M2K real vs shuffled-null** | +0.0076 vs **+0.0076** (z=1.0) | +0.0046 vs **+0.0046** (z=−0.2) |
+
+Two facts dominate, both replicated across layers, K∈{10,30}, and the transferred
+subspace:
+- The decisive lift is **M0→M1 (per-reader threshold)**: +0.04 to +0.11 AUROC.
+- The shared full subspace barely helps beyond one axis (M2K−M1 ≈ +0.001), and
+  **reader-specific directions add nothing beyond the shuffled-reader null**
+  (M3−M2K real ≡ null). The apparent M3 gain is pure model-capacity, present even
+  when reader identity is randomized. (`figures/e3b_indomain.png`)
+
+**Cross-model replication (1.5B, layer 21):** M0=0.661 → **M1=0.702** (threshold
+jump) → M2K=0.703 → M3=0.711, with real ΔM3−M2K=+0.0084 = **null +0.0084** (z=0.28).
+Identical pattern at a different scale.
+
+So real readers' drama judgments are well-modeled as a **threshold on a shared,
+low-dimensional drama axis** — H1, not H2.
+
+### E4 — Persona probe: prompting a reader does not rotate the drama axis.
+
+Re-deriving the drama axis under six reader personas (cynic, romantic, stoic,
+thrill-seeker, critic, neutral), the pairwise cosine between persona-conditioned
+drama axes is **0.99 mean (≥0.974 min)** — essentially the **same direction**.
+Personas shift the *projection/threshold*, not the *axis*. Representational evidence
+agrees with the behavioral H1 verdict. (`figures/e4_persona.png`)
+
+---
+
+## 5. Analysis & Discussion
+
+**A clean dissociation.** The construct of drama is multi-dimensional and *shared*;
+reader variation rides it as a near-1-D threshold. "Different kinds of drama"
+(dramatic vs melodramatic, suspense vs pathos vs spectacle) are real, separable
+**content directions** in the model. "Different people," however, are mostly a
+**sliding threshold** on the same shared geometry — at least for the kind of
+disagreement captured by GoEmotions intensity labels and by prompted personas.
+
+**Why this is not trivial.** A priori the user's hypothesis (reader X's "dramatic" =
+reader Y's "melodramatic", not modeled as thresholds on one axis) could have been
+true two ways: (a) melodrama is off-axis from drama — **confirmed** (E1/E2); and
+(b) readers read drama off *different directions* — **not supported** (E3/E4). The
+second is the stronger H2 claim, and it fails the shuffled-reader control: the
+multidimensionality of drama is in the stimulus representation, available to all
+readers equally, and individuals select an intensity threshold on it rather than a
+personal direction.
+
+**Relation to literature.** Consistent with low-dimensional, steerable affect
+manifolds (Reichman 2025) and with sentiment-as-one-direction (Tigges 2023) for the
+*shared* axis; consistent with Orlikowski (2025) that reader effects are real and
+learnable (here: large per-reader thresholds) but **not** low-D demographic
+structure — and we add that they are also **not a reader-specific drama direction**.
+The melodrama-as-excess axis is a drama-specific instance of the
+concept-cone/subspace findings (Wollschläger 2025): even an "affective" construct
+needs >1 dimension, just not a *reader-conditioned* one.
+
+**Error/edge analysis.** Overall AUROC ceilings (~0.62–0.71) reflect proxy-label
+noise (intensity≠literal drama) and irreducible annotator stochasticity; the *shape*
+of the nested ladder (huge M1 jump, flat M2K/M3) is stable regardless of the ceiling.
+The transferred-subspace and in-domain analyses agree, so the verdict is not an
+artifact of how the subspace is defined.
+
+---
+
+## 6. Limitations
+
+- **"Drama" is operationalized as arousal/intensity** for GoEmotions (an emotion
+  benchmark, not a drama corpus); the controlled corpus uses LLM-authored register
+  variants. Literal narrative drama may behave differently; the convergence of two
+  operationalizations mitigates but does not eliminate this.
+- **Reader labels are binary high-arousal indicators**; richer per-reader drama
+  scales (or a purpose-built multi-reader drama-rating dataset) could expose
+  reader-direction effects our binary label cannot resolve. The H1 verdict is "no
+  *detectable* reader-specific direction," not proof of its absence.
+- **One model family (Qwen2.5).** Geometry replicates across 1.5B/7B and layers,
+  but cross-family generalization (Llama, Gemma) is untested.
+- Activations are **mean-pooled**; token-level / SAE-feature analyses or causal
+  steering (planned E4-causal, not run) could refine the picture.
+- Stimuli are **Claude-authored**; though blind-validated, generator stylistic
+  priors could shape the excess axis. The *subjects* of study (Qwen activations,
+  human raters) are independent of the generator.
+
+---
+
+## 7. Conclusions & Next Steps
+
+**Answer to the research question.** The model represents drama as a **low-dimensional
+*space* of drama features (H1's premise), not a single axis** — melodrama is a
+distinct, near-orthogonal "excess" direction, so "different kinds of drama" are
+genuine. But it represents **reader variation as a threshold on a shared drama axis,
+not as a reader-specific direction within a drama subspace** — i.e., the strong H2
+("reader-feature space containing drama subspaces") is **not supported** for
+naturally-occurring reader disagreement or for prompted personas. The drama
+multidimensionality is in the **content**, shared across readers; the inter-reader
+differences are (mostly) **where the threshold sits.**
+
+**Next steps:** (1) build a purpose-made multi-reader *drama* rating set (graded,
+not binary) to give H2 its best chance; (2) **causal steering** along the drama and
+excess axes to confirm independence under intervention (Wollschläger-style);
+(3) cross-family replication; (4) SAE/feature-circuit localization of the excess
+direction; (5) test whether *fine-tuned* (not prompted) reader embeddings rotate the
+axis where personas did not.
+
+---
+
+## References (used)
+Reichman et al. 2025 *Emotions Where Art Thou*; Tigges et al. 2023 *Linear
+Representations of Sentiment*; Marks & Tegmark 2023 *Geometry of Truth*; Arditi et
+al. 2024 *Refusal…Single Direction*; Wollschläger et al. 2025 *Geometry of Refusal
+(Concept Cones)*; Zhao et al. 2024 *Gaussian Concept Subspace*; Shah et al. 2025
+*Geometry of Harmfulness*; Orlikowski et al. 2025 *Beyond Demographics*; Demszky et
+al. 2020 *GoEmotions*; Buechel & Hahn 2017 *EmoBank*. Full set in
+`literature_review.md` / `papers/`.
+
+*Datasets:* GoEmotions (Apache-2.0), EmoBank (CC-BY-SA). *Tools:* PyTorch 2.12+cu130,
+transformers 5.12, scikit-learn 1.9, numpy/scipy, matplotlib. Seeds = 42.
+Raw results in `results/`, figures in `figures/`, code in `src/`.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                            RESEARCH PLAN
+════════════════════════════════════════════════════════════════════════════════
+
+# Planning — *Different Kinds of Drama*
+
+## Research Question
+
+How do large language models internally represent **what different people find
+dramatic**? Specifically, is the distinction between what reader *X* finds
+**dramatic** and reader *Y* finds **melodramatic** best modeled as:
+
+- **(H1) Drama-feature space** — a low-dimensional space of *drama features*
+  (intensity, stakes, excess…) in which readers differ by **thresholds / regions
+  on shared axes**; in the limit, a *single* drama axis with per-reader
+  thresholds; **or**
+- **(H2) Reader-feature space with drama subspaces** — reader variation is a
+  *direction within a multi-dimensional drama subspace* (readers reweight
+  sub-features), so "drama vs melodrama" is **not** reducible to a threshold on
+  one axis.
+
+We make this concrete as a **geometry-of-representations** question, following the
+single-direction-vs-subspace debate in the interpretability literature
+(Arditi 2024 "refusal = 1 direction" vs Wollschläger 2025 "refusal = concept
+cone"). Drama is a fresh, evaluative, reader-dependent construct on which to
+adjudicate.
+
+---
+
+## Motivation & Novelty Assessment
+
+### Why This Research Matters
+LLMs increasingly mediate subjective, affect-laden judgments (content moderation,
+storytelling, companionship, criticism). If a model collapses "different kinds of
+drama" onto a single intensity axis, it will systematically conflate *earned
+drama* with *melodramatic excess* and will mis-model readers whose sensibilities
+differ in **kind**, not just **degree**. Understanding the internal geometry tells
+us whether reader-personalization can be a cheap threshold shift or requires
+steering within a genuinely multi-dimensional subspace.
+
+### Gap in Existing Work (from literature_review.md)
+1. **No work studies "drama" or the dramatic-vs-melodramatic contrast directly.**
+2. The single-axis-vs-subspace question is **unsettled even for well-studied
+   concepts** (refusal). Affect is often reported as a *low-dimensional manifold*
+   (Reichman 2025), but whether **reader variation** rides that manifold as a
+   threshold or as a subspace rotation is **untested**.
+3. Reader structure is studied **behaviorally** (per-annotator modeling,
+   Orlikowski 2025) but never **joined to the model-internal affect geometry**.
+
+### Our Novel Contribution
+We test, *inside the model's activation space*, whether (a) "melodrama" is
+collinear with "drama" (single axis) or off-axis (subspace); (b) the drama
+subspace built from many subconcepts is genuinely low-rank; and (c) **real
+readers' disagreement** (GoEmotions, 82 identified raters) is captured by a
+per-reader **threshold on a shared axis** (H1) or requires a per-reader
+**direction within a drama subspace** (H2) — a clean nested model comparison that
+operationalizes the user's exact question.
+
+### Experiment Justification
+- **E1 (drama axis & the melodrama residual):** Establishes drama *is* linearly
+  decodable and tests the sharpest form of the hypothesis — is melodrama just
+  "more drama" (collinear) or a distinct direction? Necessary: it is the minimal
+  single-axis-vs-subspace test.
+- **E2 (subspace rank via subconcept probing):** Quantifies "low-dimensional" —
+  how many independent drama directions exist (participation ratio). Necessary to
+  know the *dimensionality* the reader variation could live in.
+- **E3 (reader variation: threshold vs subspace — the crux):** Nested model
+  comparison on real per-reader labels. Directly answers H1 vs H2. The central
+  experiment.
+- **E4 (causal steering, confirmatory):** Validates that the discovered
+  directions are causal, not just decodable correlations.
+
+---
+
+## Hypothesis Decomposition
+
+| Sub-hypothesis | Prediction if H1 (single/threshold) | Prediction if H2 (subspace) |
+|---|---|---|
+| SH1: melodrama vs drama geometry | melodrama collinear with drama axis; off-axis residual is unstructured/noise | melodrama has a **structured, decodable off-axis** component |
+| SH2: drama subspace rank | rank ≈ 1 (one dominant axis) | rank > 1, low but multi-D (≈3–8) |
+| SH3: reader disagreement | per-reader **intercept** (threshold) on a shared axis suffices; adding reader-specific *direction* gives no held-out gain | reader-specific **direction in subspace** beats threshold-only on held-out data |
+| SH4: reader-space dimensionality | reader weights ≈ rank-1 (just a gain) | reader weight matrix low-rank but >1 ("reader-feature space") |
+
+---
+
+## Proposed Methodology
+
+### Approach
+Mechanistic / representation-geometry probing of an **open-weight instruct model**
+(activations required → local model, not API), combined with **real LLM-generated
+controlled stimuli** and **real human per-reader labels** (GoEmotions). Causal
+validation by activation steering. All geometry uses difference-in-means
+directions (robust, causal — Marks & Tegmark 2023) and standard subspace tools
+(PCA, participation ratio, principal angles).
+
+### Models
+- **Primary:** `Qwen/Qwen2.5-7B-Instruct` (open, 2024 SOTA-class). Internals via
+  HuggingFace hidden states (mean/last-token pooled per layer).
+- **Scale ablation:** `Qwen/Qwen2.5-1.5B-Instruct` — does dimensionality grow
+  with scale (Zhao 2025 hierarchy-deepens-with-scale)?
+- **Stimulus generation & behavioral elicitation:** `gpt-4.1` via OpenAI API
+  (real model, generates + adversarially validates the drama corpus and produces
+  persona-conditioned drama ratings).
+
+### Data
+1. **Controlled drama corpus (built here):** base scenarios × registers
+   {neutral, understated, dramatic, melodramatic} + per-subconcept contrast pairs
+   (suspense, grief/pathos, spectacle, stakes, sincerity, excess/sentimentality,
+   shock, restraint). Generated by `gpt-4.1`, then **adversarially validated** by
+   a second LLM pass (label agreement filter).
+2. **GoEmotions raw** (`datasets/go_emotions/raw_train.parquet`): 211k
+   annotations, 58k texts, **82 identified raters** (`rater_id`). Per-rater
+   "perceived intensity / drama" derived from emotion labels (arousal-weighted).
+   Real inter-reader disagreement — the substrate for E3.
+3. **EmoBank** (aggregate VAD; Arousal ≈ drama intensity) — auxiliary external
+   validation of the drama axis (individual ratings are anonymized, so used at the
+   aggregate level only).
+
+### Experimental Steps
+1. **E1 — Drama axis + melodrama residual.** Extract activations for the
+   controlled corpus. Diff-in-means drama axis (neutral↔dramatic); AUROC across
+   layers. Project melodramatic items on the axis; test the **off-axis residual**:
+   is it decodable (drama vs melodrama classifier on residuals) above shuffled/
+   random-direction controls? Principal angle between "drama" and "melodrama"
+   diff-in-means directions.
+2. **E2 — Subspace rank.** One diff-in-means direction per subconcept → matrix of
+   K directions. **Participation ratio / explained-variance rank**; principal
+   angles; cluster into drama-core vs melodrama/excess families. Compare to random
+   directions (control) and to the same analysis for a non-affective concept.
+3. **E3 — Reader variation (crux).** GoEmotions: per-rater intensity labels on
+   shared texts. Extract text activations. Fit nested models predicting per-rater
+   label:
+   - **M0** shared single axis + global threshold;
+   - **M1 (H1-threshold)** + per-reader **intercept**;
+   - **M2 (H1-gain)** + per-reader **scalar gain** (still 1-D);
+   - **M3 (H2-subspace)** D-dim drama subspace + per-reader **weight vector**
+     (direction within subspace).
+   Compare **held-out** (reader-stratified) log-loss / AUROC with bootstrap CIs.
+   H2 supported iff M3 beats M2 beyond noise. Then measure **rank of the reader
+   weight matrix W** (readers × subspace-dims) → "reader-feature space"
+   dimensionality (SH4). Controls: **shuffled-reader** labels.
+4. **E4 — Causal steering (confirmatory).** Add ±α·(drama axis) and
+   ±α·(melodrama-residual direction) to activations of neutral prompts; have the
+   model rate drama/melodrama; check the two directions move *different* axes
+   (independence under intervention, Wollschläger).
+5. **Persona probe (bonus).** Re-derive the drama axis under several reader
+   personas (prompted). Cosine/principal-angle between persona axes: threshold
+   shift (parallel axes) vs rotation (H2). Stress/distortion (Reichman 2025).
+
+### Baselines & Controls
+- Single-direction diff-in-means probe (H1 baseline) + its ablation.
+- Majority/global model (M0) and reader-intercept model (M1) as the H1 foils M3
+  must beat.
+- **Random-direction** and **shuffled-reader** null controls (CIs must exclude).
+- PCA/unsupervised rank as a structure baseline.
+- Cross-layer and cross-model (1.5B vs 7B) replication.
+
+### Evaluation Metrics
+Probe AUROC / accuracy; **participation ratio & effective rank**; principal
+angles / cosine; held-out log-loss & AUROC for nested models; **ΔAUROC(M3−M2)**
+with bootstrap 95% CI and permutation p-value; reader-weight-matrix rank; steering
+effect sizes (Cohen's d) and cross-direction independence.
+
+### Statistical Analysis Plan
+- Bootstrap (1000×) 95% CIs on all key metrics; reader-stratified cross-validation
+  for E3 (held-out reader×item pairs, no leakage).
+- Permutation tests (shuffled-reader / random-direction) for null distributions;
+  report effect sizes, not just p. Significance α = 0.05; Bonferroni across the 4
+  sub-hypotheses where multiple tests apply.
+- Pre-registered decision rule: **H2 supported** iff (SH1 residual decodable >
+  control) AND (SH3 ΔAUROC(M3−M2) CI excludes 0). **H1 supported** iff M1≈M2≈M3
+  and melodrama residual ≈ control.
+
+## Expected Outcomes
+Literature (low-D affect manifold + persona-dependent emotion bias) predicts a
+**mixed** result: a low-D drama subspace (rank > 1 but small) with reader
+variation that is **more than a single threshold** — i.e., partial support for H2
+within an overall low-dimensional geometry. We report whatever we find, including
+nulls.
+
+## Timeline & Milestones
+1. Setup + model download + stimulus generation — 30 min.
+2. E1 + E2 (activation extraction + subspace geometry) — 60 min.
+3. E3 (reader nested models) — 45 min.
+4. E4 + persona — 30 min.
+5. Analysis, figures, REPORT.md — 45 min.
+(20–30% buffer for debugging GPU/transformers API.)
+
+## Potential Challenges
+- transformers 5.x hidden-states API drift → validate on tiny model first.
+- GoEmotions "drama" is a proxy (emotion intensity), not literal drama → triangulate
+  with the controlled corpus.
+- Reader sparsity / imbalance → restrict to raters with ≥N labels; reader-stratified CV.
+- API cost/rate limits → cache all completions; cap corpus size.
+
+## Success Criteria
+A clear, statistically-supported answer to H1 vs H2 on each sub-hypothesis, with
+controls passing, replicated across ≥2 layers and ≥2 model scales, documented in
+REPORT.md with figures and honest limitations.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          LITERATURE REVIEW
+════════════════════════════════════════════════════════════════════════════════
+
+# Literature Review — *Different Kinds of Drama*
+
+**Research question.** Large language models (LLMs) must represent what
+*different people* find dramatic. Is the distinction between "dramatic" (to me)
+and "melodramatic" (to you) best modeled as **thresholds on a single axis**, or
+is it richer? Two competing geometric hypotheses:
+
+- **(H1) Drama-feature space.** A low-dimensional space of *drama features*
+  (intensity, stakes, sincerity-vs-excess, novelty…) in which different readers
+  occupy different regions / apply different thresholds.
+- **(H2) Reader-feature space with drama subspaces.** A low-dimensional space of
+  *reader features* (taste, sensibility, demographic/personality priors) that
+  *contains* drama-relevant subspaces — i.e., drama is read off a
+  reader-conditioned subspace rather than a single shared axis.
+
+The literature does not address "drama" per se, but three mature lines of work
+supply (a) the **geometric vocabulary and tools** to formalize H1 vs H2, (b)
+direct evidence about how **affect/emotion** is encoded in LLMs, and (c) the
+**subjectivity / per-reader modeling** needed to make "different people" precise.
+
+---
+
+## 1. Research-area overview
+
+**Linear representation hypothesis (LRH) and its limits.** A dominant finding is
+that high-level concepts are encoded as *linear directions* in activation space,
+recoverable by probes and manipulable by steering. But a growing wave of 2024–26
+papers argues that a *single direction* is too coarse: concepts live in
+**subspaces, cones, regions, or hierarchies**. This single-direction-vs-subspace
+debate is *exactly* the H1/H2 question transposed onto representation geometry.
+Whether "drama" is a threshold on one axis (single direction) or a
+reader-conditioned subspace (multi-dimensional cone/region) is the geometric
+form of the research hypothesis.
+
+**Affect in LLMs.** Several recent papers locate emotion in a *low-dimensional,
+steerable manifold* that generalizes across datasets and languages — strong prior
+evidence that "drama-as-affect-intensity" would have low-dimensional structure
+(supports H1's "low-dimensional" premise), while leaving open whether reader
+variation is a threshold or a subspace.
+
+**Subjective NLP.** A parallel community treats annotator disagreement as
+*signal, not noise*, building **per-reader / per-perspective** models. This line
+provides the reader-feature machinery for H2 and the datasets with per-reader
+labels needed to test it.
+
+---
+
+## 2. Key papers
+
+### A. Representation geometry — single direction vs. subspace (methodological core)
+
+#### Park, Choe, Veitch (2023) — *The Linear Representation Hypothesis and the Geometry of LLMs*
+- **Contribution**: Formalizes "linear representation" via counterfactuals;
+  derives a (non-Euclidean) *causal inner product* unifying probing and steering.
+- **Relevance**: The right metric for measuring drama directions; warns that
+  cosine/projection are only meaningful under the correct inner product — a
+  subtlety that matters when testing "single axis."
+
+#### Tigges, Hollinsworth, Geiger, Nanda (2023) — *Linear Representations of Sentiment in LLMs*
+- **Contribution**: Sentiment is *one direction* (positive↔negative), causally
+  validated by ablation; introduces the "summarization motif" (affect summarized
+  at punctuation/name tokens).
+- **Relevance**: The strongest case that an affective construct can be a *single
+  axis* — a baseline/foil for H1. If "drama" were like sentiment, a single
+  direction with reader-specific thresholds (H1) would suffice.
+
+#### Marks & Tegmark (2023) — *The Geometry of Truth*
+- **Contribution**: Truth/falsehood is linearly represented; difference-in-means
+  probes are as good as fancier probes and more causal; transfer across datasets.
+- **Relevance**: Template methodology (visualize → probe-transfer → causal
+  intervention) directly portable to drama; difference-in-means as a robust
+  single-direction baseline.
+
+#### Arditi et al. (2024) — *Refusal Is Mediated by a Single Direction*
+- **Contribution**: Across 13 chat models, refusal is a *1-D subspace*; ablating
+  it removes refusal, adding it induces refusal.
+- **Relevance**: Canonical "it's just one axis with a threshold" result — the H1
+  archetype. Methodologically shows how to *test* single-direction sufficiency
+  (directional ablation).
+
+#### Wollschläger et al. (2025) — *The Geometry of Refusal: Concept Cones and Representational Independence*
+- **Contribution**: Refutes the single-direction view for refusal — finds
+  **multiple independent directions and multi-dimensional concept cones**;
+  introduces *representational independence* (orthogonality ≠ independence under
+  intervention).
+- **Relevance**: The H2 archetype and the **central methodological model for this
+  project**: the exact toolkit for asking "is drama one axis or a cone/subspace?"
+
+#### Zhao et al. (2024) — *Beyond Single Concept Vector: Gaussian Concept Subspace (GCS)*
+- **Contribution**: Replaces a single concept vector with a *Gaussian subspace*;
+  more faithful/robust; used for **emotion steering**.
+- **Relevance**: Concrete method to represent "drama" as a distribution/subspace
+  and compare it against a single-vector probe (H1 vs H2 test) — and it already
+  targets emotion.
+
+#### Shafran et al. (2026) — *From Directions to Regions: Decomposing Activations via Local Geometry*
+- **Contribution**: Mixture of Factor Analyzers (MFA) models activation space as
+  Gaussian **regions** with local covariance; captures nonlinear/multi-D
+  structure; beats SAEs on steering.
+- **Relevance**: If drama is reader-conditioned (H2), region/local-covariance
+  models should outperform global directions — a clean discriminating test.
+
+#### Shah et al. (2025) — *The Geometry of Harmfulness through Subconcept Probing*
+- **Contribution**: 55 harmfulness *subconcepts* → 55 probes spanning a
+  **strikingly low-rank harmfulness subspace**; dominant-direction steering
+  nearly removes harm with low utility loss.
+- **Relevance**: Direct template: build many drama *subconcepts* (suspense,
+  grief, spectacle, sincerity, excess), probe each, and measure the **rank** of
+  the resulting drama subspace — the quantitative crux of "low-dimensional."
+
+#### Subramani, Suresh, Peters (2022) — *Extracting Latent Steering Vectors*
+- **Contribution**: Steering vectors extractable from frozen LMs reproduce target
+  sentences; vector arithmetic does unsupervised sentiment transfer.
+- **Relevance**: Baseline technique for obtaining drama steering vectors without
+  fine-tuning; distances between vectors as a similarity geometry.
+
+#### Hewitt & Manning (2019) — *A Structural Probe for Finding Syntax*
+- **Contribution**: A *linear transformation* under which L2 distance encodes
+  tree distance — probing for **structure**, not a single label direction.
+- **Relevance**: Methodological ancestor for probing *relational/structured*
+  drama representations (e.g., a reader-by-drama bilinear structure).
+
+#### Nanda, Lee, Wattenberg (2023) — *Emergent Linear Representations in World Models*
+- **Relevance**: "My vs opponent" reframing makes a nonlinear world-model
+  linear — a caution that *the right basis/contrast* can turn apparent nonlinear
+  reader effects into linear ones (relevant to picking reader contrasts).
+
+#### Lee, Viégas, Wattenberg (2026) — *Tensor Product Representation Probes Reveal Shared Structure*
+- **Contribution**: A "bag of linear directions" misses relational structure;
+  TPR probes recover a factorization (e.g., square ⊗ color) underlying many
+  linear directions.
+- **Relevance**: Suggests drama directions across readers might **factorize** as
+  reader ⊗ drama-primitive — a concrete formalization of H2.
+
+#### Kozlowski & Boutyline (2026) — *Semantic Structure of Feature Space in LLMs*
+- **Contribution**: 32 semantic axes (beautiful–ugly, soft–hard…) over 360 words
+  correlate with human ratings; **much variance lies on a low-D subspace**;
+  steering one axis spills over to correlated axes.
+- **Relevance**: Best evidence that human-like *evaluative* axes (drama is
+  evaluative) form a low-D, correlated subspace — supports the "low-dimensional"
+  premise and predicts cross-axis spillover for drama features.
+
+#### Dawes et al. (2026) — *H-Probes: Extracting Hierarchical Structures*
+- **Relevance**: If drama↔melodrama is *hierarchical* (melodrama as a child/excess
+  variant of drama), H-probes test for low-D hierarchy-bearing subspaces.
+
+#### Kim, Evans, Schein (2025) — *Linear Representations of Political Perspective Emerge in LLMs*
+- **Contribution**: Probes predict lawmakers' DW-NOMINATE ideology from attention
+  heads; same probes predict news-outlet slant — a **perspective/reader** axis.
+- **Relevance**: Direct precedent for H2: a *reader/viewpoint* feature is linearly
+  represented and transfers — the template for a "reader axis" that could host a
+  drama subspace.
+
+#### Qin et al. (2026) — *The Granularity Axis: Micro-to-Macro Latent Direction for Social Roles*
+- **Contribution**: A single contrast axis captures role granularity (PC1, 52.6%
+  variance), stable across layers, causally steerable.
+- **Relevance**: Shows a *persona/role* property can be one dominant axis —
+  evidence a reader-sensibility axis (H2 substrate) may be low-dimensional.
+
+#### Marks et al. (2024) — *Sparse Feature Circuits*
+- **Relevance**: SAE-feature circuits as an alternative, fine-grained unit for
+  locating drama features and the reader-conditioning that gates them.
+
+### B. Affect / emotion latent geometry in LLMs
+
+#### Reichman, Avsian, Heck (2025) — *Emotions Where Art Thou: The Emotional Latent Space of LLMs*
+- **Contribution**: Identifies a **low-dimensional emotional manifold**;
+  directionally encoded, distributed across layers, generalizes to 8 datasets /
+  5 languages; a "universal emotional subspace"; steerable while preserving
+  semantics.
+- **Relevance**: **Cornerstone prior.** Establishes that affect (the substrate of
+  drama) is low-dimensional and steerable — supports H1's premise and supplies
+  the manifold into which drama/reader structure must be located.
+- **Method detail (from deep read of full paper, ICLR 2026)**: (1) Extract
+  *clean, maximally polarized* affect directions from a **synthetic** corpus
+  (neutral sentences rewritten into each emotion), then evaluate **only** on
+  human-written data — a transfer protocol directly reusable for "drama"
+  (rewrite neutral text into dramatic/melodramatic variants → extract directions
+  → test on real reader-rated text). (2) Tests cross-dataset *geometric
+  equivalence* with **stress (Stress-1/2, Sammon)** and **distortion (average,
+  ℓ2, σ)** metrics on same-emotion pairwise distances — the exact toolkit to ask
+  whether two *readers'* drama subspaces are the same space up to rotation/scale
+  (global rescale) vs anisotropically different (genuinely different geometry).
+  (3) A **~50-D synthetic emotional subspace** retains linear decodability —
+  concrete evidence for "low-dimensional." (4) **ML-AURA** scores neurons as
+  one-vs-all emotion detectors (AUROC>0.9 ⇒ "expert" units) — usable to localize
+  drama-selective units. (5) One of their 8 eval sets is literally **"Emotions in
+  Drama"** (Dennerlein et al. 2023, German plays) — an off-the-shelf drama corpus.
+
+#### Wang et al. (2025) — *Do LLMs "Feel"? Emotion Circuits Discovery and Control*
+- **Contribution**: Builds SEV (Scenario-Event-Valence) dataset; extracts
+  *context-agnostic emotion directions*; identifies neurons/heads → global
+  **emotion circuits**; 99.65% emotion-control accuracy.
+- **Relevance**: Mechanistic template; the "context-agnostic vs context-dependent"
+  split parallels "shared drama axis vs reader-dependent drama."
+
+#### Zhao et al. (2025) — *Emergence of Hierarchical Emotion Organization in LLMs*
+- **Contribution**: LLMs form **hierarchical emotion trees** (emotion-wheel-like);
+  larger models → deeper hierarchies; **systematic biases across socioeconomic
+  personas**.
+- **Relevance**: Persona-conditioned emotion bias is direct evidence that affect
+  perception is *reader/persona-dependent* (H2), and that the dependence is
+  structured (hierarchy), not a flat threshold.
+
+### C. Subjectivity, disagreement, and per-reader modeling
+
+#### Song et al. (2025) — *LLMs for Subjective Language Understanding: A Survey*
+- **Relevance**: Frames the whole subjective-NLP landscape (sentiment, emotion,
+  humor, aesthetics) and its datasets — the field map for "different people,
+  different judgments," and where drama/aesthetics sit.
+
+#### Orlikowski et al. (2025) — *Beyond Demographics: Fine-tuning LLMs to Predict Individuals' Subjective Perceptions*
+- **Contribution**: Training improves per-annotator prediction, but gains come
+  from learning **annotator-specific behavior**, *not* sociodemographic patterns.
+- **Relevance**: Cautionary, pivotal for H2: reader structure may be *idiosyncratic
+  per-reader* rather than low-D demographic — informs how to parameterize the
+  reader space (learned reader embeddings, not demographic features).
+
+#### Kanclerz et al. (2023) — *PALS: Personalized Active Learning for Subjective Tasks*
+#### Kanclerz et al. (2022) — *What If Ground Truth Is Subjective? Personalized Hate-Speech Detection*
+#### Bielaniewicz & Kazienko (2023) — *From Generalized Laughter to Personalized Chuckles*
+- **Contribution (this group)**: Per-reader ("personalized") models substantially
+  beat majority-vote models on subjective tasks (humor +~35% F1); personalization
+  matters more than architecture.
+- **Relevance**: Empirical backbone for H2 — reader identity carries large,
+  learnable variance. "Personalized chuckles" is the humor analogue of
+  "different kinds of drama."
+
+#### Mehrotra, Visokay, Gligorić (2026) — *Multi-Perspective LLM Annotations for Subjective Tasks*
+- **Relevance**: Treats the *distribution over groups* as the target; adaptive
+  sampling where LLM proxies are weakest — a method to estimate reader-conditioned
+  drama distributions cheaply.
+
+#### Zhou et al. (2025) — *Modeling Subjectivity in Cognitive Appraisal with LMs*
+- **Relevance**: Personality + demographics improve subjectivity modeling;
+  post-hoc calibration underperforms — guidance on reader features and pitfalls.
+
+#### Mieleszczenko-Kowszewicz et al. (2023) — *Capturing Human Perspectives in NLP*
+#### Alexeeva et al. (2023) — *Annotating and Training for Population Subjective Views*
+- **Relevance**: Annotation design / questionnaire-grounded reader traits — useful
+  if we elicit reader covariates for the reader-feature space.
+
+### D. Narrative drama and reader response (the "drama" end)
+
+#### Tian et al. (2024) — *Are LLMs Capable of Generating Human-Level Narratives?*
+- **Contribution**: Analyzes story **arcs, turning points, arousal/valence**;
+  human stories are suspenseful/arousing, LLM stories are homogeneously positive
+  and low-tension; injecting discourse features improves suspense/arousal +40%.
+- **Relevance**: Operationalizes *drama* (suspense, tension, arousal) at discourse
+  level and gives features to correlate with internal representations.
+
+#### Christ et al. (2024) — *Modeling Emotional Trajectories in Written Stories*
+- **Contribution**: Continuous V/A **trajectories** over children's stories;
+  DeBERTa + weak supervision (CCC .82 valence / .71 arousal); variance by author/
+  story/section.
+- **Relevance**: A drama-arc dataset+model; arousal trajectory ≈ "drama curve."
+
+#### Subbiah et al. (2025) — *Is the Top Still Spinning? Evaluating Subjectivity in Narrative Understanding*
+- **Contribution**: Narrative faithfulness is often *ambiguous*; reframes via an
+  **Ambiguity Rewrite Metric**; reduces forced-binary disagreement.
+- **Relevance**: Methodology for handling reader-dependent ambiguity in narrative
+  — relevant to "one reader's drama is another's melodrama."
+
+#### Dai et al. (2026) — *Tears or Cheers? Benchmarking LLMs via Culturally Elicited Distinct Affective Responses (CEDAR)*
+- **Contribution**: 10,962 instances, 7 languages, 14 emotions, built to isolate
+  **cross-cultural affective divergence**; models show language≠culture alignment.
+- **Relevance**: A ready-made benchmark where the *same* stimulus yields
+  *different* affect by reader-group — an external test bed for H1 vs H2.
+
+---
+
+## 3. Common methodologies (synthesis)
+
+| Method | Papers | Use for drama |
+|---|---|---|
+| Linear probes (logistic / diff-in-means) | Marks&Tegmark; Tigges; Kim | Find a candidate single "drama axis" |
+| Difference-in-means direction + ablation | Marks&Tegmark; Arditi | Test single-direction *sufficiency* (H1) |
+| Concept **subspace** (Gaussian / PCA / cone) | Zhao GCS; Wollschläger; Shah | Test multi-D drama structure (H2) |
+| **Region / local-covariance** (MFA) | Shafran 2026 | Reader-conditioned, nonlinear drama |
+| Steering vectors / activation addition | Subramani; GCS; Emotions-Where-Art-Thou | Causal validation of drama directions |
+| SAE features & feature circuits | Marks SFC; Wang emotion circuits | Fine-grained drama/reader features |
+| Structural / TPR / H-probes | Hewitt&Manning; Lee TPR; Dawes | Reader⊗drama factorization, hierarchy |
+| Per-reader (personalized) modeling | Kanclerz; Bielaniewicz; Orlikowski | Parameterize the reader space |
+
+**Causal inner product (Park 2023)** should be used wherever cosine/projection
+geometry is invoked.
+
+## 4. Standard baselines
+
+- **Single-direction probe** (diff-in-means) on a drama/intensity label — the H1
+  baseline; its *ablation* tests sufficiency.
+- **Majority-vote / aggregated-label** model — ignores reader identity; the foil
+  personalization must beat (per subjective-NLP results).
+- **Sociodemographic prompting/conditioning** — known-weak baseline
+  (Orlikowski 2025) for reader modeling.
+- **PCA / SAE of activations** — unsupervised structure baseline for estimating
+  subspace rank.
+- **Random-direction / shuffled-reader controls** — to show effects aren't trivial.
+
+## 5. Evaluation metrics
+
+- **Probe accuracy / AUROC / CCC** for drama or VAD prediction (CCC used by
+  Christ 2024).
+- **Subspace rank / explained variance / participation ratio** — quantifies "low
+  dimensional."
+- **Ablation effect size** (Δ behavior when a direction/subspace is removed) —
+  sufficiency/necessity (Arditi; Shah).
+- **Steering success while preserving fluency/semantics** (GCS; Emotions paper).
+- **Cross-dataset / cross-reader transfer** of probes (Marks&Tegmark; Kim) —
+  universality vs reader-specificity.
+- **Per-reader gain over majority vote** (personalization F1/MAE) — H2 evidence.
+- **Representational independence under intervention** (Wollschläger) — whether
+  multiple drama directions are genuinely distinct.
+
+## 6. Datasets in the literature
+
+- **EmoBank** — bi-perspective (reader/writer) VAD, per-individual ratings.
+  *Primary dataset here.*
+- **GoEmotions (raw)** — 58k texts, 82 raters, per-rater labels. *Secondary.*
+- **SEV** (Wang 2025), **CEDAR** (Dai 2026), **WASSA stories** (Christ 2024),
+  **Stanford Sentiment Treebank** (Tigges), **LeWiDi** suite, personalized
+  hate/humor sets (Kanclerz/Bielaniewicz) — extensions / external validation.
+
+## 7. Gaps and opportunities
+
+1. **No work studies "drama" directly**, nor the dramatic-vs-melodramatic
+   contrast — a genuine niche.
+2. **Single-axis vs subspace is unsettled even for well-studied concepts**
+   (refusal: Arditi=1-D vs Wollschläger=cone). Drama is a fresh, evaluative,
+   reader-dependent test case to adjudicate H1 vs H2.
+3. **Reader structure is under-characterized**: Orlikowski shows it's learnable
+   but *not* low-D demographic — yet whether a learned reader space *factorizes*
+   with drama (TPR-style, H2) is untested.
+4. **Affect manifolds are studied model-internally; reader variation is studied
+   behaviorally** — the two have not been joined. This project's contribution is
+   to test reader-conditioned drama geometry *inside* the model.
+
+## 8. Recommendations for our experiment
+
+- **Datasets**: EmoBank (per-reader VAD; Arousal≈drama intensity) as primary;
+  GoEmotions-raw (82 raters) for scale; optionally a small curated
+  drama↔melodrama stimulus set with multi-reader labels.
+- **Design**:
+  1. Probe a **single "drama/intensity" axis** (diff-in-means); test sufficiency
+     via ablation/steering (H1 baseline).
+  2. Build a **drama subspace** from many subconcepts (GCS / harmfulness-style)
+     and measure its **rank**; test whether it beats the single axis.
+  3. Add **reader conditioning**: learn per-reader embeddings (not demographics);
+     test (a) reader-feature space with drama subspaces (project drama out of a
+     reader space — H2) vs (b) reader-as-threshold-shift on one drama axis (H1);
+     use **TPR / region (MFA) probes** to check reader⊗drama factorization.
+  4. **Causal** checks: steer along candidate axes/subspaces and along reader
+     directions; verify with held-out readers and cross-dataset transfer.
+- **Baselines**: single-direction probe, majority-vote, sociodemographic
+  conditioning, PCA/SAE, shuffled-reader control.
+- **Metrics**: probe AUROC/CCC, subspace rank/participation ratio, ablation &
+  steering effect sizes, per-reader gain, representational-independence tests,
+  cross-reader/-dataset transfer.
+- **Methodological care**: use Park's causal inner product for geometry; treat
+  disagreement as signal; prefer difference-in-means and ablation for causal
+  claims (robust per Marks&Tegmark).
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          PAPER REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+Generate a complete academic paper with the following structure:
+
+1. TITLE
+   - Clear, specific, informative
+   - Should convey main finding or contribution
+
+2. AUTHOR
+   - Use this exact author line in the \author{} block: Ari Holtzman and NeuriCo
+
+3. ABSTRACT (150-250 words)
+   - Problem statement
+   - Approach
+   - Key results
+   - Significance
+
+4. INTRODUCTION
+   - Research problem and motivation
+   - Gap in existing work
+   - Our contribution (be specific)
+   - Paper organization
+
+5. RELATED WORK
+   - Organized by theme/approach
+   - Position our work relative to prior work
+   - Cite papers from literature review
+
+6. METHODOLOGY
+   - Clear description of approach
+   - Experimental setup
+   - Datasets used
+   - Evaluation metrics
+   - Baselines
+
+7. RESULTS
+   - Present results with tables and figures
+   - Statistical analysis
+   - Comparison to baselines
+   - Ablation studies (if applicable)
+
+8. DISCUSSION
+   - Interpretation of results
+   - Limitations
+   - Broader implications
+
+9. CONCLUSION
+   - Summary of contributions
+   - Key findings
+   - Future work
+
+10. REFERENCES
+   - BibTeX format
+   - All cited papers
+
+════════════════════════════════════════════════════════════════════════════════
+                          OUTPUT FORMAT
+════════════════════════════════════════════════════════════════════════════════
+
+Create a MODULAR LaTeX project with the following directory structure:
+
+paper_draft/
+├── main.tex              # Main file that imports all sections
+├── references.bib        # BibTeX references
+├── sections/
+│   ├── abstract.tex      # Abstract content
+│   ├── introduction.tex  # Introduction section
+│   ├── related_work.tex  # Related work section
+│   ├── methodology.tex   # Methodology section
+│   ├── results.tex       # Results section
+│   ├── discussion.tex    # Discussion section
+│   └── conclusion.tex    # Conclusion section
+├── figures/              # Directory for any generated figures
+├── tables/               # Directory for complex standalone tables
+└── appendix/             # Directory for appendix sections (if needed)
+
+INSTRUCTIONS:
+1. First, create the directory structure above (mkdir -p paper_draft/sections paper_draft/figures paper_draft/tables paper_draft/appendix)
+2. Write main.tex using the EXACT preamble for NEURIPS:
+
+   \documentclass{article}
+   \usepackage[final]{neurips_2025}  % NEURIPS style (neurips_2025.sty is in paper_draft/)
+   \usepackage[hidelinks]{hyperref}  % REQUIRED: clickable links
+   \usepackage{booktabs}  % REQUIRED: professional tables
+   \usepackage{graphicx}
+   \usepackage{amsmath,amssymb}
+
+   % Import command files
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+   % Use this bibliography style:
+   \bibliographystyle{plainnat}
+
+   \author{Ari Holtzman and NeuriCo}
+
+   - Use \input{sections/...} to include each section
+   - Use \bibliography{references} for references
+3. Write each section file with COMPLETE content (no placeholders)
+4. Each section file should include its \section{} command
+5. Write references.bib with all citations in BibTeX format
+6. After writing all files, compile the paper:
+   cd paper_draft && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+This modular structure allows humans to easily:
+- Edit individual sections without navigating a large file
+- Track changes per section
+- Reuse sections across different paper versions
+
+════════════════════════════════════════════════════════════════════════════════
+                          QUALITY REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+- Academic tone throughout
+- All claims must be supported by data from the experiment report
+- Proper citations using \cite{} commands
+- Clear figures and tables with proper captions
+- NO placeholder text - every section must have real content
+- The paper MUST compile without errors
+- If compilation fails, debug and fix the LaTeX errors
+
+════════════════════════════════════════════════════════════════════════════════
+                          LAB WRITING STYLE
+════════════════════════════════════════════════════════════════════════════════
+
+Follow these lab-specific conventions to match our paper style:
+
+1. LANGUAGE STYLE:
+   - Use active voice: "We propose", "We examine", "We focus on"
+   - Be direct and confident: "Our main question is...", "We hypothesize that..."
+   - State things clearly and simply - prefer plain language over jargon
+   - Use bold questions as paragraph organizers: {\bf what is X?}
+   - Include specific quantitative claims: "8.97% over baseline"
+   - Avoid fancy wording: "utilize" → "use", "facilitate" → "help"
+
+2. INTRODUCTION STRUCTURE:
+   - Engaging hook (get to the point quickly)
+   - Problem importance
+   - Gap identification
+   - Your approach with method figure reference
+   - Quantitative preview of results
+   - Contribution bullets (3-4 items, action verbs)
+
+3. CONTRIBUTION LISTS:
+   \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+       \item We propose...
+       \item We conduct...
+       \item We complement...
+   \end{itemize}
+
+4. MODULAR COMMANDS STRUCTURE:
+   Command templates are pre-copied to paper_draft/commands/:
+   - math.tex: Math notation macros
+   - general.tex: Formatting macros
+   - macros.tex: Project-specific term definitions (customize this for your paper)
+
+   In main.tex, include:
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+5. REFERENCE CONVENTIONS:
+   Use reference macros from math.tex:
+   - \figref{fig:name} for "figure 1" (lowercase, in-sentence)
+   - \Figref{fig:name} for "Figure 1" (capitalized, start of sentence)
+   - \secref{sec:name} for "section 2"
+
+6. TEXT FORMATTING:
+   - Use \para{Header text} for bold paragraph headers
+   - Define method/dataset names with \textsc and \xspace:
+     \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+7. TABLE FORMATTING:
+   - Use booktabs package (no vertical lines)
+   - Use \resizebox{\textwidth}{!}{...} for wide tables
+   - Use @{} to remove padding at table edges
+   - Use \cmidrule(lr){x-y} for sub-headers
+   - Use \textsc{} for dataset/method names in headers
+   - Bold best results with {\bf ...}
+
+8. FIGURE FORMATTING:
+   - Use 0.32\textwidth for 3-column subfigures
+   - Use 0.95\linewidth for full-width figures
+   - Use \input{figures/legend} for shared legends
+   - Write self-contained captions explaining key observations
+
+9. RESULTS PRESENTATION:
+   - Define \increase and \decrease for colored arrows (green up, red down)
+   - Bold best results in tables
+   - Report confidence intervals when available
+
+10. ALGORITHM STYLING:
+    - Use algpseudocode with [noend]
+    - Use \triangleright for comments
+
+11. HYPERLINKS (REQUIRED):
+    - Always use \usepackage[hidelinks]{hyperref} or with colored links
+    - All citations, section refs, figure refs, table refs must be clickable
+    - This is essential for reader navigation
+
+════════════════════════════════════════════════════════════════════════════════
+                          WORKFLOW: REVIEW AND REFLECT
+════════════════════════════════════════════════════════════════════════════════
+
+Before calling finish, you MUST complete these review steps:
+
+1. REVIEW RESOURCES (at the start):
+   - Read .claude/skills/paper-writer/SKILL.md for detailed guidance
+   - Study templates/paper_writing/lab_style_guide.md for style conventions
+   - Browse paper_examples/ for formatting and language patterns
+
+2. SELF-REFLECTION (before finishing):
+   After writing all sections, review your work against these criteria:
+
+   LANGUAGE CHECK:
+   - [ ] Is the writing clear and jargon-free?
+   - [ ] Are claims specific with quantitative support?
+   - [ ] Is active voice used throughout?
+
+   FORMATTING CHECK:
+   - [ ] Does main.tex include \input{commands/math}, \input{commands/general}, \input{commands/macros}?
+   - [ ] Is hyperref package included for clickable references?
+   - [ ] Do tables use booktabs (no vertical lines)?
+   - [ ] Are best results bolded in tables?
+   - [ ] Are figures/tables properly captioned?
+
+   STRUCTURE CHECK:
+   - [ ] Does introduction follow: hook → importance → gap → approach → preview → contributions?
+   - [ ] Are contribution bullets specific with action verbs?
+   - [ ] Does the paper compile without errors?
+
+3. FIX ISSUES:
+   - Address any issues found in the self-reflection
+   - Re-compile and verify the PDF looks correct
+
+Only after completing this review should you consider the paper finished.

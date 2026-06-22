@@ -1,24 +1,14 @@
 {
-  "success": false,
+  "success": true,
   "stages": {
     "resource_finder": {
       "success": true,
-      "completion_marker": "/workspaces/drama-types-ai-e4ac-claude/.resource_finder_complete",
-      "outputs": {
-        "literature_review": "/workspaces/drama-types-ai-e4ac-claude/literature_review.md",
-        "resources_catalog": "/workspaces/drama-types-ai-e4ac-claude/resources.md",
-        "papers_dir": "/workspaces/drama-types-ai-e4ac-claude/papers",
-        "datasets_dir": "/workspaces/drama-types-ai-e4ac-claude/datasets",
-        "code_dir": "/workspaces/drama-types-ai-e4ac-claude/code"
-      },
-      "log_file": "/workspaces/drama-types-ai-e4ac-claude/logs/resource_finder_claude.log",
-      "transcript_file": "/workspaces/drama-types-ai-e4ac-claude/logs/resource_finder_claude_transcript.jsonl",
-      "elapsed_time": 26.485437631607056
+      "skipped": true
     },
     "experiment_runner": {
-      "success": false,
-      "return_code": 1,
-      "elapsed_time": 0.731334924697876,
+      "success": true,
+      "return_code": 0,
+      "elapsed_time": 2993.5021011829376,
       "log_file": "/workspaces/drama-types-ai-e4ac-claude/logs/execution_claude.log",
       "transcript_file": "/workspaces/drama-types-ai-e4ac-claude/logs/execution_claude_transcript.jsonl"
     }
